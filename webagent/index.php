@@ -11,6 +11,7 @@ date_default_timezone_set('Europe/Stockholm');
 
 // MODELS.
 require_once('models/FormModel.php');
+require_once('models/SiteModel.php');
 
 // VIEWS.
 require_once('views/LayoutView.php');
@@ -23,11 +24,11 @@ require_once('controllers/MasterController.php');
 $formModel = new FormModel();
 
 // CREATE OBJECTS OF THE VIEWS.
-$formView = new FormView();
+$formView = new FormView($formModel);
 $layoutView = new LayoutView($formView);
 
 // CREATE OBJECTS OF THE CONTROLLERS.
-$masterController = new MasterController($layoutView, $formView);
+$masterController = new MasterController($layoutView, $formView, $formModel);
 
 // CALL FUNCTIONS.
 $masterController -> handleUserRequest();

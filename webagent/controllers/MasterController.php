@@ -4,12 +4,14 @@ class MasterController {
 	
 	private $layoutView;
 	private $formView;
+	private $formModel;
 	
 	
-	public function __construct(LayoutView $layoutView, FormView $formView) {
+	public function __construct(LayoutView $layoutView, FormView $formView, FormModel $formModel) {
 		
 		$this -> layoutView = $layoutView;
 		$this -> formView = $formView;
+		$this -> formModel = $formModel;
 	}
 
 	public function handleUserRequest() {
@@ -18,7 +20,8 @@ class MasterController {
 		
 		if ($this -> formView -> didUserPressStart()) {
 			
-			echo "You pressed Start!";
+			$this -> formModel -> curlGetRequest();
+			$this -> formModel -> createDomDocument();
 		}
 	}
 }
