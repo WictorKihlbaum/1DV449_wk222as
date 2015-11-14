@@ -2,16 +2,23 @@
 
 class SiteModel {
 	
-	private $siteData;
+	private $name;
+	private $data;
 
 
-	public function __construct($siteData) {
+	public function __construct($name, $data) {
 		
-		$this -> siteData = $siteData;
+		$this -> name = $name;
+		$this -> data = $data;
 	}
 	
-	public function getSiteData() {
+	public function getName() {
 	
-		return $this -> siteData;	
+		return $this -> name;	
+	}
+	
+	public function getData() {
+	
+		return $this -> data;	
 	}
 }

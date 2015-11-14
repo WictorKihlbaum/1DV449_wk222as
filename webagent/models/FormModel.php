@@ -2,43 +2,51 @@
 
 class FormModel {
 
-	private static $url = "http://localhost:8080";
-	private $curlData;
-	private $siteData = array();
+	private $defaultURL; //"http://localhost:8080";
+	private $startPageData;
+	private $subPageData = array();
+	private $people = array();
+	//private $availableDays = array();
 	
-	private $availableDays = array();
 	
+	public function scrapePages() {
 	
-	public function curlGetRequest() {
-	
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, self::$url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$this -> curlData = curl_exec($ch);
-		curl_close($ch);
-		
-		
-		$this -> fetchSiteData();
-		$this -> fetchSiteLinks();
+		$this -> scrapeStartPage($this -> defaultURL);
+		$this -> getSubPageData();
+		$this -> getCalendarLinks();
 	}
 	
-	public function fetchSiteData() {
+	public function setDefaultURL($url) {
+	
+		$this -> defaultURL = $url;		
+	}
+	
+	public function scrapeStartPage($url) {
+	
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		$this -> startPageData = curl_exec($ch);
+		curl_close($ch);
+	}
+	
+	public function getSubPageData() {
 	
 		$dom = new DOMDocument();
 		
-		if ($dom -> loadHTML($this -> curlData)) {
+		if ($dom -> loadHTML($this -> startPageData)) {
 			
 			$xpath = new DOMXPath($dom);
 			$items = $xpath -> query("//a/@href");
 			
 			foreach ($items as $item) {
 				
-				//echo self::$url . $item -> nodeValue . '<br />';
-				
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, self::$url . $item -> nodeValue);
+				curl_setopt($ch, CURLOPT_URL, $this -> defaultURL . $item -> nodeValue);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				$this -> siteData[] = curl_exec($ch);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				$this -> subPageData[] = new SiteModel($item -> nodeValue, curl_exec($ch));
 				curl_close($ch);
 			}
 			
@@ -48,37 +56,40 @@ class FormModel {
 		}
 	}
 	
-	private function fetchSiteLinks() {
-	
-		foreach ($this -> siteData as $site) {
-			
-			$dom = new DOMDocument();
+	private function getCalendarLinks() {
 		
-			if ($dom -> loadHTML($site)) {
+		foreach ($this -> subPageData as $data) {
+			
+			if (preg_match('/calendar/i', $data -> getName())) {
 				
-				$xpath = new DOMXPath($dom);
-				$items = $xpath -> query("//a/@href");
+				$dom = new DOMDocument();
 				
-				foreach ($items as $item) {
+				if ($dom -> loadHTML($data -> getData())) {
 					
-					echo $item -> nodeValue;
+					$xpath = new DOMXPath($dom);
+					$items = $xpath -> query("//a/@href");
 					
-					/*$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, self::$url . $item -> nodeValue);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-					$this -> siteData[] = new SiteModel(curl_exec($ch));
-					curl_close($ch);*/
+					foreach ($items as $item) {
+						
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $this -> defaultURL . $data -> getName() . '/' . $item -> nodeValue);
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+						
+						$this -> people[] = new PersonModel(); // TODO: Add name and availabledays.
+						
+						
+						$this -> hej = curl_exec($ch); // change name.
+						var_dump($this -> hej);
+						
+						curl_close($ch);
+					} 
+					
+				} else {
+					
+					die("Fel vid inläsning av HTML");
 				}
-				
-			} else {
-				
-				die("Fel vid inläsning av HTML");	
 			}
 		}
 	}
 		
-	public function getUrl() {
-		
-		return self::$url;	
-	}
 }

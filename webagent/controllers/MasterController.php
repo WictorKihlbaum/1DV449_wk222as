@@ -23,7 +23,8 @@ class MasterController {
 		
 		if ($this -> formView -> didUserPressStart()) {
 			
-			$this -> formModel -> curlGetRequest();
+			$this -> formModel -> setDefaultURL($this -> formView -> getURL());
+			$this -> formModel -> scrapePages();
 		}
 	}
 	
