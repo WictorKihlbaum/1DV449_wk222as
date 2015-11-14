@@ -31,4 +31,5 @@ $layoutView = new LayoutView($formView);
 $masterController = new MasterController($layoutView, $formView, $formModel);
 
 // CALL FUNCTIONS.
+$masterController -> showPage();
 $masterController -> handleUserRequest();

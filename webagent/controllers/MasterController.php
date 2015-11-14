@@ -13,15 +13,18 @@ class MasterController {
 		$this -> formView = $formView;
 		$this -> formModel = $formModel;
 	}
+	
+	public function showPage() {
+		
+		$this -> layoutView -> renderLayout();		
+	}
 
 	public function handleUserRequest() {
-		
-		$this -> layoutView -> renderLayout();
 		
 		if ($this -> formView -> didUserPressStart()) {
 			
 			$this -> formModel -> curlGetRequest();
-			$this -> formModel -> createDomDocument();
 		}
 	}
+	
 }
