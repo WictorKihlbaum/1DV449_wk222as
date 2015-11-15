@@ -15,6 +15,35 @@ class FormModel {
 		$this -> scrapeSubPageData();
 		$this -> scrapePeoplePageData();
 		$this -> verifyAvailableDays(); // TODO: Move this function.
+		$this -> verifyAvailableMovies(); // TODO: Move this function.
+	}
+	
+	private function verifyAvailableMovies() {
+	
+		$moviePageFound = false;
+		
+		foreach ($this -> subPageData as $data) {
+			
+			if (preg_match('/cinema/i', $data -> getPageName())) {
+				
+				$moviePageFound = true;
+				$dom = new DOMDocument();
+				
+				if ($dom -> loadHTML($data -> getPageData())) {
+					
+					// TODO: ...
+					
+				} else {
+					
+					die("Fel vid inläsning av HTML");
+				}
+			} 
+		}
+		
+		if (!$moviePageFound) {
+			
+			echo "Filmsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn.";
+		}
 	}
 	
 	public function setDefaultURL($url) {
@@ -148,8 +177,6 @@ class FormModel {
 		if ($sunday == $amountOfPeople) {
 			$availableDays[] = "Sunday";	
 		}
-		
-		var_dump($availableDays);
 	}
 		
 }
