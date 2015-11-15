@@ -1,24 +1,25 @@
 <?php
 
-class SiteModel {
-	
+class PageModel {
+
 	private $name;
 	private $data;
-
-
+	
+	
 	public function __construct($name, $data) {
 		
 		$this -> name = $name;
 		$this -> data = $data;
 	}
 	
-	public function getName() {
+	public function getPageName() {
 	
 		return $this -> name;	
 	}
 	
-	public function getData() {
-	
+	public function getPageData() {
+		
 		return $this -> data;	
 	}
+	
 }
