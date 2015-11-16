@@ -12,6 +12,7 @@ date_default_timezone_set('Europe/Stockholm');
 // MODELS.
 require_once('models/FormModel.php');
 require_once('models/PageModel.php');
+require_once('models/MovieModel.php');
 
 // VIEWS.
 require_once('views/LayoutView.php');
