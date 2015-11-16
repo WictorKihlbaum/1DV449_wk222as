@@ -17,6 +17,8 @@ require_once('models/MovieModel.php');
 // VIEWS.
 require_once('views/LayoutView.php');
 require_once('views/FormView.php');
+require_once('views/ResultView.php');
+require_once('views/BookingView.php');
 
 // CONTROLLERS.
 require_once('controllers/MasterController.php');
@@ -27,9 +29,11 @@ $formModel = new FormModel();
 // CREATE OBJECTS OF THE VIEWS.
 $formView = new FormView($formModel);
 $layoutView = new LayoutView($formView);
+$resultView = new ResultView($formModel);
+$bookingView = new BookingView();
 
 // CREATE OBJECTS OF THE CONTROLLERS.
-$masterController = new MasterController($layoutView, $formView, $formModel);
+$masterController = new MasterController($layoutView, $formView, $formModel, $resultView, $bookingView);
 
 // CALL FUNCTIONS.
 $masterController -> showPage();

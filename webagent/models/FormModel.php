@@ -2,7 +2,7 @@
 
 class FormModel {
 
-	private $defaultURL; //"http://localhost:8080";
+	private $defaultURL;
 	private $startPageData;
 	private $subPageData = array();
 	private $people = array();
@@ -11,45 +11,50 @@ class FormModel {
 	
 	public function scrapePages() {
 	
-		$this -> scrapeStartPageData($this -> defaultURL);
+		$this -> scrapeStartPageData();
 		$this -> scrapeSubPageData();
 		$this -> scrapePeoplePageData();
-		$this -> verifyAvailableDays(); // TODO: Move this function.
-		$this -> verifyAvailableMovies(); // TODO: Move this function.
-		$this -> printResult(); // TODO: Move this function.
+		$this -> verifyAvailableDays(); // TODO: Move this.
+		$this -> verifyAvailableMovies(); // TODO: Move this.
+		$this -> verifyAvailableBookings();
 	}
 	
-	private function printResult() {
-		
-		$result = '
-			<ul>
-				<h1>Följande filmer hittades</h1>
-				'. $this -> renderAvailableMovies() .'
-			</ul>
-		';
-		
-		echo $result;
-	}
+	private function verifyAvailableBookings() { // TODO: Just make it work...
 	
-	private function renderAvailableMovies() {
-	
-		$listElements = "";
+		/*$dinnerPageFound = false;
 		
-		foreach ($this -> movies as $movie) {
+		foreach ($this -> subPageData as $data) {
+			
+			$pageName = $data -> getPageName();
+			
+			if (preg_match('/dinner/i', $pageName)) {
 				
-			if ($movie -> isAvailable()) {
+				$dinnerPageFound = true;
+				$dom = new DOMDocument();
 				
-				$listElements .= 
-					'<li>
-						Filmen <strong>'. $movie -> getMovieName() .'</strong> 
-						klockan '. $movie -> getTime() .' 
-						på '. $movie -> getDay() .' 
-						<a href="#">Välj denna och boka bord</a>
-					</li>';
-			}
+				if ($dom -> loadHTML($data -> getPageData())) {
+					
+					$xpath = new DOMXPath($dom);
+					$availableBookings = $xpath -> query('//a/@href');
+					
+					foreach ($availableBookings as $booking) {
+						var_dump($booking -> nodeValue);
+					}
+					
+				} else {
+					
+					die("Fel vid inläsning av HTML");
+				}
+			} 
 		}
 		
-		return $listElements;
+		if (!$dinnerPageFound) {
+			echo "Restaurangsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn.";
+		}*/
+	}
+	
+	public function getMovies() {
+		return $this -> movies;	
 	}
 	
 	private function getMovieDayResult($availableDay, $movieOptions, $pageName) {
@@ -93,11 +98,11 @@ class FormModel {
 					
 					foreach ($dayOptions as $dayOption) {
 					
-						foreach ($this -> availableDays as $availableday) {
+						foreach ($this -> availableDays as $availableDay) {
 							
-							if ($dayOption -> nodeValue == $availableday) {
+							if ($dayOption -> nodeValue == $availableDay) {
 								
-								$this -> getMovieDayResult($availableday, $movieOptions, $pageName);
+								$this -> getMovieDayResult($availableDay, $movieOptions, $pageName);
 							}
 						}
 					}
@@ -110,20 +115,18 @@ class FormModel {
 		}
 		
 		if (!$moviePageFound) {
-			
 			echo "Filmsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn.";
 		}
 	}
 	
 	public function setDefaultURL($url) {
-	
 		$this -> defaultURL = $url;		
 	}
 	
-	public function scrapeStartPageData($url) {
+	public function scrapeStartPageData() {
 	
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this -> defaultURL);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		$this -> startPageData = curl_exec($ch);
