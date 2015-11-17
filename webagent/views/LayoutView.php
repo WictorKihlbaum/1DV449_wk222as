@@ -18,6 +18,7 @@ class LayoutView {
 				<head>
 					<meta charset="utf-8">
 					<title>Webagent</title>
+					<script src="../content/js/HandleBooking.js"></script>
 					<link rel="stylesheet" type="text/css" href="../content/css/mainstyle.css">
 				</head>
 			

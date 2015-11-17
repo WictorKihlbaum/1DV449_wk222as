@@ -17,18 +17,49 @@ ul {
 
 .sub-list {
 	padding: 10px;
-	background-color: #16A085;
+	margin-top: 15px;
+	background-color: #E4F1FE;
 	font-size: 14px;
 	border-radius: 10px;
 	display: none;
+	color: #34495E;
+}
+
+.sub-list a:link {
+	color: #F27935 !important;
+	text-decoration: none;	
+}
+
+.sub-list a:hover {
+	text-decoration: underline;	
+}
+
+.sub-list a:visited {
+	color: #F27935 !important;
+	text-decoration: none;	
 }
 
 .movie-hit {
 	padding: 20px;
-	background-color: #4ECDC4;
+	background-color: #6BB9F0;
 	font-size: 18px;
 	margin-bottom: 10px;
 	border-radius: 15px;
+	color: #34495E;
+}
+
+.movie-hit a:link {
+	color: #E4F1FE;
+	text-decoration: none;	
+}
+
+.movie-hit a:hover {
+	text-decoration: underline;	
+}
+
+.movie-hit a:visited  {
+	color: #E4F1FE;
+	text-decoration: none;	
 }
 
 .booking-hit,
@@ -37,12 +68,12 @@ ul {
 }
 
 .not-available {
-	color: red;	
+	color: #F22613;	
 }
 
 #topic {
 	text-align: center;	
-	color: #1BBC9B;
+	color: #4183D7;
 }
 
 #main-content {

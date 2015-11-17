@@ -3,8 +3,6 @@
 class ResultView {
 	
 	private $formModel;
-	//private static $bookingButton = "ResultView::BookingButton";
-	//private $bookings;
 	
 	
 	public function __construct($formModel) {
@@ -29,8 +27,11 @@ class ResultView {
 	private function renderAvailableMovies($movies) {
 	
 		$mainListElements = "";
+		$id = 0;
 		
 		foreach ($movies as $movie) {
+			
+			$id += 1;
 				
 			if ($movie -> isAvailable()) {
 				
@@ -39,17 +40,17 @@ class ResultView {
 						Filmen <strong>'. $movie -> getMovieName() .'</strong> 
 						klockan '. $movie -> getTime() .' 
 						på '. $movie -> getDay() .' 
-						<a href="#">Välj denna och boka bord</a>'.
-						$this -> verifyBookingAlternatives($movie);
+						<a href="#" onClick="HandleBooking.showSubList('. $id .')">Välj denna och boka bord</a>'.
+						$this -> renderBookingAlternatives($movie, $id);
 			}
 		}
 		
 		return $mainListElements;
 	}
 	
-	private function verifyBookingAlternatives($movie) {
+	private function renderBookingAlternatives($movie, $id) {
 		
-		$subListTopic = '<p><strong>Lediga bokningar</strong></p>';
+		$subListTopic = '<p><strong>Lediga bokningar <a href="#" onClick="HandleBooking.hideSubList('. $id .')">(Dölj)</a></strong></p>';
 		$subListElements = '';
 		$bookings = $this -> formModel -> getBookings();
 		
@@ -83,7 +84,7 @@ class ResultView {
 			}
 		}
 		
-		return '<ul class="sub-list">'. $subListTopic . $subListElements .'</ul></li>';
+		return '<ul class="sub-list" id="'. $id .'">'. $subListTopic . $subListElements .'</ul></li>';
 	}
 	
 }

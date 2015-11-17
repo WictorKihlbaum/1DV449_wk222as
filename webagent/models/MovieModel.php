@@ -2,21 +2,14 @@
 
 class MovieModel {
 	
-	private $id;
 	private $day;
 	private $movieSpecs;
 	
 	
-	public function __construct($id, $day, $movieSpecs) {
+	public function __construct($day, $movieSpecs) {
 		
-		$this -> id = $id;
 		$this -> day = $day;
 		$this -> movieSpecs = $movieSpecs;
-	}
-	
-	public function getMovieID() {
-		
-		return $this -> id;	
 	}
 	
 	public function getDay() {

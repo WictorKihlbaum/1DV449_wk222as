@@ -65,11 +65,8 @@ class FormModel {
 	
 	private function getMovieDayResult($availableDay, $movieOptions, $pageName) {
 		
-		$movieID = 0;
-		
 		foreach ($movieOptions as $movieOption) {
 			
-			$movieID +=1;
 			$url = $this -> defaultURL . $pageName .'/check?day='. $availableDay .'&movie='. $movieOption -> nodeValue.'';
 			
 			$ch = curl_init();
@@ -79,7 +76,7 @@ class FormModel {
 			
 			// Create object for each movie and its different showtimes.
 			foreach (json_decode(curl_exec($ch), true) as $movie) {
-				$this -> movies[] = new MovieModel($movieID, $availableDay, $movie);
+				$this -> movies[] = new MovieModel($availableDay, $movie);
 			}
 			
 			curl_close($ch);
