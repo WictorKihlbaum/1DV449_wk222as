@@ -23,7 +23,7 @@ class FormView {
 	
 		return '
 			<form method="post" id="'. self::$urlForm .'" name="'. self::$urlForm .'"> 
-				<input type="text" id="'. self::$urlName .'" name="'. self::$urlName .'" value="http://localhost:8080" placeholder="Ange URL">
+				<input type="text" id="'. self::$urlName .'" name="'. self::$urlName .'" placeholder="Ange URL">
 				<input type="submit" id="start-button" name="'. self::$start .'" value="Start!" />
 			</form>
 		';	

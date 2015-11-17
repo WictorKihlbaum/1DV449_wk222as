@@ -1,8 +1,8 @@
 <?php
 
 // MAKE SURE ERRORS ARE SHOWN.
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // SET DEFAULT TIME ZONE.
 date_default_timezone_set('Europe/Stockholm');
