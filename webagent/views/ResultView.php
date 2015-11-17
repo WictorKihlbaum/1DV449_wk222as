@@ -3,9 +3,8 @@
 class ResultView {
 	
 	private $formModel;
-	private static $bookingButton = "ResultView::BookingButton";
+	//private static $bookingButton = "ResultView::BookingButton";
 	//private $bookings;
-	
 	
 	
 	public function __construct($formModel) {
@@ -18,7 +17,7 @@ class ResultView {
 		$movies = $this -> formModel -> getMovies();
 		
 		$result = '
-			<ul>
+			<ul id="main-list">
 				<h1>Följande filmer hittades</h1>
 				'. $this -> renderAvailableMovies($movies) .'
 			</ul>
@@ -29,14 +28,14 @@ class ResultView {
 	
 	private function renderAvailableMovies($movies) {
 	
-		$listElements = "";
+		$mainListElements = "";
 		
 		foreach ($movies as $movie) {
 				
 			if ($movie -> isAvailable()) {
 				
-				$listElements .= 
-					'<li>
+				$mainListElements .= 
+					'<li class="movie-hit">
 						Filmen <strong>'. $movie -> getMovieName() .'</strong> 
 						klockan '. $movie -> getTime() .' 
 						på '. $movie -> getDay() .' 
@@ -45,12 +44,13 @@ class ResultView {
 			}
 		}
 		
-		return $listElements;
+		return $mainListElements;
 	}
 	
 	private function verifyBookingAlternatives($movie) {
 		
-		$listElements = '';
+		$subListTopic = '<p><strong>Lediga bokningar</strong></p>';
+		$subListElements = '';
 		$bookings = $this -> formModel -> getBookings();
 		
 		foreach($bookings as $booking) {
@@ -59,8 +59,8 @@ class ResultView {
 				
 				if ($booking -> getStartTime() >= $movie -> getEndTime()) {
 				
-					$listElements .= 
-						'<li>Det finns ett ledigt bord mellan klockan '. 
+					$subListElements .= 
+						'<li class="booking-hit">Det finns ett ledigt bord mellan klockan '. 
 						$booking -> getStartTime() . 
 						' och ' . $booking -> getEndTime() .
 						' efter att sett filmen ' .
@@ -71,12 +71,19 @@ class ResultView {
 					
 				} else {
 				
-					$listElements .= '<li>Inte tillgänglig</li>';	
+					$subListElements .= 
+						'<li class="not-available">
+							Den lediga tiden mellan klockan 
+							'. $booking -> getStartTime() .' 
+							och 
+							'. $booking -> getEndTime() .'
+							är antingen innan och/eller under filmens visning
+						</li>';	
 				}
 			}
 		}
 		
-		return '<ul>'. $listElements .'</ul></li>';
+		return '<ul class="sub-list">'. $subListTopic . $subListElements .'</ul></li>';
 	}
 	
 }
