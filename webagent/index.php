@@ -13,6 +13,7 @@ date_default_timezone_set('Europe/Stockholm');
 require_once('exceptions/NoAvailableDayException.php');
 require_once('exceptions/NoMoviesAddedException.php');
 require_once('exceptions/NoCalendarPageFoundException.php');
+require_once('exceptions/NoCinemaPageFoundException.php');
 require_once('exceptions/NoDinnerPageFoundException.php');
 
 // MODELS.
