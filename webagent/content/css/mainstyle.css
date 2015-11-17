@@ -10,8 +10,8 @@ ul {
 }
 
 #main-list {
-	padding: 50px;	
-	background-color: #A2DED0;
+	margin: 0 auto;
+	padding: 50px;
 	width: 800px;
 }
 
@@ -20,10 +20,7 @@ ul {
 	background-color: #16A085;
 	font-size: 14px;
 	border-radius: 10px;
-}
-
-.not-available {
-	color: red;	
+	display: none;
 }
 
 .movie-hit {
@@ -37,4 +34,47 @@ ul {
 .booking-hit,
 .not-available {
 	padding: 5px;	
+}
+
+.not-available {
+	color: red;	
+}
+
+#topic {
+	text-align: center;	
+	color: #1BBC9B;
+}
+
+#main-content {
+	margin: 0 auto;
+	padding-top: 50px;
+	width: 900px;
+}
+
+form {
+	text-align: center;	
+}
+
+form input[type=text] {
+	width: 250px;
+	height: 42px;
+	border-radius: 5px;
+	border: 1px solid #6BB9F0;
+	color: #6BB9F0;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+form input[type=submit] {
+	padding: 15px 25px;
+	background-color: #22A7F0;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 8px;
+	font-size: 14px;
+}
+
+form input[type=submit]:hover {
+	cursor: pointer;
+	background-color: #4183D7;
 }

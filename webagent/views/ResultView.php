@@ -18,7 +18,7 @@ class ResultView {
 		
 		$result = '
 			<ul id="main-list">
-				<h1>Följande filmer hittades</h1>
+				<h1 id="topic">Följande filmer hittades</h1>
 				'. $this -> renderAvailableMovies($movies) .'
 			</ul>
 		';

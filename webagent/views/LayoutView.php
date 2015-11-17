@@ -22,7 +22,9 @@ class LayoutView {
 				</head>
 			
 				<body>
-					'. $this -> formView -> renderForm() .'
+					<div id="main-content">
+						'. $this -> formView -> renderForm() .'
+					</div>
 				</body>
 			</html>
 		';

@@ -7,7 +7,7 @@ class FormView {
 	private static $urlName = "LayoutView::UrlName";
 	private static $start = "LayoutView::Start";
 	private static $urlForm = "LayoutView::UrlForm";
-	private static $urlText = "LayoutView::UrlText";
+	//private static $urlText = "LayoutView::UrlText";
 	
 	
 	public function __construct(FormModel $formModel) {
@@ -23,9 +23,8 @@ class FormView {
 	public function renderForm() {
 	
 		return '
-			<p id="'. self::$urlText .'">Ange URL:</p> 
 			<form method="post" id="'. self::$urlForm .'" name="'. self::$urlForm .'"> 
-				<input type="text" id="'. self::$urlName .'" name="'. self::$urlName .'" value="http://localhost:8080">
+				<input type="text" id="'. self::$urlName .'" name="'. self::$urlName .'" value="http://localhost:8080" placeholder="Ange URL">
 				<input type="submit" id="'. self::$start .'" name="'. self::$start .'" value="Start!" />
 			</form>
 		';	
