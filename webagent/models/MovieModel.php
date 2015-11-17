@@ -1,22 +1,29 @@
 <?php 
 
 class MovieModel {
-
+	
+	private $id;
 	private $day;
 	private $movieSpecs;
 	
 	
-	public function __construct($day, $movieSpecs) {
+	public function __construct($id, $day, $movieSpecs) {
 		
+		$this -> id = $id;
 		$this -> day = $day;
 		$this -> movieSpecs = $movieSpecs;
+	}
+	
+	public function getMovieID() {
+		
+		return $this -> id;	
 	}
 	
 	public function getDay() {
 		
 		switch ($this -> day) {
 		
-			case "01": return "Friday"; break;
+			case "01": return "Fredag"; break;
 			case "02": return "Lördag"; break;
 			case "03": return "Söndag"; break;
 			default: break;
@@ -37,14 +44,26 @@ class MovieModel {
 	public function isAvailable() {
 	
 		if ($this -> movieSpecs["status"] == 1) {
+			
 			return true;
 		}
 		return false;
 	}
 	
 	public function getTime() {
-	
+		
 		return $this -> movieSpecs["time"];	
+	}
+	
+	public function getEndTime() {
+	
+		switch (true) {
+			
+			case preg_match("/16/", $this -> movieSpecs["time"]): return 18; break;
+			case preg_match("/18/", $this -> movieSpecs["time"]): return 20; break;
+			case preg_match("/21/", $this -> movieSpecs["time"]): return 23; break;
+			default: break;
+		}
 	}
 	
 }

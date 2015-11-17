@@ -8,6 +8,8 @@ class FormModel {
 	private $people = array();
 	private $availableDays = array();
 	private $movies = array();
+	private $bookings = array();
+	
 	
 	public function scrapePages() {
 	
@@ -16,12 +18,16 @@ class FormModel {
 		$this -> scrapePeoplePageData();
 		$this -> verifyAvailableDays(); // TODO: Move this.
 		$this -> verifyAvailableMovies(); // TODO: Move this.
-		$this -> verifyAvailableBookings();
+		$this -> verifyAvailableBookings(); // TODO: Move this.
 	}
 	
-	private function verifyAvailableBookings() { // TODO: Just make it work...
+	public function getBookings() {
+		return $this -> bookings;	
+	}
 	
-		/*$dinnerPageFound = false;
+	private function verifyAvailableBookings() {
+	
+		$dinnerPageFound = false;
 		
 		foreach ($this -> subPageData as $data) {
 			
@@ -35,10 +41,10 @@ class FormModel {
 				if ($dom -> loadHTML($data -> getPageData())) {
 					
 					$xpath = new DOMXPath($dom);
-					$availableBookings = $xpath -> query('//a/@href');
+					$availableBookings = $xpath -> query('//input/@value');
 					
 					foreach ($availableBookings as $booking) {
-						var_dump($booking -> nodeValue);
+						$this -> bookings[] = new BookingModel($booking -> nodeValue);
 					}
 					
 				} else {
@@ -49,8 +55,8 @@ class FormModel {
 		}
 		
 		if (!$dinnerPageFound) {
-			echo "Restaurangsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn.";
-		}*/
+			echo "Restaurangsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn."; // Throw exception instead.
+		}
 	}
 	
 	public function getMovies() {
@@ -59,8 +65,11 @@ class FormModel {
 	
 	private function getMovieDayResult($availableDay, $movieOptions, $pageName) {
 		
+		$movieID = 0;
+		
 		foreach ($movieOptions as $movieOption) {
 			
+			$movieID +=1;
 			$url = $this -> defaultURL . $pageName .'/check?day='. $availableDay .'&movie='. $movieOption -> nodeValue.'';
 			
 			$ch = curl_init();
@@ -70,7 +79,7 @@ class FormModel {
 			
 			// Create object for each movie and its different showtimes.
 			foreach (json_decode(curl_exec($ch), true) as $movie) {
-				$this -> movies[] = new MovieModel($availableDay, $movie);
+				$this -> movies[] = new MovieModel($movieID, $availableDay, $movie);
 			}
 			
 			curl_close($ch);

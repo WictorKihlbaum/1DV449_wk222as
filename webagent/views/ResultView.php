@@ -3,7 +3,8 @@
 class ResultView {
 	
 	private $formModel;
-	private static $bookingLink = "ResultView::BookingLink";
+	private static $bookingButton = "ResultView::BookingButton";
+	//private $bookings;
 	
 	
 	
@@ -39,12 +40,43 @@ class ResultView {
 						Filmen <strong>'. $movie -> getMovieName() .'</strong> 
 						klockan '. $movie -> getTime() .' 
 						på '. $movie -> getDay() .' 
-						<a href="/result" name="'. self::$bookingLink .'">Välj denna och boka bord</a>
-					</li>';
+						<a href="#">Välj denna och boka bord</a>'.
+						$this -> verifyBookingAlternatives($movie);
 			}
 		}
 		
 		return $listElements;
+	}
+	
+	private function verifyBookingAlternatives($movie) {
+		
+		$listElements = '';
+		$bookings = $this -> formModel -> getBookings();
+		
+		foreach($bookings as $booking) {
+			
+			if ($booking -> getDay() == $movie -> getDay()) {
+				
+				if ($booking -> getStartTime() >= $movie -> getEndTime()) {
+				
+					$listElements .= 
+						'<li>Det finns ett ledigt bord mellan klockan '. 
+						$booking -> getStartTime() . 
+						' och ' . $booking -> getEndTime() .
+						' efter att sett filmen ' .
+						'<strong>' . $movie -> getMovieName() . '</strong>' .
+						' klockan ' .
+						$movie -> getTime() .
+						' <a href="#">Boka detta bord</a>';
+					
+				} else {
+				
+					$listElements .= '<li>Inte tillgänglig</li>';	
+				}
+			}
+		}
+		
+		return '<ul>'. $listElements .'</ul></li>';
 	}
 	
 }
