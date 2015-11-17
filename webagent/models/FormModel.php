@@ -16,9 +16,13 @@ class FormModel {
 		$this -> scrapeStartPageData();
 		$this -> scrapeSubPageData();
 		$this -> scrapePeoplePageData();
-		$this -> verifyAvailableDays(); // TODO: Move this.
-		$this -> verifyAvailableMovies(); // TODO: Move this.
-		$this -> verifyAvailableBookings(); // TODO: Move this.
+	}
+	
+	public function processScrapedData() {
+		
+		$this -> verifyAvailableDays();
+		$this -> verifyAvailableMovies();
+		$this -> verifyAvailableBookings();
 	}
 	
 	public function getBookings() {
@@ -48,14 +52,14 @@ class FormModel {
 					}
 					
 				} else {
-					
 					die("Fel vid inläsning av HTML");
 				}
 			} 
 		}
 		
+		// Make sure dinnerpage was found.
 		if (!$dinnerPageFound) {
-			echo "Restaurangsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn."; // Throw exception instead.
+			throw new \NoDinnerPageFoundException();
 		}
 	}
 	
@@ -80,12 +84,17 @@ class FormModel {
 			}
 			
 			curl_close($ch);
+			
+			// Make sure movie(s) were added.
+			if (empty($this -> movies)) {
+				throw new \NoMoviesAddedException();
+			}
 		}
 	}
 	
 	private function verifyAvailableMovies() {
 	
-		$moviePageFound = false;
+		$cinemaPageFound = false;
 		
 		foreach ($this -> subPageData as $data) {
 			
@@ -93,7 +102,7 @@ class FormModel {
 			
 			if (preg_match('/cinema/i', $pageName)) {
 				
-				$moviePageFound = true;
+				$cinemaPageFound = true;
 				$dom = new DOMDocument();
 				
 				if ($dom -> loadHTML($data -> getPageData())) {
@@ -103,7 +112,6 @@ class FormModel {
 					$movieOptions = $xpath -> query('//select[@id="movie"]/option/@value');
 					
 					foreach ($dayOptions as $dayOption) {
-					
 						foreach ($this -> availableDays as $availableDay) {
 							
 							if ($dayOption -> nodeValue == $availableDay) {
@@ -114,14 +122,13 @@ class FormModel {
 					}
 					
 				} else {
-					
 					die("Fel vid inläsning av HTML");
 				}
 			} 
 		}
 		
-		if (!$moviePageFound) {
-			echo "Filmsida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn.";
+		if (!$cinemaPageFound) {
+			throw new \NoCinemaPageFoundException();
 		}
 	}
 	
@@ -154,12 +161,12 @@ class FormModel {
 				curl_setopt($ch, CURLOPT_URL, $this -> defaultURL . $item -> nodeValue);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				// Save each scraped page.
 				$this -> subPageData[] = new PageModel($item -> nodeValue, curl_exec($ch));
 				curl_close($ch);
 			}
 			
 		} else {
-			
 			die("Fel vid inläsning av HTML");	
 		}
 	}
@@ -192,14 +199,14 @@ class FormModel {
 					} 
 					
 				} else {
-					
 					die("Fel vid inläsning av HTML");
 				}
 			} 
 		}
 		
+		// Make sure calendarpage was found.
 		if (!$calendarPageFound) {
-			echo "Kalendersida kunde ej hittas. Sidan har antingen tagits bort eller bytt namn."; // TODO: Throw Exception instead.
+			throw new \NoCalendarPageFoundException();
 		}
 	}
 	
@@ -220,6 +227,7 @@ class FormModel {
 				$days = $xpath -> query("//th");
 				$dayStatus = $xpath -> query("//td");
 				
+				// Verify if each day is marked with an "OK".
 				for ($i = 0; $i <= count($days); $i++) {
 					
 					if ($days[$i] -> nodeValue == "Friday" && 
@@ -240,11 +248,11 @@ class FormModel {
 				}
 				
 			} else {
-					
 				die("Fel vid inläsning av HTML");
 			}
 		}
 		
+		// The numbers are matching the dayvalue-strings.
 		if ($friday == $amountOfPeople) {
 			$this -> availableDays[] = "01";
 		}
@@ -255,8 +263,9 @@ class FormModel {
 			$this -> availableDays[] = "03";	
 		}
 		
+		// Make sure day(s) were added.
 		if (empty($this -> availableDays)) {
-			echo "Det finns ingen dag som alla kan delta"; // TODO: Throw Exception instead.
+			throw new \NoAvailableDayException();
 		}
 	}
 		

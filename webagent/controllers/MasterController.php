@@ -13,14 +13,12 @@ class MasterController {
 		LayoutView $layoutView, 
 		FormView $formView, 
 		FormModel $formModel, 
-		ResultView $resultView,
-		BookingView $bookingView) {
+		ResultView $resultView) {
 		
 		$this -> layoutView = $layoutView;
 		$this -> formView = $formView;
 		$this -> formModel = $formModel;
 		$this -> resultView = $resultView;
-		$this -> bookingView = $bookingView;
 	}
 	
 	public function showPage() {
@@ -30,18 +28,37 @@ class MasterController {
 
 	public function handleUserRequest() {
 		
-		if ($this -> formView -> didUserPressStart()) {
+		try {
+		
+			if ($this -> formView -> didUserPressStart()) {
 			
-			$this -> formModel -> setDefaultURL($this -> formView -> getURL());
-			$this -> formModel -> scrapePages();
-			
-			if (!empty($this -> formModel -> getMovies())) {
-				echo $this -> resultView -> renderResult();
+				$this -> formModel -> setDefaultURL($this -> formView -> getURL());
+				$this -> formModel -> scrapePages();
+				$this -> formModel -> processScrapedData();
 				
-			} else {
-				echo "No movies found"; // TODO: Throw exception instead.	
+				echo $this -> resultView -> renderResult();
 			}
+			
+		} catch (NoAvailableDayException $e) {
+				
+			echo "Det finns ingen dag som alla kan delta.";
+				
+		} catch (NoMoviesAddedException $e) {
+				
+			echo "Inga filmer tillagda.";
+				
+		} catch (NoCalendarPageFoundException $e) {
+			
+			echo "Ingen kalendersida kunde hittas. Detta kan bero på att den antingen tagits bort eller bytt namn.";
+					
+		} catch (NoCinemaPageFoundException $e) {
+				
+			echo "Ingen filmsida kunde hittas. Detta kan bero på att den antingen tagits bort eller bytt namn.";
+				
+		} catch (NoDinnerPageFoundException $e) {
+			
+			echo "Ingen restaurangsida kunde hittas. Detta kan bero på att den antingen tagits bort eller bytt namn.";
 		}
 	}
-	
+		
 }

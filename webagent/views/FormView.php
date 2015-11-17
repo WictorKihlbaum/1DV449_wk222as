@@ -7,7 +7,6 @@ class FormView {
 	private static $urlName = "LayoutView::UrlName";
 	private static $start = "LayoutView::Start";
 	private static $urlForm = "LayoutView::UrlForm";
-	//private static $urlText = "LayoutView::UrlText";
 	
 	
 	public function __construct(FormModel $formModel) {

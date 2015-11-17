@@ -1,13 +1,19 @@
 <?php
 
 // MAKE SURE ERRORS ARE SHOWN.
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // SET DEFAULT TIME ZONE.
 date_default_timezone_set('Europe/Stockholm');
 
 // INCLUDE ALL FILES NEEDED.
+
+// EXCEPTIONS.
+require_once('exceptions/NoAvailableDayException.php');
+require_once('exceptions/NoMoviesAddedException.php');
+require_once('exceptions/NoCalendarPageFoundException.php');
+require_once('exceptions/NoDinnerPageFoundException.php');
 
 // MODELS.
 require_once('models/FormModel.php');
@@ -19,7 +25,6 @@ require_once('models/BookingModel.php');
 require_once('views/LayoutView.php');
 require_once('views/FormView.php');
 require_once('views/ResultView.php');
-require_once('views/BookingView.php');
 
 // CONTROLLERS.
 require_once('controllers/MasterController.php');
@@ -31,10 +36,9 @@ $formModel = new FormModel();
 $formView = new FormView($formModel);
 $layoutView = new LayoutView($formView);
 $resultView = new ResultView($formModel);
-$bookingView = new BookingView();
 
 // CREATE OBJECTS OF THE CONTROLLERS.
-$masterController = new MasterController($layoutView, $formView, $formModel, $resultView, $bookingView);
+$masterController = new MasterController($layoutView, $formView, $formModel, $resultView);
 
 // CALL FUNCTIONS.
 $masterController -> showPage();
