@@ -11,7 +11,7 @@
 Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [2]. 
 XSS-attacker kan generellt kategoriseras i två typer varav den ena är ”Stored” och den andra är ”Reflected”. Båda dessa attacker kan ske på antingen servern eller klienten. Det finns dock även en tredje, mindre känd typ av attack som kallas ”DOM Based XSS” [3]. 
 
-#### Följder #### 
+#### Följder
  
 Attacker av typen ”Stored” är de i vilka det injicerade skriptet är permanent lagrat på de inriktade servrarna, exempelvis i en databas, i ett meddelande-forum, besökslog eller kommentarsfält. Offret får sedan det maliciösa skriptet skickat till sig från servern när den frågar om den lagrade informationen [3]. 
 
