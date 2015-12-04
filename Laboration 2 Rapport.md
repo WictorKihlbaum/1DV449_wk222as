@@ -4,7 +4,7 @@
 
 ## Säkerhetsproblem ##
 
-### Textfält för meddelande är ej skyddat mot XSS-attacker (Cross Site Scripting) ###
+#### Textfält för meddelande är ej skyddat mot XSS-attacker (Cross Site Scripting) ####
 
 ### Innebörd ###
 
