@@ -30,9 +30,12 @@ W3C-specifikationen ”Content Security Policy” kan också hjälpa en att skyd
 
 De flesta applikationer verifierar rättigheter innan en funktion visas i användargränssnittet. Dock krävs det att dessa applikationer även utför samma kontroll av rättigheter på servern när åtkomst ges till varje funktion. Om förfrågningar inte verifieras kommer angripare kunna tvinga dessa förfrågningar i syfte att ges åtkomst till funktionalitet utan ordentlig auktorisering [2]. 
 
-Detta är ett problem vilket kan innebära att en angripare, som är auktoriserad systemanvändare, helt enkelt kan ändra URL-adressen eller en parameter till en privilegierad funktion. I det fall åtkomst ges innebär det i sin tur att anonyma användare kan komma åt privata funktioner vilka inte är skyddade. Administrativa funktioner är huvudmål för denna typ av attacker [5].
+Detta är ett problem vilket kan innebära att en angripare, som är auktoriserad systemanvändare, helt enkelt kan ändra URL-adressen eller en parameter till en privilegierad funktion.
 
 #### Följder ####
+
+I det fall åtkomst ges innebär det i sin tur att anonyma användare kan komma åt privata funktioner vilka inte är skyddade. Administrativa funktioner är huvudmål för denna typ av attacker [5].
+
 
 #### Åtgärder ####
 
