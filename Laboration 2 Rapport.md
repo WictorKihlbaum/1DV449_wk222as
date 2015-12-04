@@ -4,20 +4,20 @@
 
 ## Säkerhetsproblem ##
 
-#### Textfält för meddelande är ej skyddat mot XSS-attacker (Cross Site Scripting) ####
+### Textfält för meddelande är ej skyddat mot XSS-attacker (Cross Site Scripting) ###
 
 #### Innebörd ####
 
 Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [2]. 
 XSS-attacker kan generellt kategoriseras i två typer varav den ena är ”Stored” och den andra är ”Reflected”. Båda dessa attacker kan ske på antingen servern eller klienten. Det finns dock även en tredje, mindre känd typ av attack som kallas ”DOM Based XSS” [3]. 
 
-### Följder ###
+#### Följder #### 
  
 Attacker av typen ”Stored” är de i vilka det injicerade skriptet är permanent lagrat på de inriktade servrarna, exempelvis i en databas, i ett meddelande-forum, besökslog eller kommentarsfält. Offret får sedan det maliciösa skriptet skickat till sig från servern när den frågar om den lagrade informationen [3]. 
 
 Attacker av typen ”Reflected” är de i vilka det injicerade skriptet kastas tillbaka från webbservern. Detta kan exempelvis vara i form av ett felmeddelande, sökresultat eller någon annan typ av respons vilken inkluderar inmatning skickad till servern som del av förfrågan. Dessa attacker skickas till offer via en annan rutt, exempelvis i ett epost-meddelande eller på någon annan webbplats. När en användare sedan klickar på en maliciös länk, för att exempelvis skicka in en blankett eller navigera till en sida, skickas den injicerade koden till en sårbar webbplats, vilket i sin tur kastar tillbaka attacken mot användarens webbläsare. Webbläsaren exekverar därefter koden eftersom den anses ha skickats från en ”pålitlig” server [3]. 
 
-### Åtgärder ###
+#### Åtgärder ####
 
 Skydda sig mot XSS-attacker kräver separation av opålitlig data från aktivt innehåll i webbläsaren. Det föredragna valet är att ordentligt behandla och städa undan all opålitlig data baserad på HTML-kontexten, så som body, attribute, JavaScript, CSS och URL, i vilket data kommer bli inplacerad [4]. 
 Positiv eller ”Whitelist” validering är också rekommenderat då det hjälper till att skydda mot XSS. Detta är dock inget komplett skydd eftersom många applikationer kräver specialtecken i deras inmatningsfält. Sådan validering skall, i den mån det går, validera längden, tecknen, formatet och affärsregler rörande datan innan inmatningen accepteras. 
