@@ -28,7 +28,7 @@ W3C-specifikationen ”Content Security Policy” kan också hjälpa en att skyd
 
 #### Innebörd ####
 
-De flesta applikationer verifierar rättigheter innan en funktion visas i användargränssnittet. Dock krävs det att dessa applikationer även utför samma kontroll av rättigheter på servern när åtkomst ges till varje funktion. Om förfrågningar inte verifieras kommer angripare kunna tvinga dessa förfrågningar i syfte att ges åtkomst till funktionalitet utan ordentlig auktorisering. Detta är ett problem vilket kan innebära att en angripare, som är auktoriserad systemanvändare, helt enkelt kan ändra URL-adressen eller en parameter till en privilegierad funktion [2].
+De flesta applikationer verifierar rättigheter innan en funktion visas i användargränssnittet. Dock krävs det att dessa applikationer även utför samma kontroll av rättigheter på servern när åtkomst ges till varje funktion. Om förfrågningar inte verifieras kommer angripare kunna tvinga dessa förfrågningar i syfte att ges åtkomst till funktionalitet utan ordentlig auktorisering. Detta är ett problem vilket kan innebära att en angripare, som är auktoriserad systemanvändare, helt enkelt kan ändra URL-adressen eller en parameter till en privilegierad funktion [2]. I detta fall kan en användare, registrerad eller ej, exempelvis komma åt URL:en *http://localhost:8080/message/data*.
 
 #### Följder ####
 
