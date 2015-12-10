@@ -5,25 +5,41 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>My Mashup Application</title>
-        <!-- Bootstrap -->
-    	<link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="css/site.css">
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <!-- Leaflet JS -->
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <!-- Mapbox CSS -->
+    	<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css" rel="stylesheet" />
+        <!-- Mapbox JS -->
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js"></script>
+        <!-- Traffic -->
+        <script src="js/Traffic.js"></script>
+        <!-- Skeleton-Framework CSS -->
+        <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
 	</head>
 
 	<body>
     	<h1>My Mashup Application</h1>
         
+        <div id="traffic-list"></div>
         
+        <div id="map"></div>
         
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+        <script>
+		
+			mapboxgl.accessToken = 'pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg';
+			
+			var map = new mapboxgl.Map({
+				container: 'map', // container id
+				style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+				center: [-74.50, 40], // starting position
+				zoom: 9 // starting zoom
+			});
+			
+		</script>
+        
 	</body>
 </html>

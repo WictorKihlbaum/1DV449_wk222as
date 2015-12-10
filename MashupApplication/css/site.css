@@ -1,0 +1,25 @@
+/* CSS Document */
+
+body { 
+	margin:0; 
+	padding:0; 
+}
+
+#map { 
+	height: 500px;
+	max-width: 960px;
+}
+
+#traffic-list {
+	/*background-color: #CCC;*/
+	padding: 25px;
+	max-width: 910px;
+	max-height: 500px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+table td,
+table th {
+   padding: 5px 40px;
+}
