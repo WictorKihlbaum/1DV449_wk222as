@@ -22,11 +22,34 @@
 	</head>
 
 	<body>
-    	<h1>My Mashup Application</h1>
-        
-        <div id="traffic-list"></div>
+    	<h1 id="topic">My Mashup Application</h1>
         
         <div id="map"></div>
+        
+        <div id="filter-field">
+        	<p>Settings for filtering:</p>
+            <form id="filter-form">
+            	<input type="radio" class="filter-button" name="kategori" value="alla" checked />Alla
+            	<!-- Remaining radiobuttons inserted from Traffic.js -->
+            </form>
+        </div>
+        
+        <div id="traffic-list">
+        	<table>
+            	<thead>
+                	<tr>
+                    	<th>Datum</th>
+                        <th>Kategori</th>
+                        <th>Titel</th>
+                        <th>Beskrivning</th>
+                        <th>Visa på karta</th>
+                    </tr>
+                </thead>
+            	<tbody id="traffic-tbody">
+            		<!-- Rows inserted from Traffic.js -->
+            	</tbody>
+        	</table>
+        </div>
         
         <script>
 		
@@ -35,7 +58,7 @@
 			var map = new mapboxgl.Map({
 				container: 'map', // container id
 				style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
-				center: [-74.50, 40], // starting position
+				center: [16.3666667, 56.6666667], // starting position
 				zoom: 9 // starting zoom
 			});
 			

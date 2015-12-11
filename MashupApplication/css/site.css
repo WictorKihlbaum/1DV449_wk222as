@@ -5,13 +5,34 @@ body {
 	padding:0; 
 }
 
+#topic {
+	text-align: center;
+	padding: 0;
+	color: #4183D7;
+}
+
 #map { 
 	height: 500px;
 	max-width: 960px;
+	margin: 15px auto;
+}
+
+#filter-field {
+	margin: 0 auto;
+	padding: 15px;
+	max-width: 930px;
+	background-color: #E4F1FE;
+	border-radius: 15px;	
+}
+
+.filter-button {
+	margin: 10px;	
 }
 
 #traffic-list {
-	/*background-color: #CCC;*/
+	margin: 15px auto;
+	background-color: #E4F1FE;
+	border-radius: 15px;
 	padding: 25px;
 	max-width: 910px;
 	max-height: 500px;
@@ -19,7 +40,15 @@ body {
 	overflow-x: hidden;
 }
 
+table th {
+	white-space: nowrap;
+}
+
 table td,
 table th {
-   padding: 5px 40px;
+   padding: 5px 10px;
+}
+
+table tbody tr td:nth-child(5n+1) {
+	white-space: nowrap;
 }
