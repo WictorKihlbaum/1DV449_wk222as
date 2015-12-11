@@ -25,8 +25,30 @@ body {
 	border-radius: 15px;	
 }
 
+#filter-topic {
+	color: #3498DB;
+	font-size: 18px;	
+	margin: 0 5px;
+}
+
+#filter-form {
+	margin: 0;	
+}
+
+.filter-button-span {
+	margin: 5px;
+	padding: 5px 10px;
+	border-radius: 7px;
+	background-color: #59ABE3;
+	color: #FFFFFF;
+	display: inline-block;	
+}
+
 .filter-button {
-	margin: 10px;	
+	margin: -2px 5px 0 0;	
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
 }
 
 #traffic-list {

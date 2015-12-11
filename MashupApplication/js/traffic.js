@@ -59,10 +59,10 @@ var Traffic = {
 		for (var j = 0; j < categories.length; j++) {
 			// TODO: Add regEx to: remove white-spaces, change 'å, ä, ö' to 'a, o'.
 			// For the sake of 'value'.
-			filterButtons += '<input type="radio" class="filter-button" name="kategori" value="'+categories[j]+' /">' + categories[j];
+			filterButtons += '<span class="filter-button-span"><input type="radio" class="filter-button" name="kategori" value="'+categories[j]+' /">' + categories[j] + '</span>';
 		}
 		
-		document.getElementById('filter-form').innerHTML = filterButtons;
+		document.getElementById('filter-form').innerHTML += filterButtons;
 	},
 	
 	//getAllMessages: function(totalHits) {
