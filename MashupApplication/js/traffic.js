@@ -4,14 +4,33 @@
 var Traffic = {
 	
 	srURL: "http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=100",
+	srResponse: {},
+	messageCategory: 'Alla',
 	
 	
 	init: function() {
 		
-		Traffic.getJSON();
+		Traffic.getSRMessages();
 	},
 	
-	getJSON: function() {
+	addEventListeners: function() {
+	
+		var buttons = document.getElementsByClassName('filter-button');
+		
+		for (var i = 0; i < buttons.length; i++) {
+			
+			buttons[i].addEventListener("click", Traffic.filterMessageCategories, false);
+			buttons[i].myParam = buttons[i].value;
+		}
+	},
+	
+	filterMessageCategories: function(category) {
+		
+		Traffic.messageCategory = category.target.myParam;
+		Traffic.processMessageInfo();
+	},
+	
+	getSRMessages: function() {
 		
 		var xhr = new XMLHttpRequest();
 		
@@ -20,12 +39,12 @@ var Traffic = {
 			if (xhr.readyState === 4 && xhr.status === 200) {
 				
 				var response = JSON.parse(xhr.responseText);
+				
+				Traffic.srResponse = response;
 				Traffic.handleResponse(response);
 				
 				/*if (response.pagination.totalhits > response.pagination.size) {
 					Traffic.getAllMessages(response.pagination.totalhits);
-				} else {
-					Traffic.getTrafficInfo(response.messages);	
 				}*/
 			}
 		};
@@ -38,10 +57,9 @@ var Traffic = {
 		
 		var messages = response.messages;
 	
-		//var messages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
 		Traffic.renderFilterOptions(messages);
-		
-		Traffic.processMessageInfo(messages);
+		Traffic.processMessageInfo();
+		//var messages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
 	},
 	
 	renderFilterOptions: function(messages) {
@@ -50,19 +68,28 @@ var Traffic = {
 		var filterButtons = '';
 		
 		for (var i = 0; i < messages.length; i++) {
-			
+			// If category not already in array add it.
 			if (categories.indexOf(messages[i].subcategory) === -1) {
 				categories.push(messages[i].subcategory);
 			}
 		}
 		
+		categories.sort();
+		
 		for (var j = 0; j < categories.length; j++) {
-			// TODO: Add regEx to: remove white-spaces, change 'å, ä, ö' to 'a, o'.
-			// For the sake of 'value'.
-			filterButtons += '<span class="filter-button-span"><input type="radio" class="filter-button" name="kategori" value="'+categories[j]+' /">' + categories[j] + '</span>';
+			
+			/* TODO: Add regEx to: 
+					* remove white-spaces. 
+					* change 'å, ä, ö' to 'a, o'.
+					* Change uppercase to lowercase. 
+					*/
+					// For the sake of 'value'.
+			
+			filterButtons += '<span class="filter-button-span"><input type="radio" class="filter-button" name="kategori" value="'+categories[j]+'" /">' + categories[j] + '</span>';
 		}
 		
 		document.getElementById('filter-form').innerHTML += filterButtons;
+		Traffic.addEventListeners();
 	},
 	
 	//getAllMessages: function(totalHits) {
@@ -83,25 +110,62 @@ var Traffic = {
 //		xhr.send(null);
 //	},
 	
-	processMessageInfo: function(messages) {
+	processMessageInfo: function() {
 		
+		var messages = Traffic.srResponse.messages;
 		var infoList = [];
 		
 		for (var i = 0; i < messages.length; i++) {
 			
-			var info = [];
+			if (Traffic.messageCategory === 'Alla') {
+				
+				var infoForAllCategories = [];
+				
+				infoForAllCategories.push(
+					Traffic.formatDateTime(messages[i].createddate),
+					messages[i].subcategory,
+					messages[i].title,
+					messages[i].description
+				);
+				
+				infoList.push(infoForAllCategories);
+				
+			} else if (messages[i].subcategory === Traffic.messageCategory) {
+				
+				var infoForOneCategory = [];
 			
-			info.push(
-				Traffic.formatDateTime(messages[i].createddate),
-				messages[i].subcategory,
-				messages[i].title,
-				messages[i].description
-			);
-			
-			infoList.push(info);
+				infoForOneCategory.push(
+					Traffic.formatDateTime(messages[i].createddate),
+					messages[i].subcategory,
+					messages[i].title,
+					messages[i].description
+				);
+				
+				infoList.push(infoForOneCategory);
+			}
 		}
 		
 		Traffic.renderTrafficInfo(infoList);
+	},
+	
+	renderTrafficInfo: function(infoList) {
+		
+		var tableRows = '';
+		
+		for (var i = 0; i < infoList.length; i++) {
+		
+			tableRows += '<tr>';
+		
+			for (var j = 0; j < infoList[i].length; j++) {
+				
+				tableRows += '<td>' + infoList[i][j] + '</td>';
+			}
+			
+			tableRows += '<td><a href="#">Visa</a></td>';
+			tableRows += '</tr>';	
+		}
+	
+		document.getElementById('traffic-tbody').innerHTML = tableRows;
 	},
 	
 	sortMessagesByDate: function(response) {
@@ -148,26 +212,6 @@ var Traffic = {
 			formatedDate.getFullYear();
 		
 		return formatedDate;
-	},
-	
-	renderTrafficInfo: function(infoList) {
-		
-		var tableRows = '';
-		
-		for (var i = 0; i < infoList.length; i++) {
-		
-			tableRows += '<tr>';
-		
-			for (var j = 0; j < infoList[i].length; j++) {
-				
-				tableRows += '<td>' + infoList[i][j] + '</td>';
-			}
-			
-			tableRows += '<td><a href="#">Visa</a></td>';
-			tableRows += '</tr>';	
-		}
-	
-		document.getElementById('traffic-tbody').innerHTML = tableRows;
 	}
 	
 };
