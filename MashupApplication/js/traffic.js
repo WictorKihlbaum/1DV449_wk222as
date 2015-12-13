@@ -33,8 +33,6 @@ var Traffic = {
 	
 	createMapMarkers: function(messages) {
 		
-		console.log(Traffic.messageCategory);
-		
 		Traffic.clearMapFromMarkers();
 		
 		for (var i = 0; i < messages.length; i++) {
@@ -167,10 +165,10 @@ var Traffic = {
 	
 	handleResponse: function(response) {
 		
-		var messages = response.messages;
+		var messages = response.messages; // Keep?
 	
 		Traffic.processMessageInfo();
-		//var messages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
+		//var sortedMessages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
 	},
 	
 	//getAllMessages: function(totalHits) {
