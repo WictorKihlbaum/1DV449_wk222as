@@ -26,6 +26,14 @@
         
         <div id="map"></div>
         
+        <div id="priority-list">
+        	<span><img src="css/images/blue_marker_small.png" class="marker-image" />= Information</span>
+            <span><img src="css/images/green_marker_small.png" class="marker-image" />= Mindre störning</span>
+            <span><img src="css/images/yellow_marker_small.png" class="marker-image" />= Störning</span>
+            <span><img src="css/images/orange_marker_small.png" class="marker-image" />= Stor händelse</span>
+            <span><img src="css/images/red_marker_small.png" class="marker-image" />= Mycket allvarlig händelse</span>
+        </div>
+        
         <div id="filter-field">
         	<p id="filter-topic">Inställningar för filtrering av kategori:</p>
             <form id="filter-form">
@@ -44,7 +52,6 @@
                         <th>Kategori</th>
                         <th>Titel</th>
                         <th>Beskrivning</th>
-                        <th>Visa på karta</th>
                     </tr>
                 </thead>
             	<tbody id="traffic-tbody">
@@ -52,19 +59,5 @@
             	</tbody>
         	</table>
         </div>
-        
-        <script>
-		
-			mapboxgl.accessToken = 'pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg';
-			
-			var map = new mapboxgl.Map({
-				container: 'map', // container id
-				style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
-				center: [16.3666667, 56.6666667], // starting position
-				zoom: 9 // starting zoom
-			});
-			
-		</script>
-        
 	</body>
 </html>

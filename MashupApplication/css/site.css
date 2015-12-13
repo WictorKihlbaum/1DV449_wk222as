@@ -17,6 +17,19 @@ body {
 	margin: 15px auto;
 }
 
+#priority-list {
+	margin: 10px auto;
+	background-color: #E4F1FE;
+	border-radius: 15px;
+	max-width: 930px;
+	padding: 15px;	
+}
+
+.marker-image {
+	width: 25px;
+	height: 25px;	
+}
+
 #filter-field {
 	margin: 0 auto;
 	padding: 15px;

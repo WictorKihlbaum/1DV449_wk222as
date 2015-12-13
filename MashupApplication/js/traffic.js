@@ -6,11 +6,107 @@ var Traffic = {
 	srURL: "http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=100",
 	srResponse: {},
 	messageCategory: 'Alla',
+	map: {},
+	layerGroupAll: L.layerGroup(),
+	layerGroupFiltered: L.layerGroup(),
 	
 	
 	init: function() {
 		
 		Traffic.getSRMessages();
+		Traffic.renderMap();
+	},
+	
+	renderMap: function() {
+		
+		// L.mapbox.accessToken = 'pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg';
+		// Replace 'mapbox.streets' with your map id.
+		var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg', {
+			attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+				
+		Traffic.map = L.map('map')
+			.addLayer(mapboxTiles)
+			.setView([60.118387215202524, 15.001202453613246], 6);
+	},
+	
+	createMapMarkers: function(messages) {
+		
+		Traffic.clearMapFromMarkers();
+		
+		for (var i = 0; i < messages.length; i++) {
+			
+			if (Traffic.messageCategory === 'Alla') {
+				
+				var marker = Traffic.createMarker(messages[i]);
+				Traffic.layerGroupAll.addLayer(marker);
+				
+			} else if (messages[i].subcategory === Traffic.messageCategory) {
+				
+				var marker = Traffic.createMarker(messages[i]);
+				Traffic.layerGroupFiltered.addLayer(marker);
+			}
+		}
+		
+		Traffic.setOutMapMarkers();
+	},
+	
+	clearMapFromMarkers: function() {
+		
+		Traffic.map.removeLayer(Traffic.layerGroupAll);
+		Traffic.map.removeLayer(Traffic.layerGroupFiltered);
+		Traffic.layerGroupAll.clearLayers();
+		Traffic.layerGroupFiltered.clearLayers();
+	},
+	
+	createMarker: function(message) {
+		
+		return L.marker([message.latitude, message.longitude], {icon: Traffic.setMarkerColor(message.priority)})
+					.bindPopup('<strong>Titel</strong>: ' + message.title + '<br />' +
+							   '<strong>Datum</strong>: ' + Traffic.formatDateTime(message.createddate) + '<br />' +
+							   '<strong>Beskrivning</strong>: ' + message.description + '<br />' +
+							   '<strong>Kategori</strong>: ' + message.subcategory)
+					.openPopup();
+			
+	},
+	
+	setMarkerColor: function(priority) {
+		
+		var color = '';
+		
+		switch (priority) {
+		
+			case 1: color = 'blue'; break;
+			case 2: color = 'green'; break;
+			case 3: color = 'yellow'; break;
+			case 4: color = 'orange'; break;
+			case 5: color = 'red'; break;
+			
+			default: break;	
+		}
+		
+		var imageURL = 'css/images/' + color + '_marker_small.png';
+		
+		return L.icon({
+			iconUrl: imageURL,
+		
+			iconSize:     [35, 35], // Size of the icon.
+			iconAnchor:   [22, 94], // Point of the icon which will correspond to marker's location.
+			popupAnchor:  [-5, -95] // Point from which the popup should open relative to the iconAnchor.
+		});
+		
+	},
+	
+	setOutMapMarkers: function() {
+		
+		if (Traffic.messageCategory === 'Alla') {
+			
+			Traffic.layerGroupAll.addTo(Traffic.map);
+			
+		} else {
+			
+			Traffic.layerGroupFiltered.addTo(Traffic.map);
+		}
 	},
 	
 	addEventListeners: function() {
@@ -146,6 +242,7 @@ var Traffic = {
 		}
 		
 		Traffic.renderTrafficInfo(infoList);
+		Traffic.createMapMarkers(messages);
 	},
 	
 	renderTrafficInfo: function(infoList) {
@@ -161,7 +258,6 @@ var Traffic = {
 				tableRows += '<td>' + infoList[i][j] + '</td>';
 			}
 			
-			tableRows += '<td><a href="#">Visa</a></td>';
 			tableRows += '</tr>';	
 		}
 	
