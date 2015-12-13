@@ -15,6 +15,7 @@ var Traffic = {
 		
 		Traffic.getSRMessages();
 		Traffic.renderMap();
+		Traffic.addEventListeners();
 	},
 	
 	renderMap: function() {
@@ -32,6 +33,8 @@ var Traffic = {
 	
 	createMapMarkers: function(messages) {
 		
+		console.log(Traffic.messageCategory);
+		
 		Traffic.clearMapFromMarkers();
 		
 		for (var i = 0; i < messages.length; i++) {
@@ -41,7 +44,7 @@ var Traffic = {
 				var marker = Traffic.createMarker(messages[i]);
 				Traffic.layerGroupAll.addLayer(marker);
 				
-			} else if (messages[i].subcategory === Traffic.messageCategory) {
+			} else if (messages[i].category == Traffic.messageCategory) {
 				
 				var marker = Traffic.createMarker(messages[i]);
 				Traffic.layerGroupFiltered.addLayer(marker);
@@ -65,9 +68,23 @@ var Traffic = {
 					.bindPopup('<strong>Titel</strong>: ' + message.title + '<br />' +
 							   '<strong>Datum</strong>: ' + Traffic.formatDateTime(message.createddate) + '<br />' +
 							   '<strong>Beskrivning</strong>: ' + message.description + '<br />' +
-							   '<strong>Kategori</strong>: ' + message.subcategory)
+							   '<strong>Kategori</strong>: ' + Traffic.showCategory(message.category) + '<br />' +
+							   '<strong>Underkategori</strong>: ' + message.subcategory) 
 					.openPopup();
 			
+	},
+	
+	showCategory: function(category) {
+		
+		switch (category) {
+			
+			case 0: return 'Vägtrafik';
+			case 1: return 'Kollektivtrafik';
+			case 2: return 'Planerad störning';
+			case 3: return 'Övrigt';
+			
+			default: break;
+		}
 	},
 	
 	setMarkerColor: function(priority) {
@@ -76,11 +93,11 @@ var Traffic = {
 		
 		switch (priority) {
 		
-			case 1: color = 'blue'; break;
-			case 2: color = 'green'; break;
+			case 1: color = 'red'; break;
+			case 2: color = 'orange'; break;
 			case 3: color = 'yellow'; break;
-			case 4: color = 'orange'; break;
-			case 5: color = 'red'; break;
+			case 4: color = 'blue'; break;
+			case 5: color = 'green'; break;
 			
 			default: break;	
 		}
@@ -94,7 +111,6 @@ var Traffic = {
 			iconAnchor:   [22, 94], // Point of the icon which will correspond to marker's location.
 			popupAnchor:  [-5, -95] // Point from which the popup should open relative to the iconAnchor.
 		});
-		
 	},
 	
 	setOutMapMarkers: function() {
@@ -153,39 +169,8 @@ var Traffic = {
 		
 		var messages = response.messages;
 	
-		Traffic.renderFilterOptions(messages);
 		Traffic.processMessageInfo();
 		//var messages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
-	},
-	
-	renderFilterOptions: function(messages) {
-		
-		var categories = [];
-		var filterButtons = '';
-		
-		for (var i = 0; i < messages.length; i++) {
-			// If category not already in array add it.
-			if (categories.indexOf(messages[i].subcategory) === -1) {
-				categories.push(messages[i].subcategory);
-			}
-		}
-		
-		categories.sort();
-		
-		for (var j = 0; j < categories.length; j++) {
-			
-			/* TODO: Add regEx to: 
-					* remove white-spaces. 
-					* change 'å, ä, ö' to 'a, o'.
-					* Change uppercase to lowercase. 
-					*/
-					// For the sake of 'value'.
-			
-			filterButtons += '<span class="filter-button-span"><input type="radio" class="filter-button" name="kategori" value="'+categories[j]+'" /">' + categories[j] + '</span>';
-		}
-		
-		document.getElementById('filter-form').innerHTML += filterButtons;
-		Traffic.addEventListeners();
 	},
 	
 	//getAllMessages: function(totalHits) {
@@ -215,34 +200,31 @@ var Traffic = {
 			
 			if (Traffic.messageCategory === 'Alla') {
 				
-				var infoForAllCategories = [];
+				infoList.push(Traffic.summariseMessage(messages[i]));
 				
-				infoForAllCategories.push(
-					Traffic.formatDateTime(messages[i].createddate),
-					messages[i].subcategory,
-					messages[i].title,
-					messages[i].description
-				);
+			} else if (messages[i].category == Traffic.messageCategory) {
 				
-				infoList.push(infoForAllCategories);
-				
-			} else if (messages[i].subcategory === Traffic.messageCategory) {
-				
-				var infoForOneCategory = [];
-			
-				infoForOneCategory.push(
-					Traffic.formatDateTime(messages[i].createddate),
-					messages[i].subcategory,
-					messages[i].title,
-					messages[i].description
-				);
-				
-				infoList.push(infoForOneCategory);
+				infoList.push(Traffic.summariseMessage(messages[i]));
 			}
 		}
 		
 		Traffic.renderTrafficInfo(infoList);
 		Traffic.createMapMarkers(messages);
+	},
+	
+	summariseMessage: function(message) {
+		
+		var messages = [];
+		
+		messages.push(
+			Traffic.formatDateTime(message.createddate),
+			Traffic.showCategory(message.category),
+			message.subcategory,
+			message.title,
+			message.description
+		);
+		
+		return messages;
 	},
 	
 	renderTrafficInfo: function(infoList) {
@@ -303,9 +285,12 @@ var Traffic = {
 		date = date.replace('/Date(', '');
 		var formatedDate = new Date(parseInt(date));
 		
-		formatedDate = formatedDate.getDate() + " / " + 
-			(formatedDate.getMonth() + 1) + " / " + 
-			formatedDate.getFullYear();
+		formatedDate = 
+			formatedDate.getDate() + ' / ' + 
+			(formatedDate.getMonth() + 1) + ' / ' + 
+			formatedDate.getFullYear() + ' (Kl. ' +
+			formatedDate.getHours() + ':' +
+			formatedDate.getMinutes() + ')';
 		
 		return formatedDate;
 	}
