@@ -25,6 +25,12 @@ body {
 	padding: 15px;	
 }
 
+#priority-topic {
+	color: #3498DB;
+	font-size: 16px;	
+	margin: 5px 5px 10px 5px;
+}
+
 .marker-image {
 	width: 25px;
 	height: 25px;	
@@ -40,7 +46,7 @@ body {
 
 #filter-topic {
 	color: #3498DB;
-	font-size: 18px;	
+	font-size: 16px;	
 	margin: 0 5px;
 }
 
