@@ -151,7 +151,7 @@ var Traffic = {
 				var response = JSON.parse(xhr.responseText);
 				
 				Traffic.srResponse = response;
-				Traffic.handleResponse(response);
+				Traffic.handleResponse(/*response*/);
 				
 				/*if (response.pagination.totalhits > response.pagination.size) {
 					Traffic.getAllMessages(response.pagination.totalhits);
@@ -163,12 +163,11 @@ var Traffic = {
 		xhr.send(null);
 	},
 	
-	handleResponse: function(response) {
+	handleResponse: function(/*response*/) {
 		
-		var messages = response.messages; // Keep?
+		/*var messages = response.messages;*/ // Keep?
 	
 		Traffic.processMessageInfo();
-		//var sortedMessages = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
 	},
 	
 	//getAllMessages: function(totalHits) {
@@ -205,9 +204,23 @@ var Traffic = {
 				infoList.push(Traffic.summariseMessage(messages[i]));
 			}
 		}
+		// Sort array by date.
+		infoList = infoList.sort(Traffic.sortInfoList); 
+		// Format date.
+		for (var j = 0; j < infoList.length; j++) {
+			infoList[j][0] = Traffic.formatDateTime(infoList[j][0]);
+		}
 		
 		Traffic.renderTrafficInfo(infoList);
 		Traffic.createMapMarkers(messages);
+	},
+	
+	sortInfoList: function(a, b) {
+		
+		if (a[0] < b[0]) return 1;
+		if (a[0] > b[0]) return -1;
+		
+		return 0;
 	},
 	
 	summariseMessage: function(message) {
@@ -215,7 +228,7 @@ var Traffic = {
 		var messages = [];
 		
 		messages.push(
-			Traffic.formatDateTime(message.createddate),
+			message.createddate,
 			Traffic.showCategory(message.category),
 			message.subcategory,
 			message.title,
@@ -244,40 +257,6 @@ var Traffic = {
 		document.getElementById('traffic-tbody').innerHTML = tableRows;
 	},
 	
-	sortMessagesByDate: function(response) {
-		
-		response = Traffic.sortJsonArrayByProperty(response, 'messages.createddate', -1);
-		
-		return response;
-	},
-	
-	/* Function copied from: http://stackoverflow.com/a/4698083.
-	 * Some minor changes have been made for readability.
-	 * SR-API doesn't seem to have any sort-function for traffic-messages. 
-	 */
-	sortJsonArrayByProperty: function(objArray, prop, direction){
-		
-		if (arguments.length<2) { throw new Error("sortJsonArrayByProp requires 2 arguments"); }
-		var direct = arguments.length>2 ? arguments[2] : 1; //Default to ascending
-	
-		if (objArray && objArray.constructor===Array){
-			var propPath = (prop.constructor===Array) ? prop : prop.split(".");
-			objArray.sort(function(a,b){
-				for (var p in propPath){
-					if (a[propPath[p]] && b[propPath[p]]){
-						a = a[propPath[p]];
-						b = b[propPath[p]];
-					}
-				}
-				// convert numeric strings to integers
-				a = a.match(/^\d+$/) ? +a : a;
-				b = b.match(/^\d+$/) ? +b : b;
-				
-				return ( (a < b) ? -1*direct : ((a > b) ? 1*direct : 0) );
-			});
-		}
-	},
-	
 	formatDateTime: function(date) {
 		
 		date = date.replace('/Date(', '');
@@ -286,9 +265,9 @@ var Traffic = {
 		formatedDate = 
 			formatedDate.getDate() + ' / ' + 
 			(formatedDate.getMonth() + 1) + ' / ' + 
-			formatedDate.getFullYear() + ' (Kl. ' +
-			formatedDate.getHours() + ':' +
-			formatedDate.getMinutes() + ')';
+			formatedDate.getFullYear() + '<br />(Kl. ' +
+			('0' + formatedDate.getHours()).slice(-2) + ':' +
+			('0' + formatedDate.getMinutes()).slice(-2) + ')';
 		
 		return formatedDate;
 	}

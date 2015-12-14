@@ -22,55 +22,67 @@
 	</head>
 
 	<body>
-    	<h1 id="topic">My Mashup Application</h1>
+    
+    	<header>
+    		<h1 id="topic">Min Mashup Applikation</h1>
+        </header>
         
-        <div id="map"></div>
+        <main>
         
-        <div id="priority-list">
-        	<p id="priority-topic">Prioritetsbeskrivning av kartnålar</p>
-        		<img src="css/images/blue_marker_small.png" class="marker-image" alt="Blue marker" />= Information
-                <img src="css/images/green_marker_small.png" class="marker-image" alt="Green marker" />= Mindre störning
-                <img src="css/images/yellow_marker_small.png" class="marker-image" alt="Yellow marker" />= Störning
-                <img src="css/images/orange_marker_small.png" class="marker-image" alt="Orange marker" />= Stor händelse
-                <img src="css/images/red_marker_small.png" class="marker-image" alt="Red marker" />= Mycket allvarlig händelse
-        </div>
+            <div id="map"></div>
+            
+            <div id="priority-list">
+                <p id="priority-topic">Prioritetsbeskrivning av kartnålar</p>
+                    <img src="css/images/blue_marker_small.png" class="marker-image" alt="Blue marker" />= Information
+                    <img src="css/images/green_marker_small.png" class="marker-image" alt="Green marker" />= Mindre störning
+                    <img src="css/images/yellow_marker_small.png" class="marker-image" alt="Yellow marker" />= Störning
+                    <img src="css/images/orange_marker_small.png" class="marker-image" alt="Orange marker" />= Stor händelse
+                    <img src="css/images/red_marker_small.png" class="marker-image" alt="Red marker" />= Mycket allvarlig händelse
+            </div>
+            
+            <div id="filter-field">
+                <p id="filter-topic">Inställningar för filtrering av kategori</p>
+                <form id="filter-form">
+                    <span class="filter-button-span">
+                        <input type="radio" class="filter-button" name="kategori" value="Alla" checked />Alla
+                    </span>
+                    <span class="filter-button-span">
+                        <input type="radio" class="filter-button" name="kategori" value="0" />Vägtrafik
+                    </span>
+                    <span class="filter-button-span">
+                        <input type="radio" class="filter-button" name="kategori" value="1" />Kollektivtrafik
+                    </span>
+                    <span class="filter-button-span">
+                        <input type="radio" class="filter-button" name="kategori" value="2" />Planerad störning
+                    </span>
+                    <span class="filter-button-span">
+                        <input type="radio" class="filter-button" name="kategori" value="3" />Övrigt
+                    </span>
+                </form>
+            </div>
+            
+            <div id="traffic-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Datum &amp; Tid</th>
+                            <th>Kategori</th>
+                            <th>Underkategori</th>
+                            <th>Titel</th>
+                            <th>Beskrivning</th>
+                        </tr>
+                    </thead>
+                    <tbody id="traffic-tbody">
+                        <!-- Rows inserted from Traffic.js -->
+                    </tbody>
+                </table>
+            </div>
+            
+    	</main>
         
-        <div id="filter-field">
-        	<p id="filter-topic">Inställningar för filtrering av kategori</p>
-            <form id="filter-form">
-            	<span class="filter-button-span">
-                	<input type="radio" class="filter-button" name="kategori" value="Alla" checked />Alla
-                </span>
-                <span class="filter-button-span">
-                	<input type="radio" class="filter-button" name="kategori" value="0" />Vägtrafik
-                </span>
-                <span class="filter-button-span">
-                    <input type="radio" class="filter-button" name="kategori" value="1" />Kollektivtrafik
-                </span>
-                <span class="filter-button-span">
-                    <input type="radio" class="filter-button" name="kategori" value="2" />Planerad störning
-                </span>
-                <span class="filter-button-span">
-                    <input type="radio" class="filter-button" name="kategori" value="3" />Övrigt
-                </span>
-            </form>
-        </div>
+        <footer>
+        	<p>Skapad av Wictor Kihlbaum (wk222as)</p>
+        </footer>
         
-        <div id="traffic-list">
-        	<table>
-            	<thead>
-                	<tr>
-                    	<th>Datum</th>
-                        <th>Kategori</th>
-                        <th>Underkategori</th>
-                        <th>Titel</th>
-                        <th>Beskrivning</th>
-                    </tr>
-                </thead>
-            	<tbody id="traffic-tbody">
-            		<!-- Rows inserted from Traffic.js -->
-            	</tbody>
-        	</table>
-        </div>
 	</body>
 </html>
