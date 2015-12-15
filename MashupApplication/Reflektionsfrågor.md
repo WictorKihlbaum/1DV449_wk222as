@@ -2,13 +2,14 @@
 
 **Vad finns det för krav du måste anpassa dig efter i de olika API:erna?**
 
-<p>**SR:**
-Jag måste anpassa mig efter SR:s förbestämda "generella" URL-parametrar för att exempelvis få önskat format samt indrag av text. JSON-formatets attributnamn samt formatering av dess värden är något jag som utvecklare inte kan ändra vilket påverkar hur jag får koda min applikation. Dessutom var API:ets olika metoder inte lika utbyggda. Rörande hämtning av trafikmeddelanden fanns ett par saker att önska. Exempelvis sortering av datum.</p>
-<p>**Leaflet:**
-Man måste ladda in deras egna JavaScript- och CSS-filer/bibliotek. Dessutom följa deras funktioner så som de skrivit dem.</p>
+**SR:**
+Jag måste anpassa mig efter SR:s förbestämda "generella" URL-parametrar för att exempelvis få önskat format samt indrag av text. JSON-formatets attributnamn samt formatering av dess värden är något jag som utvecklare inte kan ändra vilket påverkar hur jag får koda min applikation. Dessutom var API:ets olika metoder inte lika utbyggda. Rörande hämtning av trafikmeddelanden fanns ett par saker att önska. Exempelvis sortering av datum.
 
-<p>**Mapbox:**
-Mapbox krav är liknande de som Leaflet har med den skillnad att du även behöver skapa ett konto hos dem för att få en så kallad "Access Token" för att kunna ladda in önskad karta.</p>
+**Leaflet:**
+Man måste ladda in deras egna JavaScript- och CSS-filer/bibliotek. Dessutom följa deras funktioner så som de skrivit dem.
+
+**Mapbox:**
+Mapbox krav är liknande de som Leaflet har med den skillnad att du även behöver skapa ett konto hos dem för att få en så kallad "Access Token" för att kunna ladda in önskad karta.
 
 **Hur och hur länga cachar du ditt data för att slippa anropa API:erna i onödan?**
 
