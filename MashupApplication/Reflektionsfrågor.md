@@ -13,5 +13,7 @@ Utöver detta tror jag applikation är något man snabbt besöker en, möjligen 
 <p>Rörande stabiliteten skulle en risk kunna vara att applikationen segas ned avsevärt i det fall SR har en otroligt stor mängd meddelanden sparade. Min applikation är utbyggd på så vis att den först skickar in ett hårdkodat värde på antal meddelanden den vill hämta. Efter detta kontrollerar den om antalet hämtade meddelanden understiger det totala antalet meddelanden som går att hämta från SR:s API. Finns fler meddelanden att hämta skickar applikationen en ny förfrågan på samtliga av dessa. Eftersom jag inte har någon vetskap om ifall eller hur ofta SR rensar dessa meddelanden skulle detta i teorin kunna innebära en förfrågan på tusentals meddelanden.</p>
  
 **Hur har du tänkt kring säkerheten i din applikation?**
+
+Rörande säkerheten har jag valt att inte implementera några inmatningsfält för användaren som denne skulle kunna nyttja för XSS-angrepp. Eftersom applikationen erbjuder användaren att filtrera meddelanden efer kategori skulle man kunna tänka sig att implementera denna funktionalitet i form av ett textfält där användaren fyller i själv/söker efter önskad kategori. Jag har istället valt att implementera detta i form av "radioknappar".
  
 **Hur har du tänkt kring optimeringen i din applikation?**
