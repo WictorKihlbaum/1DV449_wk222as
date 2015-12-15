@@ -19,3 +19,4 @@ Utöver detta tror jag applikation är något man snabbt besöker en, möjligen 
 **Hur har du tänkt kring optimeringen i din applikation?**
 
 <p>Angående optimeringen har jag valt att placera mina tillhörande resurser så som JavaScript- och CSS-filer inom head-taggen i HTML-dokumentet. Detta har jag valt för att dessa ska laddas in först på sidan vilket i sin tur möjliggör för en progressiv och rendering av designen samt en korrekt fungerande funkionalitet rörande JavaScripten.</p>
+<p>Utöver detta har jag även satt ett relativt högt värde på antalet önskade meddelanden att förfråga. Detta innebär att applikationen förhoppningsvis endast skickar en förfrågan vid varje besök.</p>
