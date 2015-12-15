@@ -14,6 +14,8 @@ Utöver detta tror jag applikation är något man snabbt besöker en, möjligen 
  
 **Hur har du tänkt kring säkerheten i din applikation?**
 
-Rörande säkerheten har jag valt att inte implementera några inmatningsfält för användaren som denne skulle kunna nyttja för XSS-angrepp. Eftersom applikationen erbjuder användaren att filtrera meddelanden efter kategori skulle man kunna tänka sig att implementera denna funktionalitet i form av ett textfält där användaren fyller i själv/söker efter önskad kategori. Jag har istället valt att implementera detta i form av "radioknappar" med fasta värden.
+<p>Rörande säkerheten har jag valt att inte implementera några inmatningsfält för användaren som denne skulle kunna nyttja för XSS-angrepp. Eftersom applikationen erbjuder användaren att filtrera meddelanden efter kategori skulle man kunna tänka sig att implementera denna funktionalitet i form av ett textfält där användaren fyller i själv/söker efter önskad kategori. Jag har istället valt att implementera detta i form av "radioknappar" med fasta värden.</p>
  
 **Hur har du tänkt kring optimeringen i din applikation?**
+
+<p>Angående optimeringen har jag valt att placera mina tillhörande resurser så som JavaScript- och CSS-filer inom head-taggen i HTML-dokumentet. Detta har jag valt för att dessa ska laddas in först på sidan vilket i sin tur möjliggör för en progressiv och rendering av designen samt en korrekt fungerande funkionalitet rörande JavaScripten.</p>
