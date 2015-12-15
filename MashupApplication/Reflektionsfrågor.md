@@ -2,6 +2,12 @@
 
 **Vad finns det för krav du måste anpassa dig efter i de olika API:erna?**
 
+**SR:**
+<p>Jag måste anpassa mig efter SR:s förbestämda "generella" URL-parametrar för att exempelvis få önskat format samt indrag av text. JSON-formatets attributnamn samt formatering av dess värden är något jag som utvecklare inte kan ändra vilket påverkar hur jag får koda min applikation. Dessutom var API:ets olika metoder inte lika utbyggda. Rörande hämtning av trafikmeddelanden fanns ett par saker att önska. Exempelvis sortering av datum.</p>
+**Leaflet:**
+
+**Mapbox:**
+
 **Hur och hur länga cachar du ditt data för att slippa anropa API:erna i onödan?**
 
 <p>Trafikmeddelandena från SR skickas ut med enbart ett få antal minuters mellanrum. Max fem minuter. Detta är meddelanden som berör platser över hela landet. Eftersom jag inte har någon vetskap om var i landet en eventuell användare befinner sig är det alltså alltid aktuellt att kolla om det kommit något nytt. Därav har jag valt att behålla standardvärdet från SR:s API på en minuts cachning. Hade applikationen varit utbyggd på så vis att man kan filtrera på område där man bor samt tänkt köra hade kanske en cachnings-tid på ca 30 minuter varit lämpligt då det sällan, även i storstäderna, uppdateras med nya meddelanden oftare än så.
