@@ -3,7 +3,7 @@
 
 var Traffic = {
 	
-	srURL: 'asdsad',//'http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=',
+	srURL: 'http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=',
 	srResponse: {},
 	messageCategory: 'Alla',
 	map: {},
