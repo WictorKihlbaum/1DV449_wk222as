@@ -10,7 +10,7 @@ Utöver detta tror jag applikation är något man snabbt besöker en, möjligen 
  
 **Vad finns det för risker kring säkerhet och stabilitet i din applikation?**
 
-<p>Rörande stabiliteten skulle en risk kunna vara att applikationen segas ned avsevärt i det fall SR har en otroligt stor mängd meddelanden sparade. Min applikation är utbyggd på så vis att den först skickar in ett hårdkodat värde på antal meddelandne den vill hämta. Efter detta kontrollerar den om antalet hämtade meddelanden understiger det totala antalet meddelanden som går att hämta från SR:s API. Finns fler meddelanden att hämta skickar applikationen en ny förfrågan på samtliga av dessa meddelanden. Eftersom jag inte har något vetskap om ifall eller hur ofta SR rensar dessa meddelanden skulle detta i teorin innebära en förfrågan på tusentals meddelanden.</p>
+<p>Rörande stabiliteten skulle en risk kunna vara att applikationen segas ned avsevärt i det fall SR har en otroligt stor mängd meddelanden sparade. Min applikation är utbyggd på så vis att den först skickar in ett hårdkodat värde på antal meddelanden den vill hämta. Efter detta kontrollerar den om antalet hämtade meddelanden understiger det totala antalet meddelanden som går att hämta från SR:s API. Finns fler meddelanden att hämta skickar applikationen en ny förfrågan på samtliga av dessa. Eftersom jag inte har någon vetskap om ifall eller hur ofta SR rensar dessa meddelanden skulle detta i teorin kunna innebära en förfrågan på tusentals meddelanden.</p>
  
 **Hur har du tänkt kring säkerheten i din applikation?**
  
