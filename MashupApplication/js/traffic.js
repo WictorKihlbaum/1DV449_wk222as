@@ -3,7 +3,7 @@
 
 var Traffic = {
 	
-	srURL: "http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=100",
+	srURL: 'http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=',
 	srResponse: {},
 	messageCategory: 'Alla',
 	map: {},
@@ -13,15 +13,13 @@ var Traffic = {
 	
 	init: function() {
 		
-		Traffic.getSRMessages();
+		Traffic.getSRMessages('120'); // '120' is the number of hits I want.
 		Traffic.renderMap();
 		Traffic.addEventListeners();
 	},
 	
 	renderMap: function() {
 		
-		// L.mapbox.accessToken = 'pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg';
-		// Replace 'mapbox.streets' with your map id.
 		var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2ljdG9yIiwiYSI6ImNpaTBheXR6YTA0c2N0bG0xcWxlczVsbXIifQ.st0JA1A7H7YkpwuOmlmWDg', {
 			attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
 		});
@@ -67,7 +65,8 @@ var Traffic = {
 							   '<strong>Datum</strong>: ' + Traffic.formatDateTime(message.createddate) + '<br />' +
 							   '<strong>Beskrivning</strong>: ' + message.description + '<br />' +
 							   '<strong>Kategori</strong>: ' + Traffic.showCategory(message.category) + '<br />' +
-							   '<strong>Underkategori</strong>: ' + message.subcategory) 
+							   '<strong>Underkategori</strong>: ' + message.subcategory + '<br />' +
+							   '<strong>Prioritet</strong>: ' + message.priority)
 					.openPopup();
 			
 	},
@@ -137,10 +136,10 @@ var Traffic = {
 	filterMessageCategories: function(category) {
 		
 		Traffic.messageCategory = category.target.myParam;
-		Traffic.processMessageInfo();
+		Traffic.processMessageInfo(Traffic.srResponse.messages);
 	},
 	
-	getSRMessages: function() {
+	getSRMessages: function(addOnURL) {
 		
 		var xhr = new XMLHttpRequest();
 		
@@ -150,47 +149,31 @@ var Traffic = {
 				
 				var response = JSON.parse(xhr.responseText);
 				
-				Traffic.srResponse = response;
-				Traffic.handleResponse(/*response*/);
+				// If there are more messages than requested call this function again with totalhits as parameter.
+				if (response.pagination.totalhits > response.pagination.size) {
+					
+					Traffic.getSRMessages(response.pagination.totalhits);
+					
+				} else {
 				
-				/*if (response.pagination.totalhits > response.pagination.size) {
-					Traffic.getAllMessages(response.pagination.totalhits);
-				}*/
+					Traffic.srResponse = response;
+					Traffic.handleResponse(response);	
+				}
 			}
 		};
 		
-		xhr.open("GET", Traffic.srURL, true);
+		xhr.open("GET", Traffic.srURL + addOnURL, true);
 		xhr.send(null);
 	},
 	
-	handleResponse: function(/*response*/) {
+	handleResponse: function(response) {
 		
-		/*var messages = response.messages;*/ // Keep?
-	
-		Traffic.processMessageInfo();
+		var messages = response.messages;
+		Traffic.processMessageInfo(messages);
 	},
 	
-	//getAllMessages: function(totalHits) {
-//		
-//		var addOnURL = '&size=' + totalHits;
-//		var xhr = new XMLHttpRequest();
-//		
-//		xhr.onreadystatechange = function() {
-//			
-//			if (xhr.readyState === 4 && xhr.status === 200) {
-//				
-//				var response = JSON.parse(xhr.responseText);
-//				Traffic.getTrafficInfo(Traffic.sortMessagesByDate(response));
-//			}
-//		};
-//		
-//		xhr.open("GET", Traffic.srURL + addOnURL, true);
-//		xhr.send(null);
-//	},
-	
-	processMessageInfo: function() {
+	processMessageInfo: function(messages) {
 		
-		var messages = Traffic.srResponse.messages;
 		var infoList = [];
 		
 		for (var i = 0; i < messages.length; i++) {
