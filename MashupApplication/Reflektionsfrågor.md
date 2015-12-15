@@ -3,7 +3,7 @@
 **Vad finns det för krav du måste anpassa dig efter i de olika API:erna?**
 
 **SR:**
-<p>Jag måste anpassa mig efter SR:s förbestämda "generella" URL-parametrar för att exempelvis få önskat format samt indrag av text. JSON-formatets attributnamn samt formatering av dess värden är något jag som utvecklare inte kan ändra vilket påverkar hur jag får koda min applikation. Dessutom var API:ets olika metoder inte lika utbyggda. Rörande hämtning av trafikmeddelanden fanns ett par saker att önska. Exempelvis sortering av datum.</p>
+Jag måste anpassa mig efter SR:s förbestämda "generella" URL-parametrar för att exempelvis få önskat format samt indrag av text. JSON-formatets attributnamn samt formatering av dess värden är något jag som utvecklare inte kan ändra vilket påverkar hur jag får koda min applikation. Dessutom var API:ets olika metoder inte lika utbyggda. Rörande hämtning av trafikmeddelanden fanns ett par saker att önska. Exempelvis sortering av datum.
 **Leaflet:**
 Man måste ladda in deras egna JavaScript- och CSS-filer/bibliotek. Dessutom följa deras funktioner så som de skrivit dem.
 
