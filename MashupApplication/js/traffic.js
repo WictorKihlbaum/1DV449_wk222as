@@ -3,7 +3,7 @@
 
 var Traffic = {
 	
-	srURL: 'http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=',
+	srURL: 'asdsad',//'http://api.sr.se/api/v2/traffic/messages?format=json&indent=true&size=',
 	srResponse: {},
 	messageCategory: 'Alla',
 	map: {},
@@ -13,7 +13,7 @@ var Traffic = {
 	
 	init: function() {
 		
-		Traffic.getSRMessages('120'); // '120' is the number of hits I want.
+		Traffic.getSRMessages('100'); // '100' is the default number of hits I want.
 		Traffic.renderMap();
 		Traffic.addEventListeners();
 	},
@@ -141,23 +141,39 @@ var Traffic = {
 	
 	getSRMessages: function(addOnURL) {
 		
+		var response;
 		var xhr = new XMLHttpRequest();
 		
 		xhr.onreadystatechange = function() {
 			
-			if (xhr.readyState === 4 && xhr.status === 200) {
+			if (xhr.readyState === 4) {
 				
-				var response = JSON.parse(xhr.responseText);
-				
-				// If there are more messages than requested call this function again with totalhits as parameter.
-				if (response.pagination.totalhits > response.pagination.size) {
+				if (xhr.status === 200) {
 					
-					Traffic.getSRMessages(response.pagination.totalhits);
+					response = JSON.parse(xhr.responseText);
+				
+					// If there are more messages than requested call this function again with totalhits as parameter.
+					if (response.pagination.totalhits > response.pagination.size) {
+						
+						Traffic.getSRMessages(response.pagination.totalhits);
+						
+					} else {
+						
+						 if (typeof(localStorage) !== 'undefined') {
+							localStorage.clear(); 
+							localStorage.setItem('messages', xhr.responseText); 
+						 }
+					
+						Traffic.srResponse = response;
+						Traffic.handleResponse(response);	
+					}	
 					
 				} else {
-				
+					
+					response = JSON.parse(localStorage.getItem('messages'));
+					
 					Traffic.srResponse = response;
-					Traffic.handleResponse(response);	
+					Traffic.handleResponse(response);
 				}
 			}
 		};
