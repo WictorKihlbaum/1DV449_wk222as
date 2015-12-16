@@ -104,9 +104,9 @@ var Traffic = {
 		return L.icon({
 			iconUrl: imageURL,
 		
-			iconSize:     [35, 35], // Size of the icon.
-			iconAnchor:   [22, 94], // Point of the icon which will correspond to marker's location.
-			popupAnchor:  [-5, -95] // Point from which the popup should open relative to the iconAnchor.
+			iconSize:     [34, 34], // Size of the icon.
+			iconAnchor:   [17, 34], // Point of the icon which will correspond to marker's location.
+			popupAnchor:  [0, -40] // Point from which the popup should open relative to the iconAnchor.
 		});
 	},
 	
