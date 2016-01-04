@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
+		<title>WebProject Startpage</title>
+        <!-- Skeleton CSS Framework -->
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+        <!-- Mainstyle CSS -->
+        <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+        <!-- Navigation CSS -->
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+	</head>
+	<body>
+    	<header>
+        	<h1>Web Project</h1>
+            <!-- Google login/logout button -->
+            <div class="g-signin2" data-onsuccess="App.onSignIn"></div>
+            <a href="#" id="signout-button" onClick="App.signOut()">Sign out</a>
+        </header>
+        <main>
+        	<nav>
+            	<ul>
+                	<li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+            
+            
+            <div id="injection_site"></div>
+            
+            <div id="images-div"></div>
+        
+        	<!-- <img id="image1" src="http://weknowyourdreams.com/images/cat/cat-02.jpg" width="200" height="200" alt="image" /> -->
+        
+            <!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+            <!-- <p><input type="image" src="images/aviary_logo_small.png" width="200" id="edit-button" value="Edit image" onclick="return AviaryClass.launchEditor('image1', 'https://docs.google.com/uc?id=0BzR5X_i2lIK8dENncjZYakZOR0E&export=download');" alt="Edit image" /></p> -->
+            
+            <!-- http://weknowyourdreams.com/images/cat/cat-02.jpg -->
+            <!-- https://docs.google.com/uc?id=0BzR5X_i2lIK8dENncjZYakZOR0E&export=download -->
+            <div id="authorize-div" style="display: none">
+                <span>Authorize access to Drive API</span>
+                <!--Button for the user to click to initiate auth sequence -->
+                <button id="authorize-button" onclick="handleAuthClick(event)">
+                    Authorize
+                </button>
+        	</div>
+            
+        	<pre id="output"></pre>
+        	<div id="image-div"></div>
+            
+        </main>
+        <footer>
+        	<p>Webapplication created by Wictor Kihlbaum</p>
+        </footer>
+        
+        <script type="text/javascript">
+			 
+			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
+			  var SCOPES = ['https://www.googleapis.com/auth/drive.photos']; // maybe change?
+		
+			  /**
+			   * Check if current user has authorized this application.
+			   */
+			  function checkAuth() {
+				gapi.auth.authorize(
+				  {
+					'client_id': CLIENT_ID,
+					'scope': SCOPES.join(' '),
+					'immediate': true
+				  }, handleAuthResult);
+			  }
+		
+			  /**
+			   * Handle response from authorization server.
+			   *
+			   * @param {Object} authResult Authorization result.
+			   */
+			  function handleAuthResult(authResult) {
+				var authorizeDiv = document.getElementById('authorize-div');
+				if (authResult && !authResult.error) {
+				  // Hide auth UI, then load client library.
+				  authorizeDiv.style.display = 'none';
+				  loadDriveApi();
+				} else {
+				  // Show auth UI, allowing the user to initiate authorization by
+				  // clicking authorize button.
+				  authorizeDiv.style.display = 'inline';
+				}
+			  }
+		
+			  /**
+			   * Initiate auth flow in response to user clicking authorize button.
+			   *
+			   * @param {Event} event Button click event.
+			   */
+			  function handleAuthClick(event) {
+				gapi.auth.authorize(
+				  {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+				  handleAuthResult);
+				return false;
+			  }
+		
+			  /**
+			   * Load Drive API client library.
+			   */
+			  function loadDriveApi() {
+				gapi.client.load('drive', 'v2', listFiles);
+			  }
+		
+			  /**
+			   * Print files.
+			   */
+			  function listFiles() {
+				var request = gapi.client.drive.files.list({
+					'maxResults': 10
+				  });
+		
+				  request.execute(function(resp) {
+					appendPre('Files:');
+					var files = resp.items;
+					if (files && files.length > 0) {
+					  for (var i = 0; i < files.length; i++) {
+						var file = files[i];
+						appendPre(file.title + ' (' + file.id + ')');
+						
+						if (files[i].fileExtension == 'png') {
+							
+							renderImage(files[i]);
+							console.log(file);
+						}
+					  }
+					} else {
+					  appendPre('No files found.');
+					}
+				  });
+			  }
+			  
+			  function renderImage(image) {
+				  
+				  document.getElementById("images-div").innerHTML += '<img id="'+image.id+'" src="'+image.webContentLink+'" width="200" height="200" alt="image" /><p><input type="image" src="images/aviary_logo_small.png" width="200" id="edit-button" value="Edit image" onclick="return AviaryClass.launchEditor("'+image.id+'", "'+image.webContentLink+'");" alt="Edit image" /></p>';
+				  
+			  }
+		
+			  /**
+			   * Append a pre element to the body containing the given message
+			   * as its text node.
+			   *
+			   * @param {string} message Text to be placed in pre element.
+			   */
+			  function appendPre(message) {
+			   	var pre = document.getElementById('output');
+				var textContent = document.createTextNode(message + '\n');
+				pre.appendChild(textContent);
+			  }
+	  
+	  </script>
+        
+        <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+        
+        <!-- Google Platform Library -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- App JS -->
+        <script src="js/app.js"></script>
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- AviaryClass JS -->
+        <script src="js/AviaryClass.js"></script>
+        
+    </body>
+</html>
