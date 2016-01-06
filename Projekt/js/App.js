@@ -8,7 +8,7 @@ var App = {
 	},
 	
 	addEventListeners: function() {
-		document.getElementById('signout-button').addEventListener('click', App.signOut, false);	
+		document.getElementById('signout-button').addEventListener('click', App.signOut, false);
 	},
 	
 	onSignIn: function(googleUser) {

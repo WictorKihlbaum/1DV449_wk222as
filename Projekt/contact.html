@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
+		<title>WebProject Startpage</title>
+        <!-- Skeleton CSS Framework -->
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+        <!-- Mainstyle CSS -->
+        <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+        <!-- Navigation CSS -->
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <!-- Contact Subpage CSS -->
+        <link rel="stylesheet" type="text/css" href="css/contact.css">
+	</head>
+	<body>
+    	<header>
+        	<h1>Web Project</h1>
+            <!-- Google login/logout button -->
+            <div class="g-signin2" data-onsuccess="App.onSignIn"></div>
+            <a href="#" id="signout-button" onClick="App.signOut()">Sign out</a>
+        </header>
+        <main>
+        	<nav>
+            	<ul>
+                	<li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div id="contact-circles-container">
+                <a href="https://www.facebook.com/wictor.kihlbaum">
+                    <div class="contact-circles" id="facebook-circle"></div>
+                </a>
+                
+                <a href="https://twitter.com/WictorKihlbaum">
+                    <div class="contact-circles" id="twitter-circle"></div>
+                </a>
+                
+                <div class="contact-circles" id="google-circle"></div>
+            </div>
+            
+        </main>
+        <footer>
+        	<p>Webapplication created by Wictor Kihlbaum</p>
+        </footer>
+        
+        <!-- Google Platform Library -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- App JS -->
+        <script src="js/App.js"></script>
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- AviaryClass JS -->
+        <script src="js/AviaryClass.js"></script>
+        
+    </body>
+</html>

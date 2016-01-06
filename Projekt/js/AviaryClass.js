@@ -20,7 +20,7 @@ var AviaryClass = {
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
-				AviaryClass.getImageFromNewURL(newURL);
+				//AviaryClass.getImageFromNewURL(newURL);
 			},
 			
 			onError: function(errorObj) {
