@@ -38,5 +38,5 @@ class LocalImageView {
 	
 	//<a href="#" onclick="return launchEditor('editableimage1', 'http://example.com/public/images/goat.jpg');">Edit!</a>
 	
-	//<input type="button" id="edit-button" value="Edit image" onclick="return AviaryClass.launchEditor("local-image", UploadImage.getImageSrc());" alt="Edit image" />
+	//<input type="button" id="edit-button" value="Edit image" onclick="return AviaryClass.launchEditor('local-image', UploadImage.getImageSrc());" alt="Edit image" />
 }

@@ -2,36 +2,61 @@
 
 var UploadImage = {
 	
-	imageSrc: "",
+	//editedImageURL: '',
 	
-
-	previewFile: function() {
+	
+	init: function() {
+		var inputElement = document.getElementById("input");
+		inputElement.addEventListener("change", UploadImage.handleFiles, false);
 		
-		var preview = document.querySelector("img"); // Selects the query named img
-   		var file    = document.querySelector("input[type=file]").files[0]; // Sames as here
-   		var reader  = new FileReader();
+		/*var image = document.getElementById("editable-image");
+		image.addEventListener("change", UploadImage.changeImageSource, false);
+		image.myParam = image.src;*/
+	},
 
-   		reader.onloadend = function () {
-	   		preview.src = reader.result;
-			UploadImage.imageSrc = reader.result;
-   		}
-
-   		if (file) {
-	   	
-			reader.readAsDataURL(file); // Reads the data as a URL
-   		
+	handleFiles: function() {
+		
+		var preview = document.getElementById("editable-image");
+		var selectedFile = document.getElementById('input').files[0];
+		
+		// Aviary photo-editor only supports Png and Jpeg.
+		if (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpeg') {
+			
+			var reader = new FileReader();
+	
+			reader.onloadend = function() {
+				preview.src = reader.result;
+				// If image is way to big make it smaller.
+				if (preview.width > 660) {
+					preview.width = 660;
+				}
+			}
+			
+			if (selectedFile) {
+				reader.readAsDataURL(selectedFile);
+			} else {
+				preview.src = "images/questionmark.png";
+			}
+			
 		} else {
-	   	
-			preview.src = "";
+			// TODO: Add error-message-image to preview.	
 		}
 	},
 	
-	getImageSrc: function() {
+	/*changeImageSource: function(imageSrc) {
+		var downloadField = document.getElementById("download-field-div");
+		downloadField.innerHTML = '<p><a href="'+imageSrc.target.myParam+'" download>Download image</a></p>';
+	},*/
 	
-		return UploadImage.imageSrc;	
+	/*setEditedImageURL: function(url) {
+		UploadImage.editedImageURL = url;	
+	},*/
+	
+	addDownloadButton: function(url) {
+		var downloadField = document.getElementById("download-button-field");
+		downloadField.innerHTML = '<a href="'+url+'" download class="button-class" id="download-button">Download image</a>';
 	}
 	
-};
+};				
 
-window.onload = UploadImage.previewFile;
-
+window.onload = UploadImage.init;

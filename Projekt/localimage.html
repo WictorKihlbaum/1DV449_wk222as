@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
         <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
-		<title>WebProject Contact</title>
+		<title>WebProject Edit Local Image</title>
         <!-- Skeleton CSS Framework -->
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/skeleton.css">
@@ -11,8 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
         <!-- Navigation CSS -->
         <link rel="stylesheet" type="text/css" href="css/nav.css">
-        <!-- Contact Subpage CSS -->
-        <link rel="stylesheet" type="text/css" href="css/contact.css">
+        <!-- Local Image Subpage CSS -->
+        <link rel="stylesheet" type="text/css" href="css/localimage.css">
 	</head>
 	<body>
     	<header>
@@ -24,34 +24,45 @@
         <main>
         	<nav>
             	<ul>
-                	<li><a href="index.html">Home</a></li>
+                	<li id="active"><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li id="active"><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             
-            <div id="contact-circles-container">
-                <a href="https://www.facebook.com/wictor.kihlbaum">
-                    <div class="contact-circles" id="facebook-circle"></div>
-                </a>
-                <a href="https://twitter.com/WictorKihlbaum">
-                    <div class="contact-circles" id="twitter-circle"></div>
-                </a>
-                <div class="contact-circles" id="google-circle" data-clipboard-text="wictor.kihlbaum@gmail.com" title="Copy email to clipboard"></div>
+            <div id="image-container">
+                <!-- I had to add "onchange" inline aswell to make it work -->
+                <div class="upload">
+                	Upload image
+                	<input type="file" id="input" onchange="UploadImage.handleFiles(this.files)" />
+                </div>
+                <img src="images/questionmark.png" alt="Image preview" id="editable-image" />
             </div>
+            <p>
+                <a href="#" class="button-class" id="edit-button">Edit image</a>
+			</p>
+            
+            <div id="download-button-field">
+            	<!-- Download-button will be added from UploadImage.js -->	
+            </div>
+            
+            <a href="index.html" class="button-class" id="go-back-button">Go back</a>
             
         </main>
         <footer>
         	<!-- TODO: Add content -->
         </footer>
         
+        <!-- Upload Local Image JS -->
+        <script src="js/UploadImage.js"></script>
         <!-- Google Platform Library -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!-- App JS -->
         <script src="js/App.js"></script>
-        <!-- Clipboard JS -->
-        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
-        <script src="js/ClipboardClass.js"></script>
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- AviaryClass JS -->
+        <script src="js/AviaryClass.js"></script>
         
     </body>
 </html>

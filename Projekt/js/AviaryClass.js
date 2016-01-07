@@ -6,7 +6,7 @@ var AviaryClass = {
 	
 	
 	init: function() {
-		
+		AviaryClass.addEventListenerToEditButton();
 		AviaryClass.instantiateFeather();
 	},
 	
@@ -20,8 +20,12 @@ var AviaryClass = {
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
+				UploadImage.addDownloadButton(newURL);
 				//AviaryClass.getImageFromNewURL(newURL);
 			},
+			onLoad: function() {
+        		document.getElementById('edit-button').style.display = 'block';
+    		},
 			
 			onError: function(errorObj) {
 				alert(errorObj.message);
@@ -29,17 +33,23 @@ var AviaryClass = {
 		});
 	},
 	
-	launchEditor: function(id, src) {
+	launchEditor: function(id) {
 		
 		AviaryClass.featherEditor.launch({
-			image: id,
-			url: src
+			image: id.target.myParam,
 		});
 		
 		return false;
 	},
 	
-	getImageFromNewURL: function(newURL) {
+	addEventListenerToEditButton: function() {
+	
+		var editButton = document.getElementById("edit-button");
+		editButton.addEventListener("click", AviaryClass.launchEditor, false);
+		editButton.myParam = 'editable-image'; // ID-name for img-tag.
+	}
+	
+	/*getImageFromNewURL: function(newURL) {
 		
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', newURL, true);
@@ -68,7 +78,7 @@ var AviaryClass = {
 		};
 
   		xhr.send(blob);
-	}
+	}*/
 		
 };
 
