@@ -21,10 +21,9 @@ var AviaryClass = {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				UploadImage.addDownloadButton(newURL);
-				//AviaryClass.getImageFromNewURL(newURL);
 			},
 			onLoad: function() {
-        		document.getElementById('edit-button').style.display = 'block';
+        		document.getElementById('edit').style.display = 'block';
     		},
 			
 			onError: function(errorObj) {
@@ -44,41 +43,10 @@ var AviaryClass = {
 	
 	addEventListenerToEditButton: function() {
 	
-		var editButton = document.getElementById("edit-button");
+		var editButton = document.getElementById("edit");
 		editButton.addEventListener("click", AviaryClass.launchEditor, false);
 		editButton.myParam = 'editable-image'; // ID-name for img-tag.
 	}
-	
-	/*getImageFromNewURL: function(newURL) {
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', newURL, true);
-		xhr.responseType = 'blob';
-		
-		xhr.onload = function(e) {
-			
-		  if (this.status == 200) {
-			
-			var blob = new Blob([this.response], {type: 'image/png'});
-			AviaryClass.postImageFromNewURL(blob);
-		  }
-		};
-		
-		xhr.send();
-	},
-	
-	postImageFromNewURL: function(blob) {
-		
-		var postURL = 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media';
-		var xhr = new XMLHttpRequest();
-  		xhr.open('POST', postURL, true);
-  		
-		xhr.onload = function(e) {  
-			console.log(e);
-		};
-
-  		xhr.send(blob);
-	}*/
 		
 };
 

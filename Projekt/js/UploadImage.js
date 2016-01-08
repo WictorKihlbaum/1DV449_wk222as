@@ -2,16 +2,9 @@
 
 var UploadImage = {
 	
-	//editedImageURL: '',
-	
-	
 	init: function() {
 		var inputElement = document.getElementById("input");
 		inputElement.addEventListener("change", UploadImage.handleFiles, false);
-		
-		/*var image = document.getElementById("editable-image");
-		image.addEventListener("change", UploadImage.changeImageSource, false);
-		image.myParam = image.src;*/
 	},
 
 	handleFiles: function() {
@@ -19,8 +12,8 @@ var UploadImage = {
 		var preview = document.getElementById("editable-image");
 		var selectedFile = document.getElementById('input').files[0];
 		
-		// Aviary photo-editor only supports Png and Jpeg.
-		if (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpeg') {
+		// Aviary photo-editor only supports Png and Jpg/Jpeg.
+		if (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpg' || selectedFile.type === 'image/jpeg') {
 			
 			var reader = new FileReader();
 	
@@ -43,18 +36,9 @@ var UploadImage = {
 		}
 	},
 	
-	/*changeImageSource: function(imageSrc) {
-		var downloadField = document.getElementById("download-field-div");
-		downloadField.innerHTML = '<p><a href="'+imageSrc.target.myParam+'" download>Download image</a></p>';
-	},*/
-	
-	/*setEditedImageURL: function(url) {
-		UploadImage.editedImageURL = url;	
-	},*/
-	
 	addDownloadButton: function(url) {
 		var downloadField = document.getElementById("download-button-field");
-		downloadField.innerHTML = '<a href="'+url+'" download class="button-class" id="download-button">Download image</a>';
+		downloadField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download image</a>';
 	}
 	
 };				

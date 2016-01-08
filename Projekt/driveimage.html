@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
+		<title>WebProject Edit Drive Image</title>
+        <!-- Skeleton CSS Framework -->
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+        <!-- Mainstyle CSS -->
+        <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
+        <!-- Navigation CSS -->
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <!-- Button-styles -->
+        <link rel="stylesheet" type="text/css" href="css/buttons.css">
+        <!-- Drive Image Subpage CSS -->
+        <link rel="stylesheet" type="text/css" href="css/driveimage.css">
+	</head>
+	<body>
+    	<header>
+        	<h1>Web Project</h1>
+            <!-- Google login/logout button -->
+            <div class="g-signin2" data-onsuccess="App.onSignIn"></div>
+            <a href="#" id="signout-button" onClick="App.signOut()">Sign out</a>
+        </header>
+        <main>
+        	<nav>
+            	<ul>
+                	<li id="active"><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div id="top-text">
+            	You have to authorize to be able to load your Google Drive images. 
+                However, if you already have done so you should be able to see your images right away.
+                Only images in formats Png and Jpeg/Jpg will be shown because that is the only formats
+                the Aviary photo-editor accepts.
+            </div>
+            
+            <div id="authorize-div" style="display: none">
+                <span>Authorize access to Drive API</span>
+                <!--Button for the user to click to initiate auth sequence -->
+                <button id="authorize-button" onclick="handleAuthClick(event)">
+                    Authorize
+                </button>
+        	</div>
+            
+        	<pre id="output"></pre>
+            
+            <div id="images-div"></div>
+            	<ul id="image-list">
+                </ul>
+            <p>
+            	<a href="index.html" class="button-class go-back-button">Go back</a>
+            </p>
+            
+        </main>
+        <footer>
+        	<!-- TODO: Add content -->
+        </footer>
+        
+        <script type="text/javascript">
+		
+			  var imageList = document.getElementById("image-list");
+			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
+			  var SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']; // maybe change?
+		
+			  /**
+			   * Check if current user has authorized this application.
+			   */
+			  function checkAuth() {
+				gapi.auth.authorize(
+				  {
+					'client_id': CLIENT_ID,
+					'scope': SCOPES.join(' '),
+					'immediate': true
+				  }, handleAuthResult);
+			  }
+		
+			  /**
+			   * Handle response from authorization server.
+			   *
+			   * @param {Object} authResult Authorization result.
+			   */
+			  function handleAuthResult(authResult) {
+				var authorizeDiv = document.getElementById('authorize-div');
+				if (authResult && !authResult.error) {
+				  // Hide auth UI, then load client library.
+				  authorizeDiv.style.display = 'none';
+				  loadDriveApi();
+				} else {
+				  // Show auth UI, allowing the user to initiate authorization by
+				  // clicking authorize button.
+				  authorizeDiv.style.display = 'inline';
+				}
+			  }
+		
+			  /**
+			   * Initiate auth flow in response to user clicking authorize button.
+			   *
+			   * @param {Event} event Button click event.
+			   */
+			  function handleAuthClick(event) {
+				gapi.auth.authorize(
+				  {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+				  handleAuthResult);
+				return false;
+			  }
+		
+			  /**
+			   * Load Drive API client library.
+			   */
+			  function loadDriveApi() {
+				gapi.client.load('drive', 'v2', listFiles);
+			  }
+		
+			  /**
+			   * Print files.
+			   */
+			  function listFiles() {
+			  	var request = gapi.client.drive.files.list({
+					'maxResults': 10
+			  	});
+		
+				  request.execute(function(resp) {
+					appendPre('Files:');
+					var files = resp.items;
+					if (files && files.length > 0) {
+						
+					  	for (var i = 0; i < files.length; i++) {
+							
+							var file = files[i];
+							appendPre(file.title + ' (' + file.id + ')');
+						
+							if (file.fileExtension == 'png' || file.fileExtension == 'jpg') {
+							
+								renderImage(file);
+								console.log(file);
+							}
+						}
+					  
+					} else {
+						
+						appendPre('No files found.');
+					}
+				  });
+			  }
+			  
+			  function renderImage(image) {
+				  
+				   imageList.innerHTML += 
+				  	'<li>' +
+						'<img id="'+image.id+'" class="editable-images" src="'+image.webContentLink+'" width="200" height="225" alt="'+image.originalFilename+'" />' +
+						'<span class="image-name">'+image.originalFilename+'</span>' +
+						'<a href="#" class="button-class edit-button">Edit image</a>' +
+						'<a href="'+image.webContentLink+'" download class="button-class download-button another-button">Download image</a>' +
+					'</li>';
+			  }
+		
+			  /**
+			   * Append a pre element to the body containing the given message
+			   * as its text node.
+			   *
+			   * @param {string} message Text to be placed in pre element.
+			   */
+			  function appendPre(message) {
+			   	var pre = document.getElementById('output');
+				var textContent = document.createTextNode(message + '\n');
+				pre.appendChild(textContent);
+			  }
+	  
+	  </script>
+        
+        <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+        
+        <!-- Upload Local Image JS -->
+        <script src="js/UploadImage.js"></script>
+        <!-- Google Platform Library -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- App JS -->
+        <script src="js/App.js"></script>
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- DriveClass JS -->
+        <script src="js/DriveClass.js"></script>
+        
+    </body>
+</html>

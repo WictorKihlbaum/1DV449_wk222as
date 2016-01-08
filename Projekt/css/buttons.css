@@ -1,0 +1,33 @@
+.button-class {
+	margin: 0 auto;
+	padding: 10px 15px;
+	width: 150px;
+	display: block;
+	border-radius: 8px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.button-class:link { color: white; }
+.button-class:visited { color: white; }
+.button-class:hover { color: white; }
+
+.edit-button { 
+	margin: 15px auto;
+	background-color: #22A7F0; 
+}
+.edit-button:hover { background-color: #6BB9F0 }
+
+.download-button { background-color: #2ECC71; }
+.download-button:hover { background-color: #87D37C; }
+
+.go-back-button {
+	margin-top: 100px;
+	margin-bottom: 50px;	
+	background-color: #BDC3C7;
+}
+
+.go-back-button:hover { background-color: #DADFE1 }
+
+/* TODO: Change name */
+/*.another-button { margin: 0 !important }*/ 
