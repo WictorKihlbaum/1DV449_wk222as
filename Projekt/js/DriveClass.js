@@ -29,6 +29,9 @@ var DriveClass = {
 	
 	launchEditor: function(id) {
 		
+		//id = '0BzR5X_i2lIK8czYwMkRiSGwwRk0';
+		//src = 'https://lh5.googleusercontent.com/UX91ZGWx6SXmz4-5WfAAfV1m8F07GIyJ6NJYsf-QFKHPjDpWi3AaQ0X-xG4ZAzwLd1mGsA=s220';
+		
 		DriveClass.featherEditor.launch({
 			image: id
 		});
@@ -39,5 +42,3 @@ var DriveClass = {
 };
 
 window.onload = DriveClass.init;
-
-//id.target.myParam,

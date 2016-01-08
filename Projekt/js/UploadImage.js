@@ -12,7 +12,7 @@ var UploadImage = {
 		var preview = document.getElementById("editable-image");
 		var selectedFile = document.getElementById('input').files[0];
 		
-		// Aviary photo-editor only supports Png and Jpg/Jpeg.
+		// Aviary editor only supports Png and Jpg/Jpeg.
 		if (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpg' || selectedFile.type === 'image/jpeg') {
 			
 			var reader = new FileReader();

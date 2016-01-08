@@ -169,13 +169,15 @@
 			  function renderListElement(image) {
 				  
 				  imageList.innerHTML += 
-				  	'<li>' + // "crossOrigin" enables image to be opened with Aviary editor.
+				  	'<li>' + // "crossOrigin" enables image to be opened with Aviary editor. 
 						'<img id="'+image.id+'" src="'+image.thumbnailLink+'" width="200" height="225" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
-						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\'' + image.id + '\')">Edit</a>' +
+						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\''+image.id+'\')">Edit</a>' +
 						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
 					'</li>';
 			  }
+		
+				// (\''+image.id+'\', \''+image.thumbnailLink+'\');
 		
 			  /**
 			   * Append a pre element to the body containing the given message
@@ -194,7 +196,7 @@
         <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
         
         <!-- Upload Local Image JS -->
-        <script src="js/UploadImage.js"></script>
+        /*<script src="js/UploadImage.js"></script>*/
         <!-- Google Platform Library -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!-- App JS -->
