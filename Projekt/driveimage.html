@@ -15,6 +15,8 @@
         <link rel="stylesheet" type="text/css" href="css/buttons.css">
         <!-- Drive Image Subpage CSS -->
         <link rel="stylesheet" type="text/css" href="css/driveimage.css">
+        <!-- Contact Subpage CSS -->
+        <link rel="stylesheet" type="text/css" href="css/contact.css">
 	</head>
 	<body>
     	<header>
@@ -36,36 +38,50 @@
             	You have to authorize to be able to load your Google Drive images. 
                 However, if you already have done so you should be able to see your images right away.
                 Only images in formats Png and Jpeg/Jpg will be shown because that is the only formats
-                the Aviary photo-editor accepts.
+                the Aviary editor accepts.
             </div>
             
-            <div id="authorize-div" style="display: none">
-                <span>Authorize access to Drive API</span>
-                <!--Button for the user to click to initiate auth sequence -->
-                <button id="authorize-button" onclick="handleAuthClick(event)">
-                    Authorize
-                </button>
-        	</div>
+            <div id="au-div">
+                <div id="authorize-div" style="display: none">
+                    <p>Authorize access to Google Drive</p>
+                    <!--Button for the user to click to initiate auth sequence -->
+                    <button id="authorize-button" onclick="handleAuthClick(event);">
+                        Authorize
+                    </button>
+                </div>
+            </div>
             
         	<pre id="output"></pre>
             
-            <div id="images-div"></div>
+            <div id="image-div">
             	<ul id="image-list">
+                	<!-- li-tags are being added from ???.js -->
                 </ul>
+            </div>
             <p>
             	<a href="index.html" class="button-class go-back-button">Go back</a>
             </p>
             
         </main>
         <footer>
-        	<!-- TODO: Add content -->
+        	<p class="footer-text">Contact</p>
+            <div id="contact-circles-container">
+                <a href="https://www.facebook.com/wictor.kihlbaum">
+                    <div class="contact-circles" id="facebook-circle"></div>
+                </a>
+                <a href="https://twitter.com/WictorKihlbaum">
+                    <div class="contact-circles" id="twitter-circle"></div>
+                </a>
+                <div class="contact-circles" id="google-circle" data-clipboard-text="wictor.kihlbaum@gmail.com" title="Copy email to clipboard"></div>
+            </div>
+            <p id="copyright">© 2016 Webbteknik 2 Projekt</p>
         </footer>
         
         <script type="text/javascript">
 		
 			  var imageList = document.getElementById("image-list");
 			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
-			  var SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']; // maybe change?
+			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // maybe change?
 		
 			  /**
 			   * Check if current user has authorized this application.
@@ -125,37 +141,39 @@
 			  	});
 		
 				  request.execute(function(resp) {
-					appendPre('Files:');
+					//appendPre('Files:');
 					var files = resp.items;
 					if (files && files.length > 0) {
 						
 					  	for (var i = 0; i < files.length; i++) {
 							
 							var file = files[i];
-							appendPre(file.title + ' (' + file.id + ')');
+							console.log(file);
+							//appendPre(file.title + ' (' + file.id + ')');
 						
-							if (file.fileExtension == 'png' || file.fileExtension == 'jpg') {
+							if (file.fileExtension == 'png' || file.fileExtension == 'jpg' || file.fileExtension == 'jpeg') {
 							
-								renderImage(file);
-								console.log(file);
+								renderListElement(file);
+								//console.log(file);
 							}
 						}
 					  
 					} else {
 						
-						appendPre('No files found.');
+						//appendPre('No files found.');
+						document.getElementById("image-div").innerHTML = "No images found in your Google Drive";
 					}
 				  });
 			  }
 			  
-			  function renderImage(image) {
+			  function renderListElement(image) {
 				  
-				   imageList.innerHTML += 
-				  	'<li>' +
-						'<img id="'+image.id+'" class="editable-images" src="'+image.webContentLink+'" width="200" height="225" alt="'+image.originalFilename+'" />' +
+				  imageList.innerHTML += 
+				  	'<li>' + // "crossOrigin" enables image to be opened with Aviary editor.
+						'<img id="'+image.id+'" src="'+image.thumbnailLink+'" width="200" height="225" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
-						'<a href="#" class="button-class edit-button">Edit image</a>' +
-						'<a href="'+image.webContentLink+'" download class="button-class download-button another-button">Download image</a>' +
+						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\'' + image.id + '\')">Edit</a>' +
+						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
 					'</li>';
 			  }
 		
@@ -165,11 +183,11 @@
 			   *
 			   * @param {string} message Text to be placed in pre element.
 			   */
-			  function appendPre(message) {
+			  /*function appendPre(message) {
 			   	var pre = document.getElementById('output');
 				var textContent = document.createTextNode(message + '\n');
 				pre.appendChild(textContent);
-			  }
+			  }*/
 	  
 	  </script>
         
@@ -185,6 +203,9 @@
 		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
         <!-- DriveClass JS -->
         <script src="js/DriveClass.js"></script>
+        <!-- Clipboard JS -->
+        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+        <script src="js/ClipboardClass.js"></script>
         
     </body>
 </html>

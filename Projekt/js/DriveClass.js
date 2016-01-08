@@ -1,18 +1,17 @@
 "use strict";
 
-var AviaryClass = {
+var DriveClass = {
 	
 	featherEditor: {},
 	
 	
 	init: function() {
-		AviaryClass.addEventListenerToEditButtons();
-		AviaryClass.instantiateFeather();
+		DriveClass.instantiateFeather();
 	},
 	
 	instantiateFeather: function() {
 		
-		AviaryClass.featherEditor = new Aviary.Feather({
+		DriveClass.featherEditor = new Aviary.Feather({
 			apiKey: 'eb5f4fca52634bbf94da9389bd974012',
 			theme: 'minimum',
 			tools: 'all',
@@ -20,7 +19,6 @@ var AviaryClass = {
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
-				//AviaryClass.getImageFromNewURL(newURL);
 			},
 			
 			onError: function(errorObj) {
@@ -31,55 +29,15 @@ var AviaryClass = {
 	
 	launchEditor: function(id) {
 		
-		AviaryClass.featherEditor.launch({
-			image: id.target.myParam,
+		DriveClass.featherEditor.launch({
+			image: id
 		});
 		
 		return false;
-	},
-	
-	addEventListenerToEditButtons: function() {
-		
-		var editButtons = document.getElementsByClassName("editable-images");
-		
-		for (var i = 0; i < editButtons.length; i++) {
-			
-			i.addEventListener("click", AviaryClass.launchEditor, false);
-			i.myParam = 'editable-images'; // ID-name for img-tag.
-		}
 	}
-	
-	/*getImageFromNewURL: function(newURL) {
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', newURL, true);
-		xhr.responseType = 'blob';
-		
-		xhr.onload = function(e) {
-			
-		  if (this.status == 200) {
-			
-			var blob = new Blob([this.response], {type: 'image/png'});
-			AviaryClass.postImageFromNewURL(blob);
-		  }
-		};
-		
-		xhr.send();
-	},
-	
-	postImageFromNewURL: function(blob) {
-		
-		var postURL = 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media';
-		var xhr = new XMLHttpRequest();
-  		xhr.open('POST', postURL, true);
-  		
-		xhr.onload = function(e) {  
-			console.log(e);
-		};
-
-  		xhr.send(blob);
-	}*/
 		
 };
 
-window.onload = AviaryClass.init;
+window.onload = DriveClass.init;
+
+//id.target.myParam,
