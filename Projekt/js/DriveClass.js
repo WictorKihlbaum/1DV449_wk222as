@@ -3,7 +3,6 @@
 var DriveClass = {
 	
 	featherEditor: {},
-	currentID: '',
 	
 	
 	init: function() {
@@ -18,17 +17,11 @@ var DriveClass = {
 			theme: 'minimum',
 			tools: 'all',
 			appendTo: '',
-			displayImageSize: true, // remove later?
+			displayImageSize: true,
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
-				//img.style.width = "200px";
 			},
-			
-			/*onReady: function() {
-				var img = document.getElementById(DriveClass.currentID);
-				img.style.width = "200px";
-			},*/
 			
 			onError: function(errorObj) {
 				console.log(errorObj.message);
@@ -50,10 +43,6 @@ var DriveClass = {
 		
 		return false;
 	},
-	
-	setCurrentID: function(id) {
-		DriveClass.currentID = id;	
-	}
 		
 };
 
