@@ -53,3 +53,53 @@
 	background-size: 65%;
 	cursor: pointer;
 }
+
+.main-topic {
+	text-align: center;	
+	color: #03C9A9;
+}
+
+#contact-container {
+	margin: 25px auto;
+	max-width: 960px;	
+}
+
+#contact-container a {
+	text-decoration: none;
+}
+
+#contact-container p {
+	font-size: 18px;	
+}
+
+#facebook-text {
+	color: #3B5998;
+}
+
+#twitter-text {
+	color: #00ACED;
+}
+
+#gmail-text {
+	color: #DD4B39;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
