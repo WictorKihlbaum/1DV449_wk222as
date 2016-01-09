@@ -28,7 +28,7 @@ var AviaryClass = {
     		},
 			
 			onError: function(errorObj) {
-				alert(errorObj.message);
+				alert(errorObj.message); // TODO: Change alert to smomething else...
 			}
 		});
 	},

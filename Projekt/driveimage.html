@@ -180,6 +180,8 @@
 				
 				function downloadFile(id, downloadURL) {
 					
+					var urlen;
+					
 					if (downloadURL) {
 						
 						var accessToken = gapi.auth.getToken().access_token;
@@ -189,16 +191,26 @@
 
 							if (xhr.readyState === 4 && xhr.status === 200) {
 								
-								var blob = xhr.response;
 								
-								var url = window.URL.createObjectURL(blob);
+								var reader  = new FileReader();
+								
+								reader.onloadend = function () {
+									console.log(reader.result);
+									urlen = reader.result;
+									DriveClass.launchEditor(id, urlen);
+								}
+								
+								reader.readAsDataURL(xhr.response);
+								
+								//var blob = xhr.response;
+								//var url = window.URL.createObjectURL(blob);
 								
 								//var img = document.getElementById(id);
 								//img.src = window.URL.createObjectURL(blob);
 								
 								// Call Aviary Editor.
-								DriveClass.setCurrentID(id);
-								DriveClass.launchEditor(id, url);								
+								//DriveClass.setCurrentID(id);
+								//DriveClass.launchEditor(id, urlen);								
 							}
 						}
 						

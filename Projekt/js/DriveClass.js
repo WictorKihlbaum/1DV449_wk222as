@@ -22,28 +22,16 @@ var DriveClass = {
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
-				img.style.width = "200px";
+				//img.style.width = "200px";
 			},
 			
-			onReady: function() {
+			/*onReady: function() {
 				var img = document.getElementById(DriveClass.currentID);
 				img.style.width = "200px";
-			},
-			
-			onClose: function() {
-				var img = document.getElementById(DriveClass.currentID);
-				img.style.width = "200px";
-			},
-			
-			/*onClose: function(imageID, newURL) {
-				var img = document.getElementById(imageID);
-				img.src = newURL;
-				img.style.width = "200px";
-				img.style.heigth = "225px";
 			},*/
 			
 			onError: function(errorObj) {
-				alert(errorObj.message);
+				console.log(errorObj.message);
 			}
 		});
 		
@@ -51,6 +39,9 @@ var DriveClass = {
 	},
 	
 	launchEditor: function(id, src) {
+		
+		console.log(id);
+		console.log(src);
 		
 		DriveClass.featherEditor.launch({
 			image: id,
