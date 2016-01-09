@@ -37,8 +37,7 @@
             <div id="top-text">
             	You have to authorize to be able to load your Google Drive images. 
                 However, if you already have done so you should be able to see your images right away.
-                Only images in formats Png and Jpeg/Jpg will be shown because that is the only formats
-                the Aviary editor accepts.
+                Only images in formats Png and Jpeg/Jpg will be shown. This is the formats the Aviary editor accepts.
             </div>
             
             <div id="au-div">
@@ -77,11 +76,17 @@
             <p id="copyright">© 2016 Webbteknik 2 Projekt</p>
         </footer>
         
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- DriveClass JS -->
+        <script src="js/DriveClass.js"></script>
+        
         <script type="text/javascript">
 		
 			  var imageList = document.getElementById("image-list");
 			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
 			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // maybe change?
+			  //var imageIDs = [];
 		
 			  /**
 			   * Check if current user has authorized this application.
@@ -148,7 +153,7 @@
 					  	for (var i = 0; i < files.length; i++) {
 							
 							var file = files[i];
-							console.log(file);
+							//console.log(file);
 							//appendPre(file.title + ' (' + file.id + ')');
 						
 							if (file.fileExtension == 'png' || file.fileExtension == 'jpg' || file.fileExtension == 'jpeg') {
@@ -168,16 +173,19 @@
 			  
 			  function renderListElement(image) {
 				  
+				  //imageIDs.push(image.id);
+				  
 				  imageList.innerHTML += 
 				  	'<li>' + // "crossOrigin" enables image to be opened with Aviary editor. 
 						'<img id="'+image.id+'" src="'+image.thumbnailLink+'" width="200" height="225" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
-						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\''+image.id+'\')">Edit</a>' +
+						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\'' + image.id + '\')">Edit</a>' +
 						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
 					'</li>';
 			  }
-		
+			// onclick="return DriveClass.launchEditor(\''+image.id+'\');
 				// (\''+image.id+'\', \''+image.thumbnailLink+'\');
+				
 		
 			  /**
 			   * Append a pre element to the body containing the given message
@@ -195,19 +203,17 @@
         
         <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
         
-        <!-- Upload Local Image JS -->
-        /*<script src="js/UploadImage.js"></script>*/
         <!-- Google Platform Library -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!-- App JS -->
         <script src="js/App.js"></script>
-        <!-- Load Feather code -->
-		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
-        <!-- DriveClass JS -->
-        <script src="js/DriveClass.js"></script>
+        
         <!-- Clipboard JS -->
         <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
         <script src="js/ClipboardClass.js"></script>
+        
+        <!-- Add eventhandlers -->
+        <!--<script src="js/EventAdder.js"></script>-->
         
     </body>
 </html>

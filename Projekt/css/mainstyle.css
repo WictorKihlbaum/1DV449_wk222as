@@ -64,7 +64,7 @@ h1 {
 	cursor: pointer;	
 }
 
-#default-app:hover {
+#local-app:hover {
 	background-size: 100%;
 }
 
@@ -72,7 +72,7 @@ h1 {
 	background-size: 85%;
 }
 
-#default-app {
+#local-app {
 	background-image: url(../images/computer_symbol.png);	
 	background-repeat: no-repeat;
 	background-position: center;

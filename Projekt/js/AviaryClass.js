@@ -35,7 +35,7 @@ var AviaryClass = {
 	launchEditor: function(id) {
 		
 		AviaryClass.featherEditor.launch({
-			image: id.target.myParam,
+			image: id.target.myParam
 		});
 		
 		return false;
