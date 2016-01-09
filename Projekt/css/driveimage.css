@@ -1,3 +1,5 @@
+/* CSS for 'driveimage.html' */
+
 #top-text {
 	max-width: 930px;
 	margin: 0 auto;
@@ -12,16 +14,18 @@
 	margin: 0 auto;
 	max-width: 960px;
 	list-style-type: none;
-	/*border: 1px solid black;*/
-	text-align: center;	
+	border: 1px solid black;
+	text-align: center;
 }
 
 #image-list li {
 	margin: 5px;
 	display: inline-block;
 	width: 200px;
-	/*border: 1px solid black;*/
+	height: 450px; /* 384 change this */
+	border: 1px solid black;
 	text-align: center;	
+	vertical-align: middle;
 }
 
 .image-name {

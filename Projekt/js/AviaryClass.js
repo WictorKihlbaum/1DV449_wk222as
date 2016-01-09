@@ -18,6 +18,7 @@ var AviaryClass = {
 			theme: 'minimum',
 			tools: 'all',
 			appendTo: '',
+			displayImageSize: true,
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;

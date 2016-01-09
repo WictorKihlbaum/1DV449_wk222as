@@ -13,7 +13,9 @@ var UploadImage = {
 		var selectedFile = document.getElementById('input').files[0];
 		
 		// Aviary editor only supports Png and Jpg/Jpeg.
-		if (selectedFile.type === 'image/png' || selectedFile.type === 'image/jpg' || selectedFile.type === 'image/jpeg') {
+		if (selectedFile.type === 'image/png' || 
+			selectedFile.type === 'image/jpg' || 
+			selectedFile.type === 'image/jpeg') {
 			
 			var reader = new FileReader();
 	

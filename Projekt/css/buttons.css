@@ -1,3 +1,5 @@
+/* CSS for Buttons */
+
 .button-class {
 	margin: 0 auto;
 	padding: 10px 15px;
@@ -13,13 +15,23 @@
 .button-class:hover { color: white; }
 
 .edit-button { 
-	margin: 15px auto;
+	margin: 15px auto 2px auto;
 	background-color: #22A7F0; 
 }
 .edit-button:hover { background-color: #6BB9F0 }
 
-.download-button { background-color: #2ECC71; }
+.download-button { 
+	margin: 2px auto;
+	background-color: #2ECC71; 	
+}
 .download-button:hover { background-color: #87D37C; }
+
+.upload-button {
+	margin: 2px auto;
+	background-color: #F2784B;
+}
+
+.upload-button:hover { background-color: #EB974E; }
 
 .go-back-button {
 	margin-top: 100px;

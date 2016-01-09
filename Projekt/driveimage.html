@@ -171,10 +171,12 @@
 				  
 				  imageList.innerHTML += 
 				  	'<li>' + // "crossOrigin="Anonymous"" enables image to be opened with Aviary editor. 
-						'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
+						'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
-						'<a href="#" class="button-class edit-button" onclick="downloadFile(\'' + image.id + '\', \'' + image.downloadUrl + '\')">Edit</a>' +
+						'<a href="#" class="button-class edit-button" onclick="downloadFile(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
 						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
+						'<span id="'+image.id+'-edited"></span><!-- Download-button for edited image will be added from ???.js -->' +
+						'<span id="'+image.id+'-upload"></span><!-- Upload-button for edited image will be added from ???.js -->' +
 					'</li>';
 			  }	
 				
@@ -189,9 +191,9 @@
 
 							if (xhr.readyState === 4 && xhr.status === 200) {
 								
-								var reader  = new FileReader();
+								var reader = new FileReader();
 								
-								reader.onloadend = function () {
+								reader.onloadend = function() {
 									DriveClass.launchEditor(id, reader.result);
 								}
 								
