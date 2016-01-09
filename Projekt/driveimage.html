@@ -86,7 +86,7 @@
 			  var imageList = document.getElementById("image-list");
 			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
 			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // maybe change?
-			  //var imageIDs = [];
+			  var images = [];
 		
 			  /**
 			   * Check if current user has authorized this application.
@@ -153,6 +153,9 @@
 					  	for (var i = 0; i < files.length; i++) {
 							
 							var file = files[i];
+							
+							//downloadFile(file);
+							
 							//console.log(file);
 							//appendPre(file.title + ' (' + file.id + ')');
 						
@@ -176,17 +179,51 @@
 				  //imageIDs.push(image.id);
 				  
 				  imageList.innerHTML += 
-				  	'<li>' + // "crossOrigin" enables image to be opened with Aviary editor. 
-						'<img id="'+image.id+'" src="'+image.thumbnailLink+'" width="200" height="225" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
+				  	'<li>' + // "crossOrigin="Anonymous"" enables image to be opened with Aviary editor. 
+						'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
-						'<a href="#" class="button-class edit-button" onclick="DriveClass.launchEditor(\'' + image.id + '\')">Edit</a>' +
+						'<a href="#" class="button-class edit-button" onclick="downloadFile(\'' + image.id + '\', \'' + image.downloadUrl + '\')">Edit</a>' +
 						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
 					'</li>';
-			  }
-			// onclick="return DriveClass.launchEditor(\''+image.id+'\');
-				// (\''+image.id+'\', \''+image.thumbnailLink+'\');
+			  }	
 				
-		
+				/**
+				 * Download a file's content.
+				 *
+				 * @param {File} file Drive File instance.
+				 * @param {Function} callback Function to call when the request is complete.
+				 */
+				function downloadFile(id, downloadURL) {
+					
+					var blob;
+					var url;
+					
+					if (downloadURL) {
+						
+						var accessToken = gapi.auth.getToken().access_token;
+						var xhr = new XMLHttpRequest();
+					
+						xhr.onreadystatechange = function() {
+
+							if (xhr.readyState === 4 && xhr.status === 200) {
+								
+								blob = xhr.response;
+								url = window.URL.createObjectURL(blob);
+								
+								var img = document.getElementById(id);
+								img.src = window.URL.createObjectURL(blob);
+								// Call Aviary Editor.
+								DriveClass.launchEditor(id);								
+							}
+						}
+						
+						xhr.open('GET', downloadURL);
+						xhr.responseType = 'blob';
+						xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+						xhr.send();
+					}
+				}
+					
 			  /**
 			   * Append a pre element to the body containing the given message
 			   * as its text node.
@@ -211,9 +248,6 @@
         <!-- Clipboard JS -->
         <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
         <script src="js/ClipboardClass.js"></script>
-        
-        <!-- Add eventhandlers -->
-        <!--<script src="js/EventAdder.js"></script>-->
         
     </body>
 </html>

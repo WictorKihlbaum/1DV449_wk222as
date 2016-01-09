@@ -35,3 +35,8 @@
 	max-width: 930px;
 	color: #F2784B;	
 }
+
+.thumbnail-image {
+	max-width: 150px;
+	/*height: 225px;*/	
+}
