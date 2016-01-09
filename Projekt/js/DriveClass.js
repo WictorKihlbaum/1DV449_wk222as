@@ -22,21 +22,18 @@ var DriveClass = {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				DriveClass.addDownloadButton(imageID, newURL);
-				DriveClass.addUploadButton(imageID, newURL);
+				//DriveClass.addUploadButton(imageID, newURL);
+				DriveClass.renderSaveToDrive(imageID, newURL);
+				console.log(newURL);
 			},
 			
 			onError: function(errorObj) {
 				console.log(errorObj.message);
 			}
 		});
-		
-		console.log(DriveClass.featherEditor);
 	},
 	
 	launchEditor: function(id, src) {
-		
-		console.log(id);
-		console.log(src);
 		
 		DriveClass.featherEditor.launch({
 			image: id,
@@ -51,13 +48,22 @@ var DriveClass = {
 		buttonField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download edited</a>';
 	},
 	
-	addUploadButton: function(id, url) {
+	/*addUploadButton: function(id, url) {
 		var buttonField = document.getElementById(id+'-upload');
-		buttonField.innerHTML = '<a href="#" class="button-class upload-button" onclick="DriveClass.sayHi()">Upload to Drive</a>';
-	},
+		
+		buttonField.innerHTML = '<div class="g-savetodrive" data-src="images/cat.png" data-filename="Test" data-sitename="Test"></div>';
+		//'<a href="#" class="button-class upload-button" onclick="DriveClass.sayHi()">Upload to Drive</a>';
+	},*/
 	
-	sayHi: function() {
-		console.log('Upload-button pressed by user');
+	renderSaveToDrive: function(id, url) {
+		
+		// TODO: fetch img from new url.
+		
+    	gapi.savetodrive.render(id+'-upload', {
+        src: url,
+        filename: id,
+        sitename: 'WebProject'
+		});
 	}
 		
 };
