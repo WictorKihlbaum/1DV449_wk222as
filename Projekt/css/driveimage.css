@@ -37,6 +37,6 @@
 }
 
 .thumbnail-image {
-	max-width: 150px;
-	/*height: 225px;*/	
+	width: 200px;
+	height: 225px;
 }

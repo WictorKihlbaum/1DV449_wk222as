@@ -14,6 +14,7 @@ var AviaryClass = {
 		
 		AviaryClass.featherEditor = new Aviary.Feather({
 			apiKey: 'eb5f4fca52634bbf94da9389bd974012',
+			apiVersion: 3,
 			theme: 'minimum',
 			tools: 'all',
 			appendTo: '',

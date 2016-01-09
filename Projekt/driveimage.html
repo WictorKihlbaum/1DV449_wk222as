@@ -83,7 +83,7 @@
 		
 			  var imageList = document.getElementById("image-list");
 			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
-			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // maybe change?
+			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // change?
 			  //var images = [];
 		
 			  /**
@@ -171,7 +171,7 @@
 				  
 				  imageList.innerHTML += 
 				  	'<li>' + // "crossOrigin="Anonymous"" enables image to be opened with Aviary editor. 
-						'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
+						'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" crossOrigin="Anonymous" />' +
 						'<span class="image-name">'+image.originalFilename+'</span>' +
 						'<a href="#" class="button-class edit-button" onclick="downloadFile(\'' + image.id + '\', \'' + image.downloadUrl + '\')">Edit</a>' +
 						'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
@@ -190,12 +190,15 @@
 							if (xhr.readyState === 4 && xhr.status === 200) {
 								
 								var blob = xhr.response;
+								
 								var url = window.URL.createObjectURL(blob);
 								
-								var img = document.getElementById(id);
-								img.src = window.URL.createObjectURL(blob);
+								//var img = document.getElementById(id);
+								//img.src = window.URL.createObjectURL(blob);
+								
 								// Call Aviary Editor.
-								DriveClass.launchEditor(id);								
+								DriveClass.setCurrentID(id);
+								DriveClass.launchEditor(id, url);								
 							}
 						}
 						
