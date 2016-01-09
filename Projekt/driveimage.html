@@ -50,8 +50,6 @@
                 </div>
             </div>
             
-        	<pre id="output"></pre>
-            
             <div id="image-div">
             	<ul id="image-list">
                 	<!-- li-tags are being added from ???.js -->
@@ -86,7 +84,7 @@
 			  var imageList = document.getElementById("image-list");
 			  var CLIENT_ID = '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com';
 			  var SCOPES = ['https://www.googleapis.com/auth/drive']; // maybe change?
-			  var images = [];
+			  //var images = [];
 		
 			  /**
 			   * Check if current user has authorized this application.
@@ -146,37 +144,30 @@
 			  	});
 		
 				  request.execute(function(resp) {
-					//appendPre('Files:');
+					  
 					var files = resp.items;
 					if (files && files.length > 0) {
 						
 					  	for (var i = 0; i < files.length; i++) {
 							
 							var file = files[i];
-							
-							//downloadFile(file);
-							
-							//console.log(file);
-							//appendPre(file.title + ' (' + file.id + ')');
 						
-							if (file.fileExtension == 'png' || file.fileExtension == 'jpg' || file.fileExtension == 'jpeg') {
+							if (file.fileExtension == 'png' || 
+								file.fileExtension == 'jpg' || 
+								file.fileExtension == 'jpeg') {
 							
 								renderListElement(file);
-								//console.log(file);
 							}
 						}
 					  
 					} else {
 						
-						//appendPre('No files found.');
 						document.getElementById("image-div").innerHTML = "No images found in your Google Drive";
 					}
 				  });
 			  }
 			  
 			  function renderListElement(image) {
-				  
-				  //imageIDs.push(image.id);
 				  
 				  imageList.innerHTML += 
 				  	'<li>' + // "crossOrigin="Anonymous"" enables image to be opened with Aviary editor. 
@@ -187,16 +178,7 @@
 					'</li>';
 			  }	
 				
-				/**
-				 * Download a file's content.
-				 *
-				 * @param {File} file Drive File instance.
-				 * @param {Function} callback Function to call when the request is complete.
-				 */
 				function downloadFile(id, downloadURL) {
-					
-					var blob;
-					var url;
 					
 					if (downloadURL) {
 						
@@ -207,8 +189,8 @@
 
 							if (xhr.readyState === 4 && xhr.status === 200) {
 								
-								blob = xhr.response;
-								url = window.URL.createObjectURL(blob);
+								var blob = xhr.response;
+								var url = window.URL.createObjectURL(blob);
 								
 								var img = document.getElementById(id);
 								img.src = window.URL.createObjectURL(blob);
@@ -223,18 +205,6 @@
 						xhr.send();
 					}
 				}
-					
-			  /**
-			   * Append a pre element to the body containing the given message
-			   * as its text node.
-			   *
-			   * @param {string} message Text to be placed in pre element.
-			   */
-			  /*function appendPre(message) {
-			   	var pre = document.getElementById('output');
-				var textContent = document.createTextNode(message + '\n');
-				pre.appendChild(textContent);
-			  }*/
 	  
 	  </script>
         
