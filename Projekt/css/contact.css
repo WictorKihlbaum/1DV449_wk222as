@@ -54,11 +54,6 @@
 	cursor: pointer;
 }
 
-.main-topic {
-	text-align: center;	
-	color: #03C9A9;
-}
-
 #contact-container {
 	margin: 25px auto;
 	max-width: 960px;	
@@ -83,23 +78,3 @@
 #gmail-text {
 	color: #DD4B39;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

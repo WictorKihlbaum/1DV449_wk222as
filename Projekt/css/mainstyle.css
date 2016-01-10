@@ -1,3 +1,21 @@
+html {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+	
+	background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(bottom, #03C9A9, white, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom, #03C9A9, white, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom, #03C9A9, white, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(bottom, #03C9A9, white, white); /* Standard syntax (must be last) */
+}
+
+html, body {
+    min-height: 100%
+}
+
 header {
 	background-color: #26A65B;	
 	color: white;
@@ -6,6 +24,11 @@ header {
 
 h1 {
 	margin: 0;	
+}
+
+.main-topic {
+	text-align: center;	
+	color: #03C9A9;
 }
 
 .g-signin2 {
