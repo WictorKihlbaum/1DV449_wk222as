@@ -17,9 +17,15 @@ html, body {
 }
 
 header {
-	background-color: #26A65B;	
+	background-color: #03A678;	
 	color: white;
 	padding: 15px;
+}
+
+nav {
+	font-family: "lft-etica", sans-serif;
+	font-weight: 900;
+	font-size: 16px;
 }
 
 h1 {
@@ -29,6 +35,8 @@ h1 {
 .main-topic {
 	text-align: center;	
 	color: #03C9A9;
+	font-family: "lft-etica",sans-serif;
+	font-weight: 900;
 }
 
 .g-signin2 {
@@ -55,58 +63,6 @@ h1 {
 #signout-button:hover {
 	color: white;
 	text-decoration: underline;
-}
-
-#app-container {
-	padding: 5px;	
-	text-align: center;
-	margin: 0 auto;
-}
-
-.app-text {
-	padding: 10px;
-	border-radius: 8px;
-	background-color: #C8F7C5;
-	color: #049372;
-}
-
-.app-button {
-	width: 300px;
-	height: 300px;
-	margin: 5px;	
-	display: inline-block;
-	
-	-webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-.app-button:hover {
-	cursor: pointer;	
-}
-
-#local-app:hover {
-	background-size: 100%;
-}
-
-#drive-app:hover {
-	background-size: 85%;
-}
-
-#local-app {
-	background-image: url(../images/computer_symbol.png);	
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 90%;
-}
-
-#drive-app {
-	background-image: url(../images/google_drive_logo.png);	
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 75%;
 }
 
 footer {

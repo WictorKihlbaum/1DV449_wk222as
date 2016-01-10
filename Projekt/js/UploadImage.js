@@ -45,4 +45,4 @@ var UploadImage = {
 	
 };				
 
-window.onload = UploadImage.init;
+window.onload = UploadImage.init();

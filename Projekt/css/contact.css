@@ -56,7 +56,13 @@
 
 #contact-container {
 	margin: 25px auto;
-	max-width: 960px;	
+	padding: 10px;
+	max-width: 960px;
+}
+
+#contact-text {
+	color: #936A4A;
+	font-family: "rucksack", sans-serif;	 
 }
 
 #contact-container a {

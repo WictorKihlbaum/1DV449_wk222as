@@ -17,4 +17,4 @@ var ClipboardClass = {
 	}
 };
 
-window.onload = ClipboardClass.instantiate;
+window.onload = ClipboardClass.instantiate();

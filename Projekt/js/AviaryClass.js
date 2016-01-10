@@ -52,4 +52,4 @@ var AviaryClass = {
 		
 };
 
-window.onload = AviaryClass.init;
+window.onload = AviaryClass.init();
