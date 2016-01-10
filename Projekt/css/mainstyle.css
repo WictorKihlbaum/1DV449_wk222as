@@ -77,3 +77,59 @@ footer {
 #copyright {
 	margin-top: 35px;	
 }
+
+/* Footer Contact */
+
+#contact-circles-container {
+	text-align: center;	
+}
+
+.contact-circles {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: inline-block;	
+	margin: 0 5px;
+	
+	text-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	/* Expand-effect on Circle-buttons */
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#facebook-circle {
+	background-color: #3B5998;
+	background-image: url(../images/facebook_logo_white.png);
+	background-size: 45%;
+}
+
+#facebook-circle:hover {
+	background-size: 55%;
+}
+
+#twitter-circle {
+	background-color: #00ACED;	
+	background-image: url(../images/twitter_logo_white.png);
+	background-size: 45%;
+}
+
+#twitter-circle:hover {
+	background-size: 55%;
+}
+
+#google-circle {
+	background-color: #DD4B39;
+	background-image: url(../images/gmail_logo.png);
+	background-size: 55%;
+}
+
+#google-circle:hover {
+	background-size: 65%;
+	cursor: pointer;
+}
