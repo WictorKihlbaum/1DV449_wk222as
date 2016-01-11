@@ -2,10 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/drive">
+        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/drive profile email">
         <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-		
         <title>Picme Edit Drive Image</title>
         <!-- Skeleton CSS Framework -->
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -24,10 +22,11 @@
 	</head>
 	<body>
     	<header>
-        	<h1>Picme</h1>
+        	<img src="#" id="profile-image" title="Profile picture" alt="Profile picture" style="display: none"/>
+            <h1 id="website-name">Picme</h1>
             <!-- Google login/logout button -->
-            <div class="g-signin2" data-onsuccess="onSignIn"></div><!--App.onSignIn-->
-            <a href="#" id="signout-button" onclick="signOut()">Sign out</a><!--App.signOut-->
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" id="signout-button" onclick="signOut()">Sign out</a>
         </header>
         <main>
         
@@ -40,19 +39,13 @@
             </nav>
             
             <div id="top-text">
-            	You have to authorize to be able to load your Google Drive images. 
+            	You have to login to be able to load your Google Drive images. 
                 However, if you already have done so you should be able to see your images right away.
                 Only images in formats Png and Jpeg/Jpg will be shown. These are the formats the Aviary editor accepts.
             </div>
             
-            <div id="au-div">
-                <div id="authorize-div" style="display: none">
-                    <p>Authorize access to Google Drive</p>
-                    <!--Button for the user to click to initiate auth sequence -->
-                    <button id="authorize-button" onclick="GoogleDriveClass.handleAuthClick(event);">
-                        Authorize
-                    </button>
-                </div>
+            <div id="need-to-login-text">
+            	Your Google Drive images will be listed here...
             </div>
             
             <div id="image-div">
@@ -79,63 +72,52 @@
             <p id="copyright">© 2016 Webbteknik 2 Projekt</p>
         </footer>
         
-        <!-- Load Feather code -->
-		<!--<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>-->
-        <!-- DriveClass JS -->
-        <!--<script src="js/DriveClass.js"></script>-->
-        
-        
-       <script src="js/GoogleDriveClass.js"></script>
-       
-        
         <!-- Google Platform Library -->
-      	<!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!-- Load Feather code -->
+		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+        <!-- DriveClass JS -->
+        <script src="js/DriveClass.js"></script>
         
-      <script>
-	  
-	  	
-		
-	  	function onSignIn(googleUser) {
-			console.log('test');
-			console.log(googleUser);
-			
-			var profile = googleUser.getBasicProfile();
+        
+        <script src="js/GoogleDriveClass.js"></script>
+       
+	    <script>
+	   
+	     function onSignIn(googleUser) {
+	   		var profile = googleUser.getBasicProfile();
 		  	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 		  	console.log('Name: ' + profile.getName());
 		  	console.log('Image URL: ' + profile.getImageUrl());
 		  	console.log('Email: ' + profile.getEmail());
 			
 			GoogleDriveClass.checkAuth();
-		}
+			
+			var profileImage = document.getElementById('profile-image');
+			profileImage.src = profile.getImageUrl();
+			profileImage.style.display = 'inline';
+		 }
 		
-		function signOut() {
+		 function signOut() {
     		var auth2 = gapi.auth2.getAuthInstance();
     		auth2.signOut().then(function() {
       			console.log('User signed out.');
     		});
 			
-			auth2.disable
-			//GoogleDriveClass.checkAuth();
-  		}
+			auth2.disconnect();
+  		 }
 		
-		function init() {
+		 function init() {
 			GoogleDriveClass.init();
-		};
+		 };
 		
-		
-		
-	  </script>
+	    </script>
       
-      
-      	<!-- App JS -->
-    	<!--<script src="js/App.js"></script>-->
         <script src="https://apis.google.com/js/client.js?onload=init"></script>
         
-        <!--<script src="https://apis.google.com/js/platform.js?onload=App.init()" async defer></script>-->
-        
         <!-- Clipboard JS -->
-        <!--<script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
-    	<script src="js/ClipboardClass.js"></script>-->
+        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+    	<script src="js/ClipboardClass.js"></script>
         
     </body>
 </html>

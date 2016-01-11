@@ -133,3 +133,17 @@ footer {
 	background-size: 65%;
 	cursor: pointer;
 }
+
+#website-name {
+	display: inline-block;	
+}
+
+#profile-image {
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;	
+}
+
+#profile-name {
+	text-align: center;
+}

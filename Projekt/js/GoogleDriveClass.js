@@ -8,7 +8,7 @@ var GoogleDriveClass = {
 			  
 	init: function() {
 		GoogleDriveClass.imageList = document.getElementById("image-list");
-		//GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
+		GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
 		GoogleDriveClass.checkAuth();
 	},
 		
@@ -16,7 +16,7 @@ var GoogleDriveClass = {
 	 * Check if current user has authorized this application.
 	 */
 	checkAuth: function() {
-		//GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
+		GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
 		gapi.auth.authorize(
 			{
 				'client_id': GoogleDriveClass.CLIENT_ID,
@@ -32,17 +32,14 @@ var GoogleDriveClass = {
 	 */
 	handleAuthResult: function(authResult) {
 		
-		console.log(authResult);
+		var needToDiv = document.getElementById('need-to-login-text');
 		
-		var authorizeDiv = document.getElementById('authorize-div');
 		if (authResult && !authResult.error) {
-		  // Hide auth UI, then load client library.
-		  authorizeDiv.style.display = 'none';
+		  needToDiv.style.visibility = 'hidden';
 		  GoogleDriveClass.loadDriveApi();
 		} else {
-		  // Show auth UI, allowing the user to initiate authorization by
-		  // clicking authorize button.
-		  authorizeDiv.style.display = 'inline';
+		  needToDiv.style.visibility = 'visible';
+		  GoogleDriveClass.imageList.innerHTML = '';
 		}
 	},
 	
@@ -70,6 +67,7 @@ var GoogleDriveClass = {
 	 * Print files.
 	 */
 	listFiles: function() {
+		
 		var request = gapi.client.drive.files.list({
 			'maxResults': 10
 		});
@@ -129,22 +127,8 @@ var GoogleDriveClass = {
 			};
 				
 			xhr.onerror = function() {
-				console.log('Woops! Something went wrong!');	
+				console.log('Something went wrong!');	
 			};
-				
-			/*xhr.onreadystatechange = function() { // byt mot onload och onerror.
-    
-				if (xhr.readyState === 4 && xhr.status === 200) {
-						
-					var reader = new FileReader();
-						
-					reader.onloadend = function() {
-						DriveClass.launchEditor(id, reader.result);
-					}
-						
-					reader.readAsDataURL(xhr.response);
-				}
-			}*/
 				
 			xhr.open('GET', downloadURL);
 			xhr.responseType = 'blob';
@@ -152,26 +136,5 @@ var GoogleDriveClass = {
 			xhr.send();
 		}
 	}
-		
-	/*function uploadFile(blobOrFile) {
-			
-		var accessToken = gapi.auth.getToken().access_token;
-			
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media', true);
-		xhr.setRequestHeader('Host', 'www.googleapis.com');
-		xhr.setRequestHeader('Content-Type', 'image/png');
-		xhr.setRequestHeader('Content-Length', 73166);
-		xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-			
-		xhr.onload = function(e) {
-				
-			if (this.status == 200) {
-				console.log(this.responseText);
-			}
-		};
-			
-		xhr.send('images/cat.png');
-	}*/
 	  
 };

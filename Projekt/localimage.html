@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/drive profile email">
         <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
 		<title>Picme Edit Local Image</title>
         <!-- Skeleton CSS Framework -->
@@ -21,10 +22,11 @@
 	</head>
 	<body>
     	<header>
-        	<h1>Picme</h1>
+        	<img src="#" id="profile-image" title="Profile picture" alt="Profile picture" style="display: none"/>
+            <h1 id="website-name">Picme</h1>
             <!-- Google login/logout button -->
-            <div class="g-signin2" data-onsuccess="App.onSignIn"></div>
-            <a href="#" id="signout-button" onClick="App.signOut()">Sign out</a>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" id="signout-button" onclick="signOut()">Sign out</a>
         </header>
         <main>
         
@@ -73,12 +75,37 @@
         <script src="js/UploadImage.js"></script>
         <!-- Google Platform Library -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <!-- App JS -->
-        <script src="js/App.js"></script>
         <!-- Load Feather code -->
 		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
         <!-- AviaryClass JS -->
         <script src="js/AviaryClass.js"></script>
+        
+        <script>
+	   
+	     function onSignIn(googleUser) {
+	   		var profile = googleUser.getBasicProfile();
+		  	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  	console.log('Name: ' + profile.getName());
+		  	console.log('Image URL: ' + profile.getImageUrl());
+		  	console.log('Email: ' + profile.getEmail());
+			
+			var profileImage = document.getElementById('profile-image');
+			profileImage.src = profile.getImageUrl();
+			profileImage.style.display = 'inline';
+		 }
+		
+		 function signOut() {
+    		var auth2 = gapi.auth2.getAuthInstance();
+    		auth2.signOut().then(function() {
+      			console.log('User signed out.');
+    		});
+			
+			auth2.disconnect();
+  		 }
+		
+	    </script>
+      
+        <script src="https://apis.google.com/js/client.js"></script>
         
     </body>
 </html>
