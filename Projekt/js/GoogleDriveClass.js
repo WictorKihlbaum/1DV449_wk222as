@@ -101,7 +101,7 @@ var GoogleDriveClass = {
 			'<li>' + 
 				'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
 				'<span class="image-name">'+image.originalFilename+'</span>' +
-				'<a href="#" class="button-class edit-button" onclick="downloadFile(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
+				'<a href="#" class="button-class edit-button" onclick="GoogleDriveClass.downloadFile(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
 				'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
 				'<span id="'+image.id+'-edited"></span><!-- Download-button for edited image will be added from GoogleDriveClass.js -->' +
 				'<div id="'+image.id+'-upload"></div><!-- Upload-button for edited image will be added from GoogleDriveClass.js -->' +

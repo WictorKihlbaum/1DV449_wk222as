@@ -60,9 +60,9 @@ var DriveClass = {
 		// TODO: fetch img from new url.
 		
     	gapi.savetodrive.render(id+'-upload', {
-        src: url,
-        filename: id,
-        sitename: 'WebProject'
+        	src: url,
+        	filename: id,
+        	sitename: 'WebProject'
 		});
 	}
 		

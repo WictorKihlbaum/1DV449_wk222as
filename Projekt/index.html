@@ -24,7 +24,7 @@
             <h1 id="website-name">Picme</h1>
             <!-- Google login/logout button -->
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <a href="#" id="signout-button" onclick="signOut()">Sign out</a>
+            <a href="#" id="signout-button" onclick="signOut()" style="visibility: hidden">Sign out</a>
         </header>
         <main>
         
@@ -79,6 +79,9 @@
 			var profileImage = document.getElementById('profile-image');
 			profileImage.src = profile.getImageUrl();
 			profileImage.style.display = 'inline';
+			// Add to all other files.
+			var signOutButton = document.getElementById('signout-button');
+			signOutButton.style.visibility = 'visible';
 		 }
 		
 		 function signOut() {
@@ -88,11 +91,18 @@
     		});
 			
 			auth2.disconnect();
+			// Add to all other files.
+			var signOutButton = document.getElementById('signout-button');
+			signOutButton.style.visibility = 'hidden';
   		 }
 		
 	    </script>
       
         <script src="https://apis.google.com/js/client.js"></script>
+        
+        <!-- Clipboard JS -->
+        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+    	<script src="js/ClipboardClass.js"></script>
         
     </body>
 </html>
