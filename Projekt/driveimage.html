@@ -2,8 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/drive">
         <meta name="google-signin-client_id" content="788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com">
-		<title>Picme Edit Drive Image</title>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+		
+        <title>Picme Edit Drive Image</title>
         <!-- Skeleton CSS Framework -->
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/skeleton.css">
@@ -23,8 +26,8 @@
     	<header>
         	<h1>Picme</h1>
             <!-- Google login/logout button -->
-            <div class="g-signin2" data-onsuccess="App.onSignIn"></div>
-            <a href="#" id="signout-button" onClick="App.signOut()">Sign out</a>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div><!--App.onSignIn-->
+            <a href="#" id="signout-button" onclick="signOut()">Sign out</a><!--App.signOut-->
         </header>
         <main>
         
@@ -54,7 +57,7 @@
             
             <div id="image-div">
             	<ul id="image-list">
-                	<!-- li-tags are being added from ???.js -->
+                	<!-- li-tags are being added from GoogleDriveClass.js -->
                 </ul>
             </div>
             <p>
@@ -77,42 +80,62 @@
         </footer>
         
         <!-- Load Feather code -->
-		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
+		<!--<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>-->
         <!-- DriveClass JS -->
-        <script src="js/DriveClass.js"></script>
+        <!--<script src="js/DriveClass.js"></script>-->
         
         
-        <script>
-		
-			function hej() {
-				GoogleDriveClass.init();
-			}
-			
-		</script>
-        
-        
-        
-        <!-- original script-tag -->
-        <script src="js/GoogleDriveClass.js"></script>
-        
-        <script src="https://apis.google.com/js/client.js?onload=hej"></script>
+       <script src="js/GoogleDriveClass.js"></script>
+       
         
         <!-- Google Platform Library -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
+      	<!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
         
+      <script>
+	  
+	  	
+		
+	  	function onSignIn(googleUser) {
+			console.log('test');
+			console.log(googleUser);
+			
+			var profile = googleUser.getBasicProfile();
+		  	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  	console.log('Name: ' + profile.getName());
+		  	console.log('Image URL: ' + profile.getImageUrl());
+		  	console.log('Email: ' + profile.getEmail());
+			
+			GoogleDriveClass.checkAuth();
+		}
+		
+		function signOut() {
+    		var auth2 = gapi.auth2.getAuthInstance();
+    		auth2.signOut().then(function() {
+      			console.log('User signed out.');
+    		});
+			
+			auth2.disable
+			//GoogleDriveClass.checkAuth();
+  		}
+		
+		function init() {
+			GoogleDriveClass.init();
+		};
+		
+		
+		
+	  </script>
+      
+      
+      	<!-- App JS -->
+    	<!--<script src="js/App.js"></script>-->
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
         
- 
-        
-        
-        
-        <!-- App JS -->
-        <script src="js/App.js"></script>
+        <!--<script src="https://apis.google.com/js/platform.js?onload=App.init()" async defer></script>-->
         
         <!-- Clipboard JS -->
-        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
-        <script src="js/ClipboardClass.js"></script>
-        
-        
+        <!--<script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+    	<script src="js/ClipboardClass.js"></script>-->
         
     </body>
 </html>

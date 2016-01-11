@@ -8,7 +8,6 @@ var GoogleDriveClass = {
 			  
 	init: function() {
 		GoogleDriveClass.imageList = document.getElementById("image-list");
-		//GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
 		GoogleDriveClass.checkAuth();
 	},
 		
@@ -16,7 +15,6 @@ var GoogleDriveClass = {
 	 * Check if current user has authorized this application.
 	 */
 	checkAuth: function() {
-		//GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
 		gapi.auth.authorize(
 			{
 				'client_id': GoogleDriveClass.CLIENT_ID,
@@ -33,7 +31,6 @@ var GoogleDriveClass = {
 	handleAuthResult: function(authResult) {
 		
 		console.log(authResult);
-		
 		var authorizeDiv = document.getElementById('authorize-div');
 		if (authResult && !authResult.error) {
 		  // Hide auth UI, then load client library.
@@ -52,12 +49,15 @@ var GoogleDriveClass = {
 	 * @param {Event} event Button click event.
 	 */
 	handleAuthClick: function(event) {
-		
 		gapi.auth.authorize(
 			{client_id: GoogleDriveClass.CLIENT_ID, scope: GoogleDriveClass.SCOPES, immediate: false},
 		  	GoogleDriveClass.handleAuthResult);
 		return false;
 	},
+	
+	
+	
+	
 	
 	/**
 	 * Load Drive API client library.
