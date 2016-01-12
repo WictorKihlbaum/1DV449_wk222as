@@ -3,8 +3,7 @@
 var UploadImage = {
 	
 	init: function() {
-		var inputElement = document.getElementById('input');
-		inputElement.addEventListener('change', UploadImage.handleFiles, false);
+		UploadImage.addEventListeners();
 	},
 
 	handleFiles: function() {
@@ -21,10 +20,6 @@ var UploadImage = {
 	
 			reader.onloadend = function() {
 				preview.src = reader.result;
-				// If image is way to big make it smaller.
-				if (preview.width > 660) {
-					preview.width = 660;
-				}
 			}
 			
 			if (selectedFile) {
@@ -42,6 +37,23 @@ var UploadImage = {
 	addDownloadButton: function(url) {
 		var downloadField = document.getElementById('download-button-field');
 		downloadField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download image</a>';
+	},
+	
+	addEventListeners: function() {
+		var inputElement = document.getElementById('input');
+		inputElement.addEventListener('change', UploadImage.handleFiles, false);
+		
+		var closeButton = document.getElementById('close-window');
+		closeButton.addEventListener('click', UploadImage.closeWindow, false);
+		
+		var editButton = document.getElementById('edit');
+		editButton.addEventListener('click', AviaryClass.launchEditor, false);
+		editButton.myParam = 'editable-image'; // ID-name for img-tag.
+	},
+	
+	closeWindow: function() {
+		var infoWindow = document.getElementById('step-by-step');
+		infoWindow.style.display = 'none';
 	}
 	
 };				

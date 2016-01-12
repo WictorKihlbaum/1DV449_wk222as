@@ -9,8 +9,43 @@
 	text-align: center;	
 }
 
+#close-window {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 26px;
+	height: 26px;
+}
+
+#close-window:hover {
+	cursor: pointer;
+}
+
+#step-by-step {
+	position: relative;
+	max-width: 930px;
+	margin: 0 auto;
+	padding: 15px;
+	color: #4183D7;
+	background-color: #E4F1FE;
+	border-radius: 12px;
+}
+
+#step-by-step ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#step-by-step ul li {
+	margin: 0;
+	padding: 0;
+	text-align: left;	
+}
+
 #editable-image {
 	/*border: 1px solid black;*/
+	max-width: 660px;
 }
 
 /* 

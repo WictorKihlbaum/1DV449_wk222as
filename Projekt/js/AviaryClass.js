@@ -6,7 +6,6 @@ var AviaryClass = {
 	
 	
 	init: function() {
-		AviaryClass.addEventListenerForEditButton();
 		AviaryClass.instantiateFeather();
 	},
 	
@@ -41,12 +40,6 @@ var AviaryClass = {
 		});
 		
 		return false;
-	},
-	
-	addEventListenerForEditButton: function() {
-		var editButton = document.getElementById('edit');
-		editButton.addEventListener('click', AviaryClass.launchEditor, false);
-		editButton.myParam = 'editable-image'; // ID-name for img-tag.
 	}
 		
 };
