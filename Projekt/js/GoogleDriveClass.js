@@ -15,7 +15,7 @@ var GoogleDriveClass = {
 	 * Check if current user has authorized this application.
 	 */
 	checkAuth: function() {
-		GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
+		
 		gapi.auth.authorize(
 			{
 				'client_id': GoogleDriveClass.CLIENT_ID,
@@ -30,42 +30,25 @@ var GoogleDriveClass = {
 	 * @param {Object} authResult Authorization result.
 	 */
 	handleAuthResult: function(authResult) {
-		
-		var needToDiv = document.getElementById('need-to-login-text');
-		
 		if (authResult && !authResult.error) {
-		  needToDiv.style.visibility = 'hidden';
-		  GoogleDriveClass.loadDriveApi();
+			document.getElementById('top-text').style.display = 'none';
+		  	GoogleDriveClass.loadDriveApi();
 		} else {
-		  needToDiv.style.visibility = 'visible';
-		  GoogleDriveClass.imageList.innerHTML = '';
+			document.getElementById('top-text').style.display = 'block';
 		}
-	},
-	
-	/**
-	 * Initiate auth flow in response to user clicking authorize button.
-	 *
-	 * @param {Event} event Button click event.
-	 */
-	handleAuthClick: function(event) {
-		
-		gapi.auth.authorize(
-			{client_id: GoogleDriveClass.CLIENT_ID, scope: GoogleDriveClass.SCOPES, immediate: false},
-		  	GoogleDriveClass.handleAuthResult);
-		return false;
 	},
 	
 	/**
 	 * Load Drive API client library.
 	 */
 	loadDriveApi: function() {
-		gapi.client.load('drive', 'v2', GoogleDriveClass.listFiles);
+		gapi.client.load('drive', 'v2', GoogleDriveClass.listImages);
 	},
 	
 	/**
-	 * Print files.
+	 * Render images.
 	 */
-	listFiles: function() {
+	listImages: function() {
 		
 		var request = gapi.client.drive.files.list({
 			'maxResults': 10
@@ -82,7 +65,7 @@ var GoogleDriveClass = {
 					if (file.fileExtension === 'png' || 
 						file.fileExtension === 'jpg' || 
 						file.fileExtension === 'jpeg') {
-					
+						
 						GoogleDriveClass.renderListElement(file);
 					}
 				}

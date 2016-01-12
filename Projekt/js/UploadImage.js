@@ -53,7 +53,11 @@ var UploadImage = {
 	
 	closeWindow: function() {
 		var infoWindow = document.getElementById('step-by-step');
-		infoWindow.style.display = 'none';
+		infoWindow.className = 'fadeout';
+		
+		setTimeout(function() {
+        	infoWindow.style.display = 'none';
+    	}, 500);
 	}
 	
 };				

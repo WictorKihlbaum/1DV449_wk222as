@@ -7,6 +7,7 @@ var DriveClass = {
 	
 	init: function() {
 		DriveClass.instantiateFeather();
+		DriveClass.addEventEventListener();
 	},
 	
 	instantiateFeather: function() {
@@ -64,6 +65,20 @@ var DriveClass = {
         	filename: id,
         	sitename: 'WebProject'
 		});
+	},
+	
+	addEventEventListener: function() {
+		var closeButton = document.getElementById('close-window');
+		closeButton.addEventListener('click', DriveClass.closeWindow, false);
+	},
+	
+	closeWindow: function() {
+		var infoWindow = document.getElementById('need-to-login-text');
+		infoWindow.className = 'fadeout';
+		
+		setTimeout(function() {
+        	infoWindow.style.display = 'none';
+    	}, 500);
 	}
 		
 };

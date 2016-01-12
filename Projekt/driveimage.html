@@ -38,13 +38,14 @@
                 </ul>
             </nav>
             
-            <div id="top-text">
+            <div id="need-to-login-text">
+            	<img src="images/close_button_small.png" alt="X" title="Close window" id="close-window" />
             	You have to login to be able to load your Google Drive images. 
                 However, if you already have done so you should be able to see your images right away.
                 Only images in formats Png and Jpeg/Jpg will be shown. These are the formats the Aviary editor accepts.
             </div>
             
-            <div id="need-to-login-text">
+            <div id="top-text">
             	Your Google Drive images will be listed here...
             </div>
             
@@ -76,34 +77,26 @@
 	   
 			function onSignIn(googleUser) {
 				SignEvent.signIn(googleUser);
-				GoogleDriveClass.checkAuth();
-			}
-			
-			function signOut() {
-				SignEvent.signOut();
-			}
-			
-			function init() {
-				GoogleDriveClass.checkAuth();
 			}
 		
 	    </script>
         
-        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+        <!-- Google Platform Library -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
         
+        <!-- Signin/out-events JS -->
+        <script src="js/SignEvent.js"></script>
         <!-- GoogleDriveClass JS -->
         <script src="js/GoogleDriveClass.js"></script>
         <!-- Load Feather code -->
 		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
         <!-- DriveClass JS -->
         <script src="js/DriveClass.js"></script>
-        <!-- Signin/out-events JS -->
-        <script src="js/SignEvent.js"></script>
+        
         <!-- Clipboard JS -->
         <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
     	<script src="js/ClipboardClass.js"></script>
-        <!-- Google Platform Library -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
         
     </body>
 </html>

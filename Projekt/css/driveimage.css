@@ -1,16 +1,41 @@
 /* CSS for 'driveimage.html' */
 
-#top-text {
+#need-to-login-text {
+	position: relative;
 	max-width: 930px;
 	margin: 0 auto;
 	padding: 15px;
 	color: #4183D7;
 	background-color: #E4F1FE;
 	border-radius: 8px;
+	
+	/* Fadeout effect */
+	-webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 }
 
-#need-to-login-text {
-	margin-top: 35px;
+.fadeout {
+	opacity: 0;
+}
+
+#close-window {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 26px;
+	height: 26px;
+}
+
+#close-window:hover {
+	cursor: pointer;
+}
+
+#top-text {
+	margin: 35px auto 0 auto;
+	max-width: 960px;
 	font-size: 18px;
 	color: #00ACED;
 	text-align: center;	
@@ -18,7 +43,7 @@
 
 #image-list {
 	padding: 0;
-	margin: 0 auto;
+	margin: 25px auto 0 auto;
 	max-width: 960px;
 	list-style-type: none;
 	/*border: 1px solid black;*/
