@@ -2,14 +2,13 @@
 
 var GoogleDriveClass = {
 	
-	imageList: '',
+	imageList: null,
 	CLIENT_ID: '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com',
 	SCOPES: ['https://www.googleapis.com/auth/drive'],
 			  
 	init: function() {
 		GoogleDriveClass.imageList = document.getElementById("image-list");
 		GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
-		GoogleDriveClass.checkAuth();
 	},
 		
 	/**
@@ -138,3 +137,5 @@ var GoogleDriveClass = {
 	}
 	  
 };
+
+window.onload = GoogleDriveClass.init();

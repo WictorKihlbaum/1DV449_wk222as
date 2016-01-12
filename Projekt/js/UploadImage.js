@@ -3,13 +3,13 @@
 var UploadImage = {
 	
 	init: function() {
-		var inputElement = document.getElementById("input");
-		inputElement.addEventListener("change", UploadImage.handleFiles, false);
+		var inputElement = document.getElementById('input');
+		inputElement.addEventListener('change', UploadImage.handleFiles, false);
 	},
 
 	handleFiles: function() {
 		
-		var preview = document.getElementById("editable-image");
+		var preview = document.getElementById('editable-image');
 		var selectedFile = document.getElementById('input').files[0];
 		
 		// Aviary editor only supports Png and Jpg/Jpeg.
@@ -34,12 +34,13 @@ var UploadImage = {
 			}
 			
 		} else {
-			// TODO: Add error-message-image to preview.	
+			// TODO: Add error-message.
+			console.log('Wrong image-format');	
 		}
 	},
 	
 	addDownloadButton: function(url) {
-		var downloadField = document.getElementById("download-button-field");
+		var downloadField = document.getElementById('download-button-field');
 		downloadField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download image</a>';
 	}
 	

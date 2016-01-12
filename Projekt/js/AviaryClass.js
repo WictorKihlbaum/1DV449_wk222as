@@ -6,7 +6,7 @@ var AviaryClass = {
 	
 	
 	init: function() {
-		AviaryClass.addEventListenerToEditButton();
+		AviaryClass.addEventListenerForEditButton();
 		AviaryClass.instantiateFeather();
 	},
 	
@@ -29,7 +29,7 @@ var AviaryClass = {
     		},
 			
 			onError: function(errorObj) {
-				alert(errorObj.message); // TODO: Change alert to smomething else...
+				console.log(errorObj.message);
 			}
 		});
 	},
@@ -43,10 +43,9 @@ var AviaryClass = {
 		return false;
 	},
 	
-	addEventListenerToEditButton: function() {
-	
-		var editButton = document.getElementById("edit");
-		editButton.addEventListener("click", AviaryClass.launchEditor, false);
+	addEventListenerForEditButton: function() {
+		var editButton = document.getElementById('edit');
+		editButton.addEventListener('click', AviaryClass.launchEditor, false);
 		editButton.myParam = 'editable-image'; // ID-name for img-tag.
 	}
 		
