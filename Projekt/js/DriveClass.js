@@ -59,6 +59,8 @@ var DriveClass = {
 	renderSaveToDrive: function(id, url) {
 		
 		// TODO: fetch img from new url.
+		url = url.substring('https:'.length);
+		console.log(url);
 		
     	gapi.savetodrive.render(id+'-upload', {
         	src: url,
