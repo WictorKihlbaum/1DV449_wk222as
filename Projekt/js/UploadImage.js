@@ -25,7 +25,7 @@ var UploadImage = {
 			if (selectedFile) {
 				reader.readAsDataURL(selectedFile);
 			} else {
-				preview.src = "images/questionmark.png";
+				preview.src = "images/no_image_chosen.jpg";
 			}
 			
 		} else {

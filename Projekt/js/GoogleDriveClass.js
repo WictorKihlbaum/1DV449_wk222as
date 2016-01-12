@@ -50,8 +50,10 @@ var GoogleDriveClass = {
 	 */
 	listImages: function() {
 		
+		GoogleDriveClass.imageList.innerHTML = '';
+		
 		var request = gapi.client.drive.files.list({
-			'maxResults': 10
+			'maxResults': 100
 		});
 	
 		request.execute(function(resp) {  
@@ -62,16 +64,15 @@ var GoogleDriveClass = {
 					
 					var file = files[i];
 				
-					if (file.fileExtension === 'png' || 
-						file.fileExtension === 'jpg' || 
-						file.fileExtension === 'jpeg') {
+					if (file.mimeType === 'image/png' || 
+						file.mimeType === 'image/jpg' || 
+						file.mimeType === 'image/jpeg') {
 						
 						GoogleDriveClass.renderListElement(file);
 					}
 				}
 			  
 			} else {
-				
 				document.getElementById("image-div").innerHTML = "No images found in your Google Drive";
 			}
 		});
@@ -81,19 +82,22 @@ var GoogleDriveClass = {
 		  
 		GoogleDriveClass.imageList.innerHTML += 
 			'<li>' + 
-				'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
+				'<div class="thumbnail-frame">' +
+					'<span class="helper"></span>' +
+					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" />' +
+				'</div>' +
 				'<span class="image-name">'+image.originalFilename+'</span>' +
-				'<a href="#" class="button-class edit-button" onclick="GoogleDriveClass.downloadFile(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
-				'<a href="'+image.webContentLink+'" download class="button-class download-button">Download original</a>' +
-				'<span id="'+image.id+'-edited"></span><!-- Download-button for edited image will be added from GoogleDriveClass.js -->' +
-				'<div id="'+image.id+'-upload"></div><!-- Upload-button for edited image will be added from GoogleDriveClass.js -->' +
+				'<a href="#" class="button-class button-size-small edit-button" onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
+				'<a href="'+image.webContentLink+'" download class="button-class button-size-small download-button">Download original</a>' +
+				'<span id="'+image.id+'-edited"></span><!-- Download-button for edited image will be added from DriveClass.js -->' +
+				'<div id="'+image.id+'-upload"></div><!-- Upload-button for edited image will be added from DriveClass.js -->' +
 			'</li>';
 	},	
 				
-	downloadFile: function(id, downloadURL) {
+	getImageFromDrive: function(id, downloadURL) {
 			
 		if (downloadURL) {
-				
+			
 			var accessToken = gapi.auth.getToken().access_token;
 			var xhr = new XMLHttpRequest();
 				
@@ -103,7 +107,7 @@ var GoogleDriveClass = {
 						
 				reader.onloadend = function() {
 					DriveClass.launchEditor(id, reader.result);
-				}
+				};
 					
 				reader.readAsDataURL(xhr.response);
 			};
@@ -117,6 +121,79 @@ var GoogleDriveClass = {
 			xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 			xhr.send();
 		}
+	},
+	
+	getImageFromAmazon: function(id, url) {
+		
+		var xhr = new XMLHttpRequest();
+			
+		xhr.onload = function() {
+			GoogleDriveClass.postImageToDrive(xhr.response);
+		};
+			
+		xhr.onerror = function() {
+			console.log('Something went wrong!');	
+		};
+			
+		xhr.open('GET', url);
+		xhr.responseType = 'blob';
+		xhr.send();	
+	},
+	
+	postImageToDrive: function(fileData, callback) {
+  		
+		var boundary = '-------314159265358979323846';
+		var delimiter = "\r\n--" + boundary + "\r\n";
+		var close_delim = "\r\n--" + boundary + "--";
+	
+		var reader = new FileReader();
+		reader.readAsBinaryString(fileData);
+		
+		reader.onload = function() {
+			
+			var contentType = fileData.type || 'application/octet-stream';
+			var metadata = {
+				'title': fileData.fileName,
+				'mimeType': contentType
+			};
+	
+			var base64Data = btoa(reader.result);
+			var multipartRequestBody =
+				delimiter +
+				'Content-Type: application/json\r\n\r\n' +
+				JSON.stringify(metadata) +
+				delimiter +
+				'Content-Type: ' + contentType + '\r\n' +
+				'Content-Transfer-Encoding: base64\r\n' +
+				'\r\n' +
+				base64Data +
+				close_delim;
+		
+			var request = gapi.client.request({
+				'path': '/upload/drive/v2/files',
+				'method': 'POST',
+				'params': {'uploadType': 'multipart'},
+				'headers': {
+				  'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+				},
+				'body': multipartRequestBody});
+				
+			if (!callback) {
+      			callback = function(file) {
+        			console.log(file);
+      			};
+    		}
+			
+			request.execute(callback);
+			
+			document.body.className = 'cursor-wait';
+			
+			setTimeout(function() {
+        		GoogleDriveClass.listImages();
+				document.body.className = 'cursor-default';
+    		}, 3000);
+			
+		};
 	}
 	  
 };

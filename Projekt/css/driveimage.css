@@ -33,6 +33,14 @@
 	cursor: pointer;
 }
 
+.cursor-default {
+	cursor: default;	
+}
+
+.cursor-wait {
+	cursor: wait;	
+}
+
 #top-text {
 	margin: 35px auto 0 auto;
 	max-width: 960px;
@@ -46,7 +54,7 @@
 	margin: 25px auto 0 auto;
 	max-width: 960px;
 	list-style-type: none;
-	/*border: 1px solid black;*/
+	border: 1px solid black;
 	text-align: center;
 }
 
@@ -54,17 +62,31 @@
 	margin: 5px;
 	display: inline-block;
 	width: 200px;
-	height: 450px; /* 384 change this */
-	/*border: 1px solid black;*/
+	height: auto;
+	border: 1px solid black;
 	text-align: center;	
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 .image-name {
 	color: #4183D7;	
 }
 
-.thumbnail-image {
+.thumbnail-frame {
 	width: 200px;
 	height: 200px;
+	background-color: white;
+}
+
+.thumbnail-image {
+	display: inline-block;
+	max-width: 200px;
+	vertical-align: middle;
+	max-height: 200px;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }

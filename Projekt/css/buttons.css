@@ -2,12 +2,21 @@
 
 .button-class {
 	margin: 0 auto;
-	padding: 10px 15px;
-	width: 150px;
 	display: block;
 	border-radius: 8px;
 	text-align: center;
 	text-decoration: none;
+	font-weight: bold;
+}
+
+.button-size-small {
+	padding: 3px 0;
+	width: 175px;
+}
+
+.button-size-large {
+	padding: 10px 0;
+	width: 150px;
 }
 
 .button-class:link { color: white; }
@@ -40,22 +49,3 @@
 }
 
 .go-back-button:hover { background-color: #DADFE1 }
-
-/* Google Drive Button */
-.save-to-drive-button {
-	width: 15px;
-	padding: 10px 15px;
-	border-radius: 8px;
-}
-
-.jfk-button {
-	width: 15px;
-	padding: 10px 15px;
-	border-radius: 8px;
-}
-
-.jfk-button-standard {
-	width: 15px;
-	padding: 10px 15px;
-	border-radius: 8px;
-}

@@ -59,30 +59,20 @@
 	max-width: 660px;
 }
 
-/* 
- * Below CSS partially taken from: http://jsfiddle.net/gabrieleromanato/mxq9R/.
- * Some changes have been made.
- */
-div.upload {
-	margin: 0 auto 25px auto;
-    width: 180px;
-    height: 44px;
-	border-radius: 10px;
-	background-color: #22A7F0;
-    overflow: hidden;
-	cursor: pointer;
-	color: white;
-	padding-top: 20px;
+/* Styling for "Upload image"-button */
+input[type="file"] {
+    display: none;
 }
 
-div.upload input {
-	margin: 0 auto 25px auto !important;
-    display: block !important;
-    width: 180px !important;
-    height: 44px !important;
-	border-radius: 10px !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-	cursor: pointer !important;
+.label-class {
+	border-radius: 10px;
+    display: inline-block;
+    padding: 10px 25px;
+    cursor: pointer;
+	background-color: #22A7F0;
+	color: white;
 }
-/* ------------------------------------------------------------------------ */
+
+.label-class:hover {
+	background-color: #6BB9F0;
+}

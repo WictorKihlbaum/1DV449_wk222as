@@ -23,8 +23,8 @@ var DriveClass = {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				DriveClass.addDownloadButton(imageID, newURL);
-				//DriveClass.addUploadButton(imageID, newURL);
-				DriveClass.renderSaveToDrive(imageID, newURL);
+				DriveClass.addUploadButton(imageID, newURL);
+				//DriveClass.renderSaveToDrive(imageID, newURL);
 				console.log(newURL);
 			},
 			
@@ -46,27 +46,12 @@ var DriveClass = {
 	
 	addDownloadButton: function(id, url) {
 		var buttonField = document.getElementById(id+'-edited');
-		buttonField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download edited</a>';
+		buttonField.innerHTML = '<a href="'+url+'" download class="button-class button-size-small download-button">Download edited</a>';
 	},
 	
-	/*addUploadButton: function(id, url) {
+	addUploadButton: function(id, url) {
 		var buttonField = document.getElementById(id+'-upload');
-		
-		buttonField.innerHTML = '<div class="g-savetodrive" data-src="images/cat.png" data-filename="Test" data-sitename="Test"></div>';
-		//'<a href="#" class="button-class upload-button" onclick="DriveClass.sayHi()">Upload to Drive</a>';
-	},*/
-	
-	renderSaveToDrive: function(id, url) {
-		
-		// TODO: fetch img from new url.
-		url = url.substring('https:'.length);
-		console.log(url);
-		
-    	gapi.savetodrive.render(id+'-upload', {
-        	src: url,
-        	filename: id,
-        	sitename: 'WebProject'
-		});
+		buttonField.innerHTML = '<a href="#" class="button-class button-size-small upload-button" onclick="GoogleDriveClass.getImageFromAmazon(\''+id+'\', \''+url+'\')">Upload to Drive</a>';
 	},
 	
 	addEventEventListener: function() {

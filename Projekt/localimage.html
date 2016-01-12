@@ -43,29 +43,30 @@
                 <ul>
                     <li>1. Press "Upload image" to choose which image you want to edit.</li>
                     <li>2. Press "Edit image". The Aviary editor will automatically open.</li>
-                    <li>3. After each edit press "Apply" in the upper-right corner of the editor.</li>
-                    <li>4. When you are done press "Save" in the same corner and then close the editor.</li>
+                    <li>3. Press "Apply" in the upper-right corner of the editor after you are done with each tool.</li>
+                    <li>4. Press "Save" in the same corner when you are done and then close the editor.</li>
                     <li>5. Press "Download image" to download your edited image to your computer.</li>
                 </ul>
             </div>
             
             <div id="image-container">
-                <!-- I had to add "onchange" inline aswell to make it work -->
                 <div class="upload">
-                	Upload image
-                	<input type="file" id="input" onchange="UploadImage.handleFiles(this.files)" />
+                	<label for="input" class="label-class">
+                        Upload image <!-- I had to add "onchange" inline aswell to make it work -->
+                        <input type="file" id="input" onchange="UploadImage.handleFiles(this.files)" />
+                    </label>
                 </div>
-                <img src="images/questionmark.png" alt="Image preview" id="editable-image" />
+                <img src="images/no_image_chosen.jpg" alt="Image preview" id="editable-image" />
             </div>
             <p>
-                <a href="#" class="button-class edit-button" id="edit">Edit image</a>
+                <a href="#" class="button-class button-size-large edit-button" id="edit">Edit image</a>
 			</p>
             
             <div id="download-button-field">
             	<!-- Download-button will be added from UploadImage.js -->	
             </div>
             
-            <a href="index.html" class="button-class go-back-button">Go back</a>
+            <a href="index.html" class="button-class button-size-large go-back-button">Go back</a>
             
         </main>
         <footer>
