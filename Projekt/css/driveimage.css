@@ -56,7 +56,7 @@
 	list-style-type: none;
 	text-align: center;
 	
-	/* Dev purpose only */
+	/* Developer purpose only */
 	/*border: 1px solid black;*/
 }
 
@@ -68,7 +68,7 @@
 	text-align: center;	
 	vertical-align: top;
 	
-	/* Dev purpose only */
+	/* Developer purpose only */
 	/*border: 1px solid black;*/
 }
 
@@ -91,8 +91,8 @@
 }
 
 .thumbnail-image-opened {
-	width: auto;
-	height: auto;	
+	max-width: 100%;
+	max-height: 100%;	
 }
 
 .helper {

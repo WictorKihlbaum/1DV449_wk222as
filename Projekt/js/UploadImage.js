@@ -36,7 +36,7 @@ var UploadImage = {
 	
 	addDownloadButton: function(url) {
 		var downloadField = document.getElementById('download-button-field');
-		downloadField.innerHTML = '<a href="'+url+'" download class="button-class download-button">Download image</a>';
+		downloadField.innerHTML = '<a href="'+url+'" download class="button-class button-size-large download-button">Download image</a>';
 	},
 	
 	addEventListeners: function() {

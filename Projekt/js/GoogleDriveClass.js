@@ -6,73 +6,16 @@ var GoogleDriveClass = {
 	CLIENT_ID: '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com',
 	SCOPES: ['https://www.googleapis.com/auth/drive'],
 	
-	thumbnailSrc: null,
-	openedThumbnail: null,
-	
 			  
 	init: function() {
 		GoogleDriveClass.imageList = document.getElementById("image-list");
 		GoogleDriveClass.imageList.innerHTML = ''; // Reset list.
-		// Fullscreen functionality.
-		GoogleDriveClass.addEventListener();
-	},
-	
-	addEventListener: function() {
-		// Make it work for all major browsers.
-		document.addEventListener("fullscreenchange", function() { GoogleDriveClass.fullscreenChanged(); });
-		document.addEventListener("webkitfullscreenchange", function() { GoogleDriveClass.fullscreenChanged(); });
-		document.addEventListener("mozfullscreenchange", function() { GoogleDriveClass.fullscreenChanged(); });
-		document.addEventListener("MSFullscreenChange", function() { GoogleDriveClass.fullscreenChanged(); });
-	},
-	
-	fullscreenChanged: function() {
-		
-		if (document.webkitFullscreenElement !== null) {
-			document.webkitFullscreenElement.className = 'thumbnail-image-opened';
-			GoogleDriveClass.openedThumbnail = document.webkitFullscreenElement;
-		} else {
-			GoogleDriveClass.openedThumbnail.className = 'thumbnail-image';
-			GoogleDriveClass.openedThumbnail.src = GoogleDriveClass.thumbnailSrc;
-		}
-		
-	},
-	
-	showFullScreen: function(id, src) {
-		
-		// Check if full-screen is available?
-		if (
-			document.fullscreenEnabled || 
-			document.webkitFullscreenEnabled || 
-			document.mozFullScreenEnabled ||
-			document.msFullscreenEnabled
-		) {
-			var newSrc = src.replace(/&export=download/i, '');
-			var image = document.getElementById(id);
-			GoogleDriveClass.thumbnailSrc = image.src;
-			image.src = newSrc;
-			
-			// Go full-screen
-			if (image.requestFullscreen) {
-				image.requestFullscreen();
-				image.src = src;
-			} else if (image.webkitRequestFullscreen) {
-				image.webkitRequestFullscreen();
-				image.src = src;
-			} else if (image.mozRequestFullScreen) {
-				image.mozRequestFullScreen();
-				image.src = src;
-			} else if (image.msRequestFullscreen) {
-				image.msRequestFullscreen();
-				image.src = src;
-			}
-		}
 	},
 		
 	/**
 	 * Check if current user has authorized this application.
 	 */
 	checkAuth: function() {
-		
 		gapi.auth.authorize(
 			{
 				'client_id': GoogleDriveClass.CLIENT_ID,
@@ -128,8 +71,6 @@ var GoogleDriveClass = {
 						GoogleDriveClass.renderListElement(file);
 					}
 				}
-				
-				//GoogleDriveClass.addFullScreen();
 			  
 			} else {
 				document.getElementById("image-div").innerHTML = "No images found in your Google Drive";
@@ -143,7 +84,7 @@ var GoogleDriveClass = {
 			'<li>' + 
 				'<div class="thumbnail-frame">' +
 					'<span class="helper"></span>' +
-					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" onclick="GoogleDriveClass.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" title="Click to preview in fullscreen" />' +
+					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" onclick="Fullscreen.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" title="Click to preview in fullscreen" />' +
 				'</div>' +
 				'<span class="image-name">'+image.originalFilename+'</span>' +
 				'<a href="#" class="button-class button-size-small edit-button" onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
@@ -182,6 +123,7 @@ var GoogleDriveClass = {
 		}
 	},
 	
+	// Aviary photo editor saves edited images temporarily on Amazons servers.
 	getImageFromAmazon: function(id, url) {
 		
 		var xhr = new XMLHttpRequest();
