@@ -17,10 +17,21 @@ var Fullscreen = {
 	
 	fullscreenChanged: function() {
 		
-		if (document.webkitFullscreenElement !== null) {
+		if (document.fullscreenElement) {
+			document.fullscreenElement.className = 'thumbnail-image-opened';
+		} else if (document.webkitFullscreenElement) {
 			document.webkitFullscreenElement.className = 'thumbnail-image-opened';
-			Fullscreen.thumbnail = document.webkitFullscreenElement;
-		} else {
+		} else if (document.mozFullScreenElement ) {
+			document.mozFullScreenElement.className = 'thumbnail-image-opened';
+		} else if (document.msFullscreenElement) {
+			document.msFullscreenElement.className = 'thumbnail-image-opened';
+		}
+		
+		if (!document.fullscreenElement &&
+			!document.webkitFullscreenElement &&
+			!document.mozFullScreenElement &&
+			!document.msFullscreenElement) {
+			
 			Fullscreen.thumbnail.className = 'thumbnail-image';
 			Fullscreen.thumbnail.src = Fullscreen.thumbnailSrc;
 		}
@@ -41,21 +52,33 @@ var Fullscreen = {
 			// Save thumbnail image source for later use.
 			Fullscreen.thumbnailSrc = image.src;
 			
-			// Go full-screen.
-			// Change image source to high-res image.
+			/* 1. Go fullscreen.
+			 * 2. Change img src to high-res version.
+			 * 3. Save thumbnail element for later use.
+			 */
 			if (image.requestFullscreen) {
 				image.requestFullscreen();
 				image.src = newSrc;
+				Fullscreen.thumbnail = document.fullscreenElement;
+				
 			} else if (image.webkitRequestFullscreen) {
 				image.webkitRequestFullscreen();
 				image.src = newSrc;
+				Fullscreen.thumbnail = document.webkitFullscreenElement;
+				
 			} else if (image.mozRequestFullScreen) {
 				image.mozRequestFullScreen();
 				image.src = newSrc;
+				Fullscreen.thumbnail = document.mozFullScreenElement;
+				
 			} else if (image.msRequestFullscreen) {
 				image.msRequestFullscreen();
 				image.src = newSrc;
+				Fullscreen.thumbnail = document.msFullscreenElement;
 			}
+			
+		} else {
+			console.log('Fullscreen not available by your browser.');	
 		}
 	},
 	

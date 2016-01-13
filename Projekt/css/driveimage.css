@@ -85,14 +85,17 @@
 .thumbnail-image {
 	display: inline-block;
 	max-width: 200px;
-	vertical-align: middle;
 	max-height: 200px;
+	vertical-align: middle;
+}
+
+.thumbnail-image:hover {
 	cursor: pointer;
 }
 
 .thumbnail-image-opened {
-	max-width: 100%;
-	max-height: 100%;	
+	max-width: auto;
+	max-height: auto;	
 }
 
 .helper {

@@ -4,12 +4,11 @@
 	margin: 0 auto;
 	max-width: 960px;
 	padding: 50px;
-	/*border: 1px solid black;*/
 	border-radius: 25px;
 	text-align: center;	
 }
 
-#close-window {
+.close-message {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -17,7 +16,7 @@
 	height: 26px;
 }
 
-#close-window:hover {
+.close-message:hover {
 	cursor: pointer;
 }
 
@@ -38,10 +37,6 @@
 	transition: opacity 0.5s;
 }
 
-.fadeout {
-	opacity: 0;
-}
-
 #step-by-step ul {
 	margin: 0;
 	padding: 0;
@@ -52,6 +47,34 @@
 	margin: 0;
 	padding: 0;
 	text-align: left;	
+}
+
+.fadeout {
+	opacity: 0;
+}
+
+#error-message {
+	/* Fadeout effect */
+	-webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+
+.error-message-show {
+	display: block;
+	position: relative;
+	max-width: 930px;
+	margin: 10px auto;
+	padding: 15px;
+	color: #D64541;
+	background-color: #F1A9A0;
+	border-radius: 12px;
+}
+
+.error-message-hide {
+	display: none;
 }
 
 #editable-image {
