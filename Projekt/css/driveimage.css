@@ -85,6 +85,11 @@
 	max-height: 200px;
 }
 
+.thumbnail-image-opened {
+	width: auto;
+	height: auto;	
+}
+
 .helper {
     display: inline-block;
     height: 100%;
