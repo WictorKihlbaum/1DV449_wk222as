@@ -5,6 +5,7 @@ var GoogleDriveClass = {
 	imageList: null,
 	CLIENT_ID: '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com',
 	SCOPES: ['https://www.googleapis.com/auth/drive'],
+	
 	thumbnailSrc: null,
 	openedThumbnail: null,
 	
@@ -27,10 +28,10 @@ var GoogleDriveClass = {
 	fullscreenChanged: function() {
 		
 		if (document.webkitFullscreenElement !== null) {
-			document.webkitFullscreenElement.className = '.thumbnail-image-opened';
+			document.webkitFullscreenElement.className = 'thumbnail-image-opened';
 			GoogleDriveClass.openedThumbnail = document.webkitFullscreenElement;
 		} else {
-			GoogleDriveClass.openedThumbnail.className = '.thumbnail-image';
+			GoogleDriveClass.openedThumbnail.className = 'thumbnail-image';
 			GoogleDriveClass.openedThumbnail.src = GoogleDriveClass.thumbnailSrc;
 		}
 		
@@ -142,7 +143,7 @@ var GoogleDriveClass = {
 			'<li>' + 
 				'<div class="thumbnail-frame">' +
 					'<span class="helper"></span>' +
-					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" onclick="GoogleDriveClass.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" longdesc="'+image.webContentLink+'" />' +
+					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" onclick="GoogleDriveClass.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" title="Click to preview in fullscreen" />' +
 				'</div>' +
 				'<span class="image-name">'+image.originalFilename+'</span>' +
 				'<a href="#" class="button-class button-size-small edit-button" onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
@@ -151,18 +152,6 @@ var GoogleDriveClass = {
 				'<div id="'+image.id+'-upload"></div><!-- Upload-button for edited image will be added from DriveClass.js -->' +
 			'</li>';
 	},	
-	
-	/*addFullScreen: function() {
-		
-		var thumbnails = document.getElementsByClassName('thumbnail-image');
-		
-		for (var i = 0; i < thumbnails.length; i++) {
-			var thumbnail = document.getElementById(thumbnails[i].id);
-			thumbnail.addEventListener('click', GoogleDriveClass.showFullScreen, false);
-			thumbnail.myParam = thumbnails[i];// id
-			GoogleDriveClass.thumbnailButtons.push(thumbnails[i]);
-		}
-	},*/
 				
 	getImageFromDrive: function(id, downloadURL) {
 			

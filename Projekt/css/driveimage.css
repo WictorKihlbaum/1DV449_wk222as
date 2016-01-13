@@ -54,8 +54,10 @@
 	margin: 25px auto 0 auto;
 	max-width: 960px;
 	list-style-type: none;
-	border: 1px solid black;
 	text-align: center;
+	
+	/* Dev purpose only */
+	/*border: 1px solid black;*/
 }
 
 #image-list li {
@@ -63,9 +65,11 @@
 	display: inline-block;
 	width: 200px;
 	height: auto;
-	border: 1px solid black;
 	text-align: center;	
 	vertical-align: top;
+	
+	/* Dev purpose only */
+	/*border: 1px solid black;*/
 }
 
 .image-name {
@@ -83,6 +87,7 @@
 	max-width: 200px;
 	vertical-align: middle;
 	max-height: 200px;
+	cursor: pointer;
 }
 
 .thumbnail-image-opened {
