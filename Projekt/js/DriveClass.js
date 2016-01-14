@@ -81,7 +81,8 @@ var DriveClass = {
 	  
 	renderListElement: function(image) {
 		  
-		DriveClass.imageList.innerHTML += '<li>' + 
+		DriveClass.imageList.innerHTML += 
+			'<li>' + 
 				/* Thumbnail frame */
 				'<div class="thumbnail-frame">' +
 					/* Helps thumbnail align correct */
@@ -114,7 +115,7 @@ var DriveClass = {
 				
 	getImageFromDrive: function(id, downloadURL) {
 		// In case an earlier success message has been shown.
-		DriveClass.removeSuccessMessage();	
+		Message.removeSuccessMessage();	
 			
 		if (downloadURL) {
 			
@@ -133,9 +134,9 @@ var DriveClass = {
 			};
 				
 			xhr.onerror = function() {
-				var errorMessage = 'Error! Could not get image from Google Drive.';
-				console.log(errorMessage);
-				DriveClass.showErrorMessage(errorMessage);
+				var message = 'Error! Could not get image from Google Drive.';
+				Message.showErrorMessage(message);
+				console.log(message);
 			};
 				
 			xhr.open('GET', downloadURL);
@@ -156,8 +157,8 @@ var DriveClass = {
 			
 		xhr.onerror = function() {
 			console.log('Error! Could not get image from Amazon.');
-			var errorMessage = 'Error! Failed to get the edited image. Therefore an upload to Google Drive could not be done.';
-			DriveClass.showErrorMessage(errorMessage);	
+			var message = 'Error! Failed to get the edited image. Therefore an upload to Google Drive could not be done.';
+			Message.showErrorMessage(message);
 		};
 			
 		xhr.open('GET', url);
@@ -209,64 +210,21 @@ var DriveClass = {
 			if (!callback) {
       			callback = function(file) {
         			console.log(file);
-					DriveClass.showSuccessMessage();
+					var message = 'The image was successfully uploaded to your Google Drive!';
+					Message.showSuccessMessage(message);
 					DriveClass.listImages();
 					document.body.className = 'cursor-default';
       			};
 				
     		} else {
 				console.log('Something went wrong! Could not post image to Google Drive.');
-				var errorMessage = 'The image failed to upload to your Google Drive!';
-				DriveClass.showErrorMessage(errorMessage);
+				var message = 'The image failed to upload to your Google Drive!';
+				Message.showErrorMessage(message);
 				document.body.className = 'cursor-default';
 			}
 			
 			request.execute(callback);
 		};
-	},
-	
-	showSuccessMessage: function() {
-		var message = document.getElementById('success-message');
-		message.className = 'success-message-show';
-		
-		message.innerHTML = 'The image was successfully uploaded to your Google Drive!' +
-		'<img src="images/close_button_small.png" ' +
-		'alt="X" ' +
-		'title="Close window" ' +
-		'class="close-message" ' +
-		'id="close-success-message" ' +
-		'onclick="DriveClass.removeSuccessMessage()" />';
-	},
-	
-	removeSuccessMessage: function() {
-		var message = document.getElementById('success-message');
-		message.className += ' fadeout';
-		
-		setTimeout(function() {
-        	message.className = 'success-message-hide';
-    	}, 500);
-	},
-	
-	showErrorMessage: function(errorMessage) {
-		var message = document.getElementById('error-message');
-		message.className = 'error-message-show';
-		
-		message.innerHTML = errorMessage + 
-		'<img src="images/close_button_small.png" ' +
-		'alt="X" ' +
-		'title="Close window" ' +
-		'class="close-message" ' +
-		'id="close-error-message" ' +
-		'onclick="DriveClass.removeErrorMessage()" />';
-	},
-	
-	removeErrorMessage: function() {
-		var message = document.getElementById('error-message');
-		message.className += ' fadeout';
-		
-		setTimeout(function() {
-        	message.className = 'error-message-hide';
-    	}, 500);
 	}
 	  
 };

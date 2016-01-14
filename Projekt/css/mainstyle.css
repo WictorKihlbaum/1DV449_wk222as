@@ -177,10 +177,6 @@ footer {
 	border-radius: 12px;
 }
 
-.success-message-hide {
-	display: none;
-}
-
 .error-message-show {
 	display: block;
 	position: relative;
@@ -192,7 +188,7 @@ footer {
 	border-radius: 12px;
 }
 
-.error-message-hide {
+.message-hide {
 	display: none;
 }
 

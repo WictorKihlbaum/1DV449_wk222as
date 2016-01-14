@@ -27,7 +27,8 @@ var AviaryLocal = {
 			
 			onError: function(errorObj) {
 				console.log(errorObj.message);
-				// TODO: Show error message for user.
+				var message = 'Error! Something went wrong.';
+				Message.showErrorMessage(message);
 			}
 		});
 	},
