@@ -67,13 +67,17 @@
 	height: auto;
 	text-align: center;	
 	vertical-align: top;
+	/* If image name is to long */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	
 	/* Developer purpose only */
 	/*border: 1px solid black;*/
 }
 
 .image-name {
-	color: #4183D7;	
+	color: #4183D7; 
 }
 
 .thumbnail-frame {
@@ -94,8 +98,8 @@
 }
 
 .thumbnail-image-opened {
-	max-width: auto;
-	max-height: auto;	
+	max-width: 100%;
+	max-height: 100%;	
 }
 
 .helper {

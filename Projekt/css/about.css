@@ -9,3 +9,8 @@
 	font-family: "rucksack", sans-serif;
 	font-size: 18px;
 }
+
+#worth-noting {
+	font-weight: bold;
+	text-decoration: underline;	
+}

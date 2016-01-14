@@ -37,7 +37,7 @@ var UploadImage = {
 		} else {
 			UploadImage.errorMessage.className = 'error-message-show';
 			UploadImage.errorMessage.innerHTML = 
-				'Wrong image format! The format has to be Png or Jpg/Jpeg. Please try again.' +
+				'File is not valid! The file is either not an image or the format is wrong. Valid formats are Png and Jpg/Jpeg. Please try again.' +
 				'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-error-message" onclick="UploadImage.removeErrorMessage()" />';
 			// Change back to default image.
 			var image = document.getElementById('editable-image');
