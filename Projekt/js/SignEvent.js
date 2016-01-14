@@ -23,10 +23,10 @@ var SignEvent = {
 		SignEvent.showProfileName(profile.getName());
 		SignEvent.showSignOutButton();
 		
-		console.log('ID: ' + profile.getId());
+		/*console.log('ID: ' + profile.getId());
 		console.log('Name: ' + profile.getName());
 		console.log('Image URL: ' + profile.getImageUrl());
-		console.log('Email: ' + profile.getEmail());
+		console.log('Email: ' + profile.getEmail());*/
 		
 		GoogleDriveClass.checkAuth();
 	},
@@ -62,17 +62,13 @@ var SignEvent = {
 	
 	showProfileImage: function(imageUrl) {
 		if (typeof(imageUrl) !== 'undefined') {
-			SignEvent.profileImage.style.display = 'inline';
+			SignEvent.profileImage.className = 'profile-image-show';
 			SignEvent.profileImage.src = imageUrl;
 		}
 	},
 	
 	hideProfileImage: function() {
-		SignEvent.profileImage.style.display = 'none';
-	},
-	
-	hideProfileImage: function() {
-		SignEvent.profileImage.style.display = 'none';
+		SignEvent.profileImage.className = 'profile-image-hide';
 	},
 	
 	addEventListener: function() {

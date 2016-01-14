@@ -27,10 +27,15 @@ header {
 	display: inline-block;	
 }
 
-#profile-image {
+.profile-image-show {
+	display: inline;
 	width: 60px;
 	height: 60px;
 	border-radius: 30px;	
+}
+
+.profile-image-hide {
+	display: none;	
 }
 
 #profile-name {
