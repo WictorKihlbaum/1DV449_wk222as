@@ -113,6 +113,8 @@ var DriveClass = {
 	},	
 				
 	getImageFromDrive: function(id, downloadURL) {
+		// In case an earlier success message has been shown.
+		DriveClass.removeSuccessMessage();	
 			
 		if (downloadURL) {
 			
