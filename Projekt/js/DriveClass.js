@@ -81,9 +81,7 @@ var DriveClass = {
 	  
 	renderListElement: function(image) {
 		  
-		DriveClass.imageList.innerHTML += 
-		
-			'<li>' + 
+		DriveClass.imageList.innerHTML += '<li>' + 
 				/* Thumbnail frame */
 				'<div class="thumbnail-frame">' +
 					/* Helps thumbnail align correct */
@@ -156,8 +154,7 @@ var DriveClass = {
 			
 		xhr.onerror = function() {
 			console.log('Error! Could not get image from Amazon.');
-			var errorMessage = 'Error! Failed to get the edited image. 
-			Therefore an upload to Google Drive could not be done.';
+			var errorMessage = 'Error! Failed to get the edited image. Therefore an upload to Google Drive could not be done.';
 			DriveClass.showErrorMessage(errorMessage);	
 		};
 			
@@ -230,9 +227,7 @@ var DriveClass = {
 		var message = document.getElementById('success-message');
 		message.className = 'success-message-show';
 		
-		message.innerHTML = 
-		'The image was successfully uploaded to your Google Drive!' +
-		
+		message.innerHTML = 'The image was successfully uploaded to your Google Drive!' +
 		'<img src="images/close_button_small.png" ' +
 		'alt="X" ' +
 		'title="Close window" ' +
@@ -254,7 +249,7 @@ var DriveClass = {
 		var message = document.getElementById('error-message');
 		message.className = 'error-message-show';
 		
-		message.innerHTML = errorMessage +
+		message.innerHTML = errorMessage + 
 		'<img src="images/close_button_small.png" ' +
 		'alt="X" ' +
 		'title="Close window" ' +
