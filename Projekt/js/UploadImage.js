@@ -66,7 +66,7 @@ var UploadImage = {
 		closeInfoButton.addEventListener('click', UploadImage.closeWindow, false);
 		
 		var editButton = document.getElementById('edit');
-		editButton.addEventListener('click', AviaryClass.launchEditor, false);
+		editButton.addEventListener('click', AviaryLocal.launchEditor, false);
 		editButton.myParam = 'editable-image'; // ID-name for img-tag.
 	},
 	

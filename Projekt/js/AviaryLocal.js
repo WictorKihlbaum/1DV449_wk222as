@@ -1,17 +1,17 @@
 "use strict";
 
-var AviaryClass = {
+var AviaryLocal = {
 	
 	featherEditor: {},
 	
 	
 	init: function() {
-		AviaryClass.instantiateFeather();
+		AviaryLocal.instantiateFeather();
 	},
 	
 	instantiateFeather: function() {
 		
-		AviaryClass.featherEditor = new Aviary.Feather({
+		AviaryLocal.featherEditor = new Aviary.Feather({
 			apiKey: 'eb5f4fca52634bbf94da9389bd974012',
 			apiVersion: 3,
 			theme: 'minimum',
@@ -37,7 +37,7 @@ var AviaryClass = {
 	
 	launchEditor: function(id) {
 		
-		AviaryClass.featherEditor.launch({
+		AviaryLocal.featherEditor.launch({
 			image: id.target.myParam
 		});
 		
@@ -46,4 +46,4 @@ var AviaryClass = {
 		
 };
 
-window.onload = AviaryClass.init();
+window.onload = AviaryLocal.init();
