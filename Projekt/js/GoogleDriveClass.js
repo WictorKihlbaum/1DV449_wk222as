@@ -73,7 +73,8 @@ var GoogleDriveClass = {
 				}
 			  
 			} else {
-				document.getElementById("image-div").innerHTML = "No images found in your Google Drive";
+				var imageDiv = document.getElementById('image-div');
+				imageDiv.innerHTML = "No valid images (Png, Jpg/Jpeg) found in your Google Drive";
 			}
 		});
 	},
@@ -81,10 +82,16 @@ var GoogleDriveClass = {
 	renderListElement: function(image) {
 		  
 		GoogleDriveClass.imageList.innerHTML += 
+		
 			'<li>' + 
 				'<div class="thumbnail-frame">' +
 					'<span class="helper"></span>' +
-					'<img id="'+image.id+'" class="thumbnail-image" src="'+image.thumbnailLink+'" alt="'+image.originalFilename+'" onclick="Fullscreen.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" title="Click to preview in fullscreen" />' +
+					'<img id="'+image.id+'" ' + 
+					'class="thumbnail-image" ' + 
+					'src="'+image.thumbnailLink+'" ' +
+					'alt="'+image.originalFilename+'" ' +
+					'onclick="Fullscreen.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" ' + 
+					'title="Click to preview in fullscreen" />' +
 				'</div>' +
 				'<span class="image-name">'+image.originalFilename+'</span>' +
 				'<a href="#" class="button-class button-size-small edit-button" onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
@@ -113,7 +120,9 @@ var GoogleDriveClass = {
 			};
 				
 			xhr.onerror = function() {
-				console.log('Something went wrong!');	
+				var errorMessage = 'Error! Could not get image from Google Drive.';
+				console.log(errorMessage);
+				GoogleDriveClass.showErrorMessage(errorMessage);
 			};
 				
 			xhr.open('GET', downloadURL);
@@ -123,7 +132,7 @@ var GoogleDriveClass = {
 		}
 	},
 	
-	// Aviary photo editor saves edited images temporarily on Amazons servers.
+	// Aviary photo editor saves image temporarily on Amazon server.
 	getImageFromAmazon: function(id, url) {
 		
 		var xhr = new XMLHttpRequest();
@@ -133,7 +142,9 @@ var GoogleDriveClass = {
 		};
 			
 		xhr.onerror = function() {
-			console.log('Something went wrong!');	
+			console.log('Error! Could not get image from Amazon.');
+			var errorMessage = 'Error! Failed to get the edited image. Therefore an upload to Google Drive could not be done.';
+			GoogleDriveClass.showErrorMessage(errorMessage);	
 		};
 			
 		xhr.open('GET', url);
@@ -142,6 +153,8 @@ var GoogleDriveClass = {
 	},
 	
 	postImageToDrive: function(fileData, callback) {
+		// Indicate image is being uploaded to Google Drive and to avoid user pressing anything.
+		document.body.className = 'cursor-wait';
   		
 		var boundary = '-------314159265358979323846';
 		var delimiter = "\r\n--" + boundary + "\r\n";
@@ -182,19 +195,52 @@ var GoogleDriveClass = {
 			if (!callback) {
       			callback = function(file) {
         			console.log(file);
+					GoogleDriveClass.showSuccessMessage();
+					GoogleDriveClass.listImages();
+					document.body.className = 'cursor-default';
       			};
-    		}
+				
+    		} else {
+				console.log('Something went wrong! Could not post image to Google Drive.');
+				var errorMessage = 'The image failed to upload to your Google Drive!';
+				GoogleDriveClass.showErrorMessage(errorMessage);
+				document.body.className = 'cursor-default';
+			}
 			
 			request.execute(callback);
-			
-			document.body.className = 'cursor-wait';
-			
-			setTimeout(function() {
-        		GoogleDriveClass.listImages();
-				document.body.className = 'cursor-default';
-    		}, 3000);
-			
 		};
+	},
+	
+	showSuccessMessage: function() {
+		var message = document.getElementById('success-message');
+		message.className = 'success-message-show';
+		message.innerHTML = 'The image was successfully uploaded to your Google Drive!' +
+		'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-success-message" onclick="GoogleDriveClass.removeSuccessMessage()" />';
+	},
+	
+	removeSuccessMessage: function() {
+		var message = document.getElementById('success-message');
+		message.className += ' fadeout';
+		
+		setTimeout(function() {
+        	message.className = 'success-message-hide';
+    	}, 500);
+	},
+	
+	showErrorMessage: function(errorMessage) {
+		var message = document.getElementById('error-message');
+		message.className = 'error-message-show';
+		message.innerHTML = errorMessage +
+		'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-error-message" onclick="GoogleDriveClass.removeErrorMessage()" />';
+	},
+	
+	removeErrorMessage: function() {
+		var message = document.getElementById('error-message');
+		message.className += ' fadeout';
+		
+		setTimeout(function() {
+        	message.className = 'error-message-hide';
+    	}, 500);
 	}
 	  
 };

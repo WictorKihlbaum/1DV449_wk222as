@@ -34,7 +34,7 @@ var UploadImage = {
 				preview.src = "images/no_image_chosen.jpg";
 			}
 			
-		} else {
+		} else { // TODO: move to function.
 			UploadImage.errorMessage.className = 'error-message-show';
 			UploadImage.errorMessage.innerHTML = 
 				'File is not valid! The file is either not an image or the format is wrong. Valid formats are Png and Jpg/Jpeg. Please try again.' +

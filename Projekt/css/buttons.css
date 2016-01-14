@@ -9,6 +9,10 @@
 	font-weight: bold;
 }
 
+.button-class:link { color: white; }
+.button-class:visited { color: white; }
+.button-class:hover { color: white; }
+
 .button-size-small {
 	padding: 3px 0;
 	width: 175px;
@@ -18,10 +22,6 @@
 	padding: 10px 0;
 	width: 150px;
 }
-
-.button-class:link { color: white; }
-.button-class:visited { color: white; }
-.button-class:hover { color: white; }
 
 .edit-button { 
 	margin: 15px auto 2px auto;
@@ -45,7 +45,7 @@
 .go-back-button {
 	margin-top: 100px;
 	margin-bottom: 50px;	
-	background-color: #BDC3C7;
+	background-color: #936A4A;
 }
 
-.go-back-button:hover { background-color: #DADFE1 }
+.go-back-button:hover { background-color: #9E795C }

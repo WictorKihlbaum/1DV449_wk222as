@@ -14,9 +14,6 @@
         <link rel="stylesheet" type="text/css" href="css/nav.css">
         <!-- Home (index) CSS -->
         <link rel="stylesheet" type="text/css" href="css/home.css">
-        <!-- Adobe Typekit Fonts (Place in header according to Adobe) -->
-        <script src="https://use.typekit.net/fni2mbz.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
 	<body>
     	<header>
@@ -65,7 +62,7 @@
         </footer>
         
         <script>
-	   
+	   	<!-- This only works between script-tags -->
 			function onSignIn(googleUser) {
 				SignEvent.signIn(googleUser);
 			}
@@ -77,8 +74,11 @@
         <!-- Signin/out-events JS -->
         <script src="js/SignEvent.js"></script>
         <!-- Clipboard JS -->
-        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+        <script src="js/clipboard.min.js"></script>
     	<script src="js/ClipboardClass.js"></script>
+        <!-- Adobe Typekit Fonts -->
+        <script src="https://use.typekit.net/fni2mbz.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
         
     </body>
 </html>

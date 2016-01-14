@@ -18,11 +18,13 @@ var AviaryClass = {
 			tools: 'all',
 			appendTo: '',
 			displayImageSize: true,
+			
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				UploadImage.addDownloadButton(newURL);
 			},
+			
 			onLoad: function() {
         		document.getElementById('edit').style.display = 'block';
     		},

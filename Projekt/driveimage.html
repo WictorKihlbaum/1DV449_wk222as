@@ -16,9 +16,6 @@
         <link rel="stylesheet" type="text/css" href="css/buttons.css">
         <!-- Drive Image Subpage CSS -->
         <link rel="stylesheet" type="text/css" href="css/driveimage.css">
-        <!-- Adobe Typekit Fonts (Place in header according to Adobe) -->
-        <script src="https://use.typekit.net/fni2mbz.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
 	<body>
     	<header>
@@ -37,9 +34,14 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
+            <!-- Successful uploads will be placed here -->
+            <div id="success-message"></div>
+            
+            <!-- Possible errors will be placed here -->
+            <div id="error-message"></div>
             
             <div id="need-to-login-text">
-            	<img src="images/close_button_small.png" alt="X" title="Close window" id="close-window" />
+            	<img src="images/close_button_small.png" alt="X" title="Close window" id="close-info-message" class="close-message" />
             	You have to login to be able to load your Google Drive images. 
                 However, if you already have done so you should be able to see your images right away.
                 Only images in formats Png and Jpg/Jpeg will be shown. These are the formats the photo editor accepts.
@@ -74,7 +76,7 @@
         </footer>
        
 	    <script>
-	   
+	    <!-- This only works between script-tags -->
 			function onSignIn(googleUser) {
 				SignEvent.signIn(googleUser);
 			}
@@ -97,8 +99,12 @@
         <script src="js/DriveClass.js"></script>
         
         <!-- Clipboard JS -->
-        <script src="js/clipboard.js-master/dist/clipboard.min.js"></script>
+        <script src="js/clipboard.min.js"></script>
     	<script src="js/ClipboardClass.js"></script>
+        
+        <!-- Adobe Typekit Fonts -->
+        <script src="https://use.typekit.net/fni2mbz.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
         
     </body>
 </html>

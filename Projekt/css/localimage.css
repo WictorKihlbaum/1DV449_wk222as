@@ -8,18 +8,6 @@
 	text-align: center;	
 }
 
-.close-message {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	width: 26px;
-	height: 26px;
-}
-
-.close-message:hover {
-	cursor: pointer;
-}
-
 #step-by-step {
 	position: relative;
 	max-width: 930px;
@@ -49,36 +37,7 @@
 	text-align: left;	
 }
 
-.fadeout {
-	opacity: 0;
-}
-
-#error-message {
-	/* Fadeout effect */
-	-webkit-transition: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-	transition: opacity 0.5s;
-}
-
-.error-message-show {
-	display: block;
-	position: relative;
-	max-width: 930px;
-	margin: 10px auto;
-	padding: 15px;
-	color: #D64541;
-	background-color: #F1A9A0;
-	border-radius: 12px;
-}
-
-.error-message-hide {
-	display: none;
-}
-
 #editable-image {
-	/*border: 1px solid black;*/
 	margin-top: 20px;
 	max-width: 660px;
 }

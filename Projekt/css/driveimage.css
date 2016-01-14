@@ -17,22 +17,6 @@
 	transition: opacity 0.5s;
 }
 
-.fadeout {
-	opacity: 0;
-}
-
-#close-window {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	width: 26px;
-	height: 26px;
-}
-
-#close-window:hover {
-	cursor: pointer;
-}
-
 .cursor-default {
 	cursor: default;	
 }

@@ -19,13 +19,12 @@ var DriveClass = {
 			tools: 'all',
 			appendTo: '',
 			displayImageSize: true,
+			
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				DriveClass.addDownloadButton(imageID, newURL);
 				DriveClass.addUploadButton(imageID, newURL);
-				//DriveClass.renderSaveToDrive(imageID, newURL);
-				console.log(newURL);
 			},
 			
 			onError: function(errorObj) {
@@ -55,7 +54,7 @@ var DriveClass = {
 	},
 	
 	addEventEventListener: function() {
-		var closeButton = document.getElementById('close-window');
+		var closeButton = document.getElementById('close-info-message');
 		closeButton.addEventListener('click', DriveClass.closeWindow, false);
 	},
 	
