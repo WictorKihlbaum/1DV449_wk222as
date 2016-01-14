@@ -35,7 +35,7 @@ var AviaryLocal = {
 	launchEditor: function(id) {
 		
 		AviaryLocal.featherEditor.launch({
-			image: id.target.myParam
+			image: id
 		});
 		
 		return false;

@@ -19,7 +19,7 @@ var LocalClass = {
 		if (selectedFile.type === 'image/png' || 
 			selectedFile.type === 'image/jpg' || 
 			selectedFile.type === 'image/jpeg') {
-				
+			// In case an error message has been shown.
 			LocalClass.removeErrorMessage();
 			
 			var reader = new FileReader();
@@ -34,15 +34,28 @@ var LocalClass = {
 				preview.src = "images/no_image_chosen.jpg";
 			}
 			
-		} else { // TODO: move to function.
-			LocalClass.errorMessage.className = 'error-message-show';
-			LocalClass.errorMessage.innerHTML = 
-				'File is not valid! The file is either not an image or the format is wrong. Valid formats are Png and Jpg/Jpeg. Please try again.' +
-				'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-error-message" onclick="LocalClass.removeErrorMessage()" />';
+		} else {
+			var message = 'File is not valid! The file is either not an image or the format is wrong. ' +
+			'Valid formats are Png and Jpg/Jpeg. Please try again.';
+			LocalClass.showErrorMessage(message);
+			
 			// Change back to default image.
 			var image = document.getElementById('editable-image');
 			image.src = 'images/no_image_chosen.jpg';
 		}
+	},
+	
+	showErrorMessage: function(message) {
+		LocalClass.errorMessage.innerHTML = message +
+		/* Close-button */
+		'<img src="images/close_button_small.png" ' +
+		'alt="X" ' +
+		'title="Close window" ' +
+		'class="close-message" ' +
+		'id="close-error-message" ' +
+		'onclick="LocalClass.removeErrorMessage()" />';
+		
+		LocalClass.errorMessage.className = 'error-message-show';
 	},
 	
 	removeErrorMessage: function() {
@@ -55,7 +68,8 @@ var LocalClass = {
 	
 	addDownloadButton: function(url) {
 		var downloadField = document.getElementById('download-button-field');
-		downloadField.innerHTML = '<a href="'+url+'" download class="button-class button-size-large download-button">Download image</a>';
+		downloadField.innerHTML = '<a href="'+url+'" download ' +
+		'class="button-class button-size-large download-button">Download image</a>';
 	},
 	
 	addEventListeners: function() {
@@ -66,7 +80,7 @@ var LocalClass = {
 		closeInfoButton.addEventListener('click', LocalClass.closeWindow, false);
 		
 		var editButton = document.getElementById('edit');
-		editButton.addEventListener('click', AviaryLocal.launchEditor, false);
+		editButton.addEventListener('click', LocalClass.isImageChosen, false);
 		editButton.myParam = 'editable-image'; // ID-name for img-tag.
 	},
 	
@@ -77,6 +91,17 @@ var LocalClass = {
 		setTimeout(function() {
         	infoWindow.style.display = 'none';
     	}, 500);
+	},
+	
+	isImageChosen: function(id) {
+		var image = document.getElementById(id.target.myParam);
+		// Check if an image has been chosen before open photo editor.
+		if (!image.src.match(/no_image_chosen/g)) {
+			AviaryLocal.launchEditor(id.target.myParam);
+		} else {
+			var message = 'Error! You have to choose an image before you can edit.';
+			LocalClass.showErrorMessage(message);
+		}
 	}
 	
 };				
