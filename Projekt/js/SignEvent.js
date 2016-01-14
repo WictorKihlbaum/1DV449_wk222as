@@ -28,7 +28,7 @@ var SignEvent = {
 		console.log('Image URL: ' + profile.getImageUrl());
 		console.log('Email: ' + profile.getEmail());*/
 		
-		GoogleDriveClass.checkAuth();
+		DriveClass.checkAuth();
 	},
 	
 	signOut: function() {
