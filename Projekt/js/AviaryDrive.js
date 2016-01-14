@@ -29,6 +29,7 @@ var AviaryDrive = {
 			
 			onError: function(errorObj) {
 				console.log(errorObj.message);
+				// TODO: Show error message for user.
 			}
 		});
 	},
@@ -45,12 +46,17 @@ var AviaryDrive = {
 	
 	addDownloadButton: function(id, url) {
 		var buttonField = document.getElementById(id+'-edited');
-		buttonField.innerHTML = '<a href="'+url+'" download class="button-class button-size-small download-button">Download edited</a>';
+		buttonField.innerHTML = 
+		'<a href="'+url+'" download ' +
+		'class="button-class button-size-small download-button">Download edited</a>';
 	},
 	
 	addUploadButton: function(id, url) {
 		var buttonField = document.getElementById(id+'-upload');
-		buttonField.innerHTML = '<a href="#" class="button-class button-size-small upload-button" onclick="DriveClass.getImageFromAmazon(\''+id+'\', \''+url+'\')">Upload to Drive</a>';
+		buttonField.innerHTML = 
+		'<a href="#" ' +
+		'class="button-class button-size-small upload-button" ' +
+		'onclick="DriveClass.getImageFromAmazon(\''+url+'\')">Upload to Drive</a>';
 	},
 	
 	addEventEventListener: function() {

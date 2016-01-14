@@ -25,12 +25,9 @@ var AviaryLocal = {
 				LocalClass.addDownloadButton(newURL);
 			},
 			
-			onLoad: function() {
-        		document.getElementById('edit').style.display = 'block';
-    		},
-			
 			onError: function(errorObj) {
 				console.log(errorObj.message);
+				// TODO: Show error message for user.
 			}
 		});
 	},
