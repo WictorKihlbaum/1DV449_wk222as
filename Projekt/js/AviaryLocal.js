@@ -22,7 +22,7 @@ var AviaryLocal = {
 			onSave: function(imageID, newURL) {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
-				UploadImage.addDownloadButton(newURL);
+				LocalClass.addDownloadButton(newURL);
 			},
 			
 			onLoad: function() {

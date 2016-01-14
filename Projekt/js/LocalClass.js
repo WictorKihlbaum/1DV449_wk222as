@@ -1,13 +1,13 @@
 "use strict";
 
-var UploadImage = {
+var LocalClass = {
 	
 	errorMessage: null,
 	
 	
 	init: function() {
-		UploadImage.addEventListeners();
-		UploadImage.errorMessage = document.getElementById('error-message');
+		LocalClass.addEventListeners();
+		LocalClass.errorMessage = document.getElementById('error-message');
 	},
 
 	handleFiles: function() {
@@ -20,7 +20,7 @@ var UploadImage = {
 			selectedFile.type === 'image/jpg' || 
 			selectedFile.type === 'image/jpeg') {
 				
-			UploadImage.removeErrorMessage();
+			LocalClass.removeErrorMessage();
 			
 			var reader = new FileReader();
 	
@@ -35,10 +35,10 @@ var UploadImage = {
 			}
 			
 		} else { // TODO: move to function.
-			UploadImage.errorMessage.className = 'error-message-show';
-			UploadImage.errorMessage.innerHTML = 
+			LocalClass.errorMessage.className = 'error-message-show';
+			LocalClass.errorMessage.innerHTML = 
 				'File is not valid! The file is either not an image or the format is wrong. Valid formats are Png and Jpg/Jpeg. Please try again.' +
-				'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-error-message" onclick="UploadImage.removeErrorMessage()" />';
+				'<img src="images/close_button_small.png" alt="X" title="Close window" class="close-message" id="close-error-message" onclick="LocalClass.removeErrorMessage()" />';
 			// Change back to default image.
 			var image = document.getElementById('editable-image');
 			image.src = 'images/no_image_chosen.jpg';
@@ -46,10 +46,10 @@ var UploadImage = {
 	},
 	
 	removeErrorMessage: function() {
-		UploadImage.errorMessage.className += ' fadeout';
+		LocalClass.errorMessage.className += ' fadeout';
 		
 		setTimeout(function() {
-        	UploadImage.errorMessage.className = 'error-message-hide';
+        	LocalClass.errorMessage.className = 'error-message-hide';
     	}, 500);
 	},
 	
@@ -60,10 +60,10 @@ var UploadImage = {
 	
 	addEventListeners: function() {
 		var inputElement = document.getElementById('input');
-		inputElement.addEventListener('change', UploadImage.handleFiles, false);
+		inputElement.addEventListener('change', LocalClass.handleFiles, false);
 		
 		var closeInfoButton = document.getElementById('close-info-message');
-		closeInfoButton.addEventListener('click', UploadImage.closeWindow, false);
+		closeInfoButton.addEventListener('click', LocalClass.closeWindow, false);
 		
 		var editButton = document.getElementById('edit');
 		editButton.addEventListener('click', AviaryLocal.launchEditor, false);
@@ -81,4 +81,4 @@ var UploadImage = {
 	
 };				
 
-window.onload = UploadImage.init();
+window.onload = LocalClass.init();

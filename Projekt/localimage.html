@@ -53,7 +53,7 @@
                 <div class="upload">
                 	<label for="input" class="label-class">
                         Upload image <!-- I had to add "onchange" inline aswell to make it work -->
-                        <input type="file" id="input" onchange="UploadImage.handleFiles(this.files)" />
+                        <input type="file" id="input" onchange="LocalClass.handleFiles(this.files)" />
                     </label>
                 </div>
                 <img src="images/no_image_chosen.jpg" alt="Image preview" id="editable-image" />
@@ -63,7 +63,7 @@
 			</p>
             
             <div id="download-button-field">
-            	<!-- Download-button will be added from UploadImage.js -->	
+            	<!-- Download-button will be added from LocalClass.js -->	
             </div>
             
             <a href="index.html" class="button-class button-size-large go-back-button">Go back</a>
@@ -98,8 +98,8 @@
 		<script type="text/javascript" src="http://feather.aviary.com/imaging/v2/editor.js"></script>
         <!-- AviaryLocal JS -->
         <script src="js/AviaryLocal.js"></script>
-        <!-- Upload Local Image JS -->
-        <script src="js/UploadImage.js"></script>
+        <!-- LocalClass JS -->
+        <script src="js/LocalClass.js"></script>
         <!-- Signin/out-events JS -->
         <script src="js/SignEvent.js"></script>
         <!-- Clipboard JS -->
