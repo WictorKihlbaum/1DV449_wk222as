@@ -17,26 +17,26 @@ html, body {
 }
 
 header {
+	position: relative;
 	background-color: #03A678;	
 	color: white;
 	padding: 15px;
 }
 
-nav {
-	font-family: "lft-etica", sans-serif;
-	font-weight: 900;
-	font-size: 16px;
+#website-name {
+	display: inline-block;	
 }
 
-h1 {
-	margin: 0;	
+#profile-image {
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;	
 }
 
-.main-topic {
-	text-align: center;	
-	color: #03C9A9;
-	font-family: "lft-etica",sans-serif;
-	font-weight: 900;
+#profile-name {
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
 }
 
 .g-signin2 {
@@ -63,6 +63,23 @@ h1 {
 #signout-button:hover {
 	color: white;
 	text-decoration: underline;
+}
+
+nav {
+	font-family: "lft-etica", sans-serif;
+	font-weight: 900;
+	font-size: 16px;
+}
+
+h1 {
+	margin: 0;	
+}
+
+.main-topic {
+	text-align: center;	
+	color: #03C9A9;
+	font-family: "lft-etica",sans-serif;
+	font-weight: 900;
 }
 
 footer {
@@ -132,20 +149,6 @@ footer {
 #google-circle:hover {
 	background-size: 65%;
 	cursor: pointer;
-}
-
-#website-name {
-	display: inline-block;	
-}
-
-#profile-image {
-	width: 60px;
-	height: 60px;
-	border-radius: 30px;	
-}
-
-#profile-name {
-	text-align: center;
 }
 
 /* Success/Error messages */

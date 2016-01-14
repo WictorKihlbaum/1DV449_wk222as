@@ -4,11 +4,13 @@ var SignEvent = {
 	
 	signOutButton: null,
 	profileImage: null,
+	profileName: null,
 	
 	
 	init: function() {
 		SignEvent.signOutButton = document.getElementById('signout-button');
 		SignEvent.profileImage = document.getElementById('profile-image');
+		SignEvent.profileName = document.getElementById('profile-name');
 		
 		SignEvent.hideSignOutButton();
 		SignEvent.hideProfileImage();
@@ -18,6 +20,7 @@ var SignEvent = {
 	signIn: function(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		SignEvent.showProfileImage(profile.getImageUrl());
+		SignEvent.showProfileName(profile.getName());
 		SignEvent.showSignOutButton();
 		
 		console.log('ID: ' + profile.getId());
@@ -45,6 +48,10 @@ var SignEvent = {
 	
 	hideSignOutButton: function() {
 		SignEvent.signOutButton.style.visibility = 'hidden';
+	},
+	
+	showProfileName: function(name) {
+		SignEvent.profileName.innerHTML = name;
 	},
 	
 	showProfileImage: function(imageUrl) {
