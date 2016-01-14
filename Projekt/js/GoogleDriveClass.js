@@ -84,8 +84,11 @@ var GoogleDriveClass = {
 		GoogleDriveClass.imageList.innerHTML += 
 		
 			'<li>' + 
+				/* Thumbnail frame */
 				'<div class="thumbnail-frame">' +
+					/* Helps thumbnail align correct */
 					'<span class="helper"></span>' +
+					/* Thumbnail image */
 					'<img id="'+image.id+'" ' + 
 					'class="thumbnail-image" ' + 
 					'src="'+image.thumbnailLink+'" ' +
@@ -93,11 +96,21 @@ var GoogleDriveClass = {
 					'onclick="Fullscreen.showFullScreen(\''+image.id+'\', \''+image.webContentLink+'\')" ' + 
 					'title="Click to preview in fullscreen" />' +
 				'</div>' +
+				/* Thumbnail image-name */
 				'<span class="image-name">'+image.originalFilename+'</span>' +
-				'<a href="#" class="button-class button-size-small edit-button" onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
-				'<a href="'+image.webContentLink+'" download class="button-class button-size-small download-button">Download original</a>' +
-				'<span id="'+image.id+'-edited"></span><!-- Download-button for edited image will be added from DriveClass.js -->' +
-				'<div id="'+image.id+'-upload"></div><!-- Upload-button for edited image will be added from DriveClass.js -->' +
+				/* Edit-button */
+				'<a href="#" ' +
+				'class="button-class button-size-small edit-button" ' +
+				'onclick="GoogleDriveClass.getImageFromDrive(\''+image.id+'\', \''+image.downloadUrl+'\')">Edit</a>' +
+				/* Download-button for original (High-res) image */
+				'<a href="'+image.webContentLink+'" download ' +
+				'class="button-class button-size-small download-button">Download original</a>' +
+				/* Download-button for edited image will be placed here */
+				'<!-- Download-button for edited image will be added from DriveClass.js -->' +
+				'<span id="'+image.id+'-edited"></span>' +
+				/* Upload-button for edited image will be placed here */
+				'<!-- Upload-button for edited image will be added from DriveClass.js -->' +
+				'<div id="'+image.id+'-upload"></div>' +
 			'</li>';
 	},	
 				
@@ -153,7 +166,8 @@ var GoogleDriveClass = {
 	},
 	
 	postImageToDrive: function(fileData, callback) {
-		// Indicate image is being uploaded to Google Drive and to avoid user pressing anything.
+		/* Indicate image is being uploaded to Google Drive 
+		and to avoid user pressing anything. */
 		document.body.className = 'cursor-wait';
   		
 		var boundary = '-------314159265358979323846';
