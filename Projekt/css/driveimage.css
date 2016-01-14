@@ -39,13 +39,10 @@
 	max-width: 960px;
 	list-style-type: none;
 	text-align: center;
-	
-	/* Developer purpose only */
-	/*border: 1px solid black;*/
 }
 
 #image-list li {
-	margin: 5px;
+	margin: 20px 10px;
 	display: inline-block;
 	width: 200px;
 	height: auto;
@@ -55,9 +52,6 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	
-	/* Developer purpose only */
-	/*border: 1px solid black;*/
 }
 
 .image-name {
