@@ -40,6 +40,8 @@ var SignEvent = {
 		
 		auth2.disconnect();
 		SignEvent.hideSignOutButton();
+		SignEvent.hideProfileImage();
+		SignEvent.hideProfileName();
   	},
 	
 	showSignOutButton: function() {
@@ -54,11 +56,19 @@ var SignEvent = {
 		SignEvent.profileName.innerHTML = name;
 	},
 	
+	hideProfileName: function() {
+		SignEvent.profileName.innerHTML = '';
+	},
+	
 	showProfileImage: function(imageUrl) {
 		if (typeof(imageUrl) !== 'undefined') {
 			SignEvent.profileImage.style.display = 'inline';
 			SignEvent.profileImage.src = imageUrl;
 		}
+	},
+	
+	hideProfileImage: function() {
+		SignEvent.profileImage.style.display = 'none';
 	},
 	
 	hideProfileImage: function() {
