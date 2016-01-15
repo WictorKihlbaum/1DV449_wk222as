@@ -15,6 +15,7 @@ Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, d�
 <h2>Säkerhet och prestandaoptimering</h2>
 
 <h3>Säkerhet</h3>
+
 <h4>1. Cross Site Scripting</h4>
 <p>Främsta säkerhetsåtgärden jag vidtagit är att inte i någon mån implementera textfält på webbsidan. Detta för att undvika och inte
 riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [1].</p>
@@ -32,11 +33,17 @@ I det fall jag inte skulle utföra detta skulle det kunna resultera i ett proble
 <p>Dessa attacker och brister kan tillåta vissa eller till och med samtliga konton att attackeras. Skulle en angripare lyckas med attacken kan denne utföra allt som användaren skulle kunna. Det är de privilegierade kontona vilka ständigt är inriktade av angripare [4].</p>
 
 <h3>Prestandaoptimering</h3>
+
 <h4>CSS-taggar</h4>
 <p>Jag har valt att placera samtliga av mina CSS-taggar i head-taggen. I det fall jag inte skulle göra detta kan det resultera i ett problem som kan, beroende på vilken webbläsare som används samt hur sidan laddas in, leda till en blank vit sida[5].<br />
 Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ges som skulle kunna försäkra användaren om att dennes begäran behandlas korrekt. Detta kan i sig leda till att användaren undrar vad som försiggår och istället lämnar sidan.</p>
-
 <p>För att undvika blank vit sida skall ens stylesheet placeras högst upp i dokumentets head-tagg. Detta löser samtliga problematiska scenarion. Oavsett hur sidan laddas in (nytt fönster, omladdning eller som hem/start-sida) kommer sidan alltid laddas progressivt[5].</p>
+
+<h4>Externa resurs-filer (CSS & JS)</h4>
+<p>Jag har valt att placera samtliga CSS-regler samt JavaScript-kod i externa filer vilka länkas in i HTML-dokumentet. Det främsta problemet som hade uppstått om jag inte valt att implementera dessa på detta sätt är dessa dessa resurser inte har möjlighet att cachas vilket generellt innebär långsammare laddning av webbsidor eftersom de måste laddas in på nytt inför varje besök. 
+
+<p>Enda gången det är värt att överväga att ladda in resurser via så kallad "inline" är i det fall ens webbsida inte besöks nämnvärt ofta. Detta eftersom inline-resurser laddas in snabbare [6]. I mitt fall dock är möjlighet till cachning en avgörande del i mitt projekt eftersom jag vill kunna ge mina användare en såpass god upplevelse som möjligt, även i det fall en internet-anslutning bryts av en eller flera olika anledningar.</p>
+
 
 </h2>Offline-first</h2>
 
@@ -58,7 +65,9 @@ Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ge
 
 ### Böcker ###
 
-[1] S. Souders, *High Performance Web Sites: Essential Knowledge for Frontend Engineers*, Sebastopol: O’Reilly, 2007, 40-41.
+[5] S. Souders, *High Performance Web Sites: Essential Knowledge for Frontend Engineers*, Sebastopol: O’Reilly, 2007, 40-41.
+
+[6] S. Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers, Sebastopol: O’Reilly, 2007, 56.
 
 
 Inledning där du kort beskriver vad du gjort och bakgrunden till din applikation. Finns det liknande applikationer redan? Vilka tekniker har använts.
