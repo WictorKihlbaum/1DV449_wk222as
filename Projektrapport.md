@@ -106,7 +106,7 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 <p>Vid händelse av att anslutningen till internet bryts blir användaren notifierad om detta tack vare Offline API:et som sköter detta automatiskt. En notifikationsruta finns dessutom ständigt i nedre vänstra hörnet av besökarens skärm som håller denne underrättad om anslutningens status.</p>
 <p>Vid cachning av applikationens resurser och HTML-dokument används HTML5 Application Cach API som på ett mycket smidigt och tidssparande vis cachar en applikations filer. Ingen programmering är nödvändig, även om det dock finns möjlighet och funktionalitet för detta [8], för att kontrollera om det finns äldre filer och om något behöver uppdateras.</p>
 
-<p>En övrig betygshöjande aspekt relaterat till API-implementation är det faktum att jag inte implementerat en massa API:er enbart för sakens skull. Samtliga av mina inbyggda API:er fyller alla en väsentlig roll i såväl användarupplevelse som funktionalitet.</p>
+<p>En övrig betygshöjande aspekt relaterat till API-implementation är det faktum att jag inte implementerat en massa API:er enbart för sakens skull. Samtliga av mina inbyggda API:er fyller alla en väsentlig roll i såväl användarupplevelse som funktionalitet. Ett exempel på att implementera ett API utan syfte skulle kunna vara att bygga in funktionalitet för inloggning med Facebook men utan ytterligare fördelar som gynnar denna hypotetiska inloggning.</p>
 
 
 <h2>Referenslista</h2>
