@@ -71,6 +71,8 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har det uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
 
+<h4>Vilka eventuella problem har du stött på?</h4>
+
 <h4>Finns det funktioner som du velat implementera men inte hunnit?</h4>
 <p>Rörande funktionalitet finns det ytterligare en del funktioner jag hade velat implementera.</p>
 
@@ -81,6 +83,10 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 <p>3. En ytterligare funktion jag hade velat implementera på sidan för Google Drive bilder är att vid sparning per automatik döpa den redigerade bilden till originalbildens namn plus en passande ändelse likt exempelvis "_edited". Jag hade dock undvikit att låta användaren själv skriva i ett namn.</p>
 
 <p>4. Redigeringsverktyget min webbapplikation använder sig av tillåter enbart bildformaten Png och Jpg/Jpeg. Detta är även något jag talar om för användaren på sidan. Dock hade en trevlig funktion varit om användaren gavs möjlighet att konvertera en bild i ett icke godkänt format till antingen Png eller Jpg/Jpeg. En fråga till användaren huruvida denne vill konvertera en bild i felaktigt format skulle även kunna visas i samband med felmeddelandet som uppstår vid inladdning av bild.</p>
+
+<h4>Hur skulle du vilja jobba vidare med din applikation?</h4>
+
+<h4>Vad anser du vara betygshöjande med din applikation?</h4>
 
 
 <h2>Referenslista</h2>
