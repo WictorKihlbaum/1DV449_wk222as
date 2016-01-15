@@ -53,13 +53,13 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p>Eftersom jag vill ge mina besökare en såpass god upplevelse som möjligt oavsätt uppkoppling eller ej har jag valt att cacha samtliga resurser som ingår i min webbapplikation. Jag har valt att använda mig av "Application Cach" som metod där jag använder mig av en så kallad "manifest"-fil för detta ändamål. I denna fil har jag alla mina resurser uppskrivna som jag vill ska cachas. I denna fil står även mina HTML-dokument listade. Egentligen behöver man ej lista HTML-dokumentet då dessa per automatik cachas vid laddning av sida [8], dock krävs det att användaren besöker var och en av dessa sidor för de skall cachas [8]. Eftersom jag listat alla HTML-dokument krävs det alltså enbart att användaren besöker index-sidan. Eftersom den totala mängden data mina resurser tar upp inte överstiger 5Mb så tyckte jag detta var ett lämpligt cachnings-alternativ.</p>
 <p>Genom att använda mig av denna metod ger jag min applikation tre fördelar: <br />
-1. Användare kan navigera på hela webbsidan när de är offline. <br />
-2. Resurser kommer direkt från den lokala datorn. Ingen nätverksrutt krävs. <br />
-3. I det fall min sida stängs ned på grund av exempelvis underhåll så kommer mina besökare få offline-upplevelsen [8].</p>
+<b>1.</b> Användare kan navigera på hela webbsidan när de är offline. <br />
+<b>2.</b> Resurser kommer direkt från den lokala datorn. Ingen nätverksrutt krävs. <br />
+<b>3.</b> I det fall min sida stängs ned på grund av exempelvis underhåll så kommer mina besökare få offline-upplevelsen [8].</p>
 
 <p>I det fall applikationen går offline kommer den vara cachad tills något av följande sker:<br />
-1. Användaren rensar webbläsarens 'datastorage' för min sida.<br />
-2. Manifest-filen modifieras [8].</p>
+<b>1.</b> Användaren rensar webbläsarens 'datastorage' för min sida.<br />
+<b>2.</b> Manifest-filen modifieras [8].</p>
 
 <p>Första gången användaren går in på min sida cachas alla listade och önskade resurser. Efter detta kommer webbläsaren per automatik känna av om manifestfilen har ändrats. Om den inte har ändrats händer ingenting, men om webbläsaren känner av att den modifierats kommer den automatiskt ladda ned de nya versionerna av filerna [8]. Det som är så smidigt med denna cach-metod är att allting sköts per automatik. Ingen programmering krävs för att verifiera, sätta och ladda ned filer [8].</p>
 
