@@ -100,6 +100,8 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <h4>Vad anser du vara betygshöjande med din applikation?</h4>
 
+<p><b>1.</b>En beståndsdel i min applikation vilken jag anser är betygshöjande är designen. Först och främst är den responsiv vilket innebär att den anpassar sig efter skärmens bredd. Även i minsta möjliga bredd listas webbsidans element på ett snyggt vis. Sidhuvudets innehåll är även det inkluderat i detta. Utöver den responsiva designen har jag även arbetat en hel del med färg och form. De primära färgerna jag arbetat med är grönt-turkost och brunt. Två färger som, i mitt tycke, matchar bra ihop. Webbapplikationens färger är även konsekvent placerade oavsätt vilken sida besökaren vistas på. Den gröna färgen byts inte helt plötsligt ut mot rött eller liknande. Sidans knappar har också sina tillhörande färger som är desamma hela tiden.</p>
+
 
 <h2>Referenslista</h2>
 
