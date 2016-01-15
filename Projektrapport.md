@@ -15,6 +15,7 @@ Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, d�
 <h2>Säkerhet och prestandaoptimering</h2>
 
 <h3>Säkerhet</h3>
+<h4>1. Cross Site Scripting</h4>
 <p>Främsta säkerhetsåtgärden jag vidtagit är att inte i någon mån implementera textfält på webbsidan. Detta för att undvika och inte
 riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [1].</p>
 <p>Eftersom all min JavaScript-kod ligger synlig på klienten skulle detta kunna ge högst oönskade resultat.
@@ -23,7 +24,13 @@ såväl besökarens namn, email samt själva meddelandet vilken denne tänkt ski
 upplevelse och smidighet för användaren, men på beskostnad av säkerheten. Dessutom hade en stor del extra tid gått åt till att
 skriva kod som skyddar mot attacker. Jag valde därför att i ren text uppge dels min Gmail-adress men också länkar till min Facebook samt Twitter.</p>
 
-<p>Skydda sig mot XSS-attacker kräver separation av opålitlig data från aktivt innehåll i webbläsaren. Det föredragna valet är att ordentligt behandla och städa undan all opålitlig data baserad på HTML-kontexten, så som body, attribute, JavaScript, CSS och URL, i vilket data kommer bli inplacerad [2]. </p>
+<p>Skydda sig mot XSS-attacker kräver separation av opålitlig data från aktivt innehåll i webbläsaren. Det föredragna valet är att ordentligt behandla och städa undan all opålitlig data baserad på HTML-kontexten, så som body, attribute, JavaScript, CSS och URL, i vilket data kommer bli inplacerad [2].</p>
+
+<h4>1. Broken Authentication and Session Management</h4>
+<p>Vid varje utloggning är jag mycket noga med att upphäva alla rättigheter för den nyligen inloggade användaren. Användarens Session-token återkallas och samtliga rättigheter ("scopes"), exempelvis åtkomst till Google Drive, som min applikation vill ha godkännande för vid inloggning upphör.</p>
+I det fall jag inte skulle utföra detta skulle det kunna resultera i ett problem som innebär att angripare tillåts äventyra lösenord, nycklar, så kallade (som ovan nämnt) "Session-tokens" eller utnyttja andra brister i implementationen för att upptaga andra användares identiteter [3].</p>
+
+<p></p>
 
 <h3>Prestandaoptimering</h3>
 
@@ -35,11 +42,15 @@ skriva kod som skyddar mot attacker. Jag valde därför att i ren text uppge del
 
 ### Egen reflektion kring projektet ###
 
-### Referenslista ###
+<h2>Referenslista</h2>
+
+<h3>Webbsidor</h3>
 
 [1] J. Williams, D. Wichers, "Cross-site Scripting (XSS)," *OWASP*, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). [Hämtad: 1 december, 2015].
 
 [2] J. Williams, D. Wichers, "Top 10 2013-A3-Cross-Site Scripting (XSS)," *OWASP*, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_(XSS)](https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_(XSS)). [Hämtad: 1 december, 2015].
+
+[3] J. Williams, D. Wichers, "Top 10 2013-Top 10," OWASP, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-Top_10]. [Hämtad: 1 december, 2015].
 
 
 Inledning där du kort beskriver vad du gjort och bakgrunden till din applikation. Finns det liknande applikationer redan? Vilka tekniker har använts.
