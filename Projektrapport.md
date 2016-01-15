@@ -50,7 +50,7 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <h2>Offline-first</h2>
 
-<p>Eftersom jag vill ge mina besökare en såpass god upplevelse som möjligt oavsätt uppkoppling eller ej har jag valt att cacha samtliga resurser som ingår i min webbapplikation. Jag har valt att använda mig av "Application Cach" som metod där jag använder mig av en så kallad "manifest"-fil för detta ändamål. I denna fil har jag alla mina resurser uppskrivna som jag vill ska cachas. I denna fil står även mina HTML-dokumenten listade. Egentligen behöver man ej lista HTML-dokumentet då dessa per automatik cachas vid laddning av sida [8], dock krävs det att användaren besöker var och en av dessa sidor för de skall cachas [8]. Eftersom jag listat alla HTML-dokument krävs det alltså enbart att användaren besöker index-sidan. Eftersom den totala mängden data mina resurser tar upp inte överstiger 5Mb så tyckte jag detta var ett lämpligt cachnings-alternativ. 5Mb är nämligen gränsen för denna cach-metod [8].</p>
+<p>Eftersom jag vill ge mina besökare en såpass god upplevelse som möjligt oavsätt uppkoppling eller ej har jag valt att cacha samtliga resurser som ingår i min webbapplikation. Jag har valt att använda mig av "Application Cach" som metod där jag använder mig av en så kallad "manifest"-fil för detta ändamål. I denna fil har jag alla mina resurser uppskrivna som jag vill ska cachas. I denna fil står även mina HTML-dokumenten listade. Egentligen behöver man ej lista HTML-dokumentet då dessa per automatik cachas vid laddning av sida [8], dock krävs det att användaren besöker var och en av dessa sidor för de skall cachas [8]. Eftersom jag listat alla HTML-dokument krävs det alltså enbart att användaren besöker index-sidan. Eftersom den totala mängden data mina resurser tar upp inte överstiger 5Mb så tyckte jag detta var ett lämpligt cachnings-alternativ.</p>
 <p>Genom att använda mig av denna metod ger jag min applikation tre fördelar:
 1. Användare kan navigera på hela webbsidan när de är offline.
 2. Resurser kommer direkt från den lokala datorn. Ingen nätverksrutt krävs.
@@ -72,7 +72,13 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 [3] J. Williams, D. Wichers, "Top 10 2013-Top 10," OWASP, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-Top_10]. [Hämtad: 1 december, 2015].
 
-[4] J. Williams, D. Wichers, "Top 10 2013-A2-Broken Authentication and Session Management," OWASP, 2013 [Online] Tillgänglig: https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management. [Hämtad: 2 december, 2015].
+[4] J. Williams, D. Wichers, "Top 10 2013-A2-Broken Authentication and Session Management," OWASP, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management]. [Hämtad: 2 december, 2015].
+
+[8] E. Bidelman, "A Beginner's Guide to Using the Application Cache," HTML5Rocks, 2013 [Online] Tillgänglig: [http://www.html5rocks.com/en/tutorials/appcache/beginner/]. [Hämtad: 14 januari, 2016].
+
+
+
+
 
 ### Böcker ###
 
