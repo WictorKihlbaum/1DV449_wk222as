@@ -45,6 +45,8 @@ Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ge
 <p>Enda gången det är värt att överväga att ladda in resurser via så kallad "inline" är i det fall ens webbsida inte besöks nämnvärt ofta. Detta eftersom inline-resurser laddas in snabbare [6]. I mitt fall dock är möjlighet till cachning en avgörande del i mitt projekt eftersom jag vill kunna ge mina användare en såpass god upplevelse som möjligt, även i det fall en internet-anslutning bryts av en eller flera olika anledningar.</p>
 <p>Några följder som skulle komma att uppstå i det fall jag inte väljer att placera CSS och JavaScript i externa filer är att HTML-sidorna tar upp större plats [6]. Detta i sig innebär alltså mer data att ladda in för användaren inför varje besök vilket kan öka väntetiden avsevärt.</p>
 
+<h4>Script-taggar</h4>
+I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned innan body-taggen stängs. Detta medför en progressiv rendering och åstadkommer bättre nedladdnings-parallellisering [7]. Anledningen till att detta sker är för att skript blockerar parallell nedladdning. Detta medför således att resurser och övrigt innehåll som följer nedan skript måste vänta på sin tur [7].
 
 </h2>Offline-first</h2>
 
@@ -69,6 +71,8 @@ Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ge
 [5] S. Souders, *High Performance Web Sites: Essential Knowledge for Frontend Engineers*, Sebastopol: O’Reilly, 2007, 40-41.
 
 [6] S. Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers, Sebastopol: O’Reilly, 2007, 56.
+
+[7] S. Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers, Sebastopol: O’Reilly, 2007, 45.
 
 
 Inledning där du kort beskriver vad du gjort och bakgrunden till din applikation. Finns det liknande applikationer redan? Vilka tekniker har använts.
