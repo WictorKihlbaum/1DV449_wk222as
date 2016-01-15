@@ -21,7 +21,7 @@ riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mes
 Ett bra exempel på vad jag skulle ha kunnat implementera på min kontaktsida är just ett kontaktformulär med fält för
 såväl besökarens namn, email samt själva meddelandet vilken denne tänkt skicka. Det hade förvisso resulterat i en angenämnare
 upplevelse och smidighet för användaren, men på beskostnad av säkerheten. Dessutom hade en stor del extra tid gått åt till att
-skriva kod som skyddar mot attacker.</p>
+skriva kod som skyddar mot attacker. Jag valde därför att i ren text uppge dels min Gmail-adress men också länkar till min Facebook samt Twitter.</p>
 
 <p>Skydda sig mot XSS-attacker kräver separation av opålitlig data från aktivt innehåll i webbläsaren. Det föredragna valet är att ordentligt behandla och städa undan all opålitlig data baserad på HTML-kontexten, så som body, attribute, JavaScript, CSS och URL, i vilket data kommer bli inplacerad [2]. </p>
 
