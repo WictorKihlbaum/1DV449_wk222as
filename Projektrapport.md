@@ -69,6 +69,20 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <h2>Egen reflektion kring projektet</h2>
 
+<p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
+
+<h3>Finns det funktioner som du velat implementera men inte hunnit?</3>
+<p>Rörande funktionalitet finns det ytterligare en del funktioner jag hade velat implementera.</p>
+
+<p>1. Inom sidan för lokal redigering ('localimage.html') hade jag velat implementera funktionalitet för att kunna dra och släppa en bildfil inom ett fält på sidan för att så vis få en automatisk inladdning av bilden. Detta skulle även erbjuda ytterligare användarvänlighet för besökaren. Man skulle alltså slippa klicka på "Upload image"-knappen.</p>
+
+<p>2. Inom sidan för redigering av Google Drive bilder ('driveimage.html') hade jag velat vidareutveckla funktionaliteten rörande "Edit"-knappen. I det fall användaren har redigerat en bild för att sedan klicka på "Edit" ytterligare en gång så laddas den ursprungliga bilden in igen i verktyget, inte den temporärt redigerade versionen.</p>
+
+<p>3. En ytterligare funktion jag hade velat implementera på sidan för Google Drive bilder är att vid sparning per automatik döpa den redigerade bilden till originalbildens namn plus en passande ändelse likt exempelvis "_edited". Jag hade dock undvikit att låta användaren själv skriva i ett namn.</p>
+
+<p>4. Redigeringsverktyget min webbapplikation använder sig av tillåter enbart bildformaten Png och Jpg/Jpeg. Detta är även något jag talar om för användaren på sidan. Dock hade en trevlig funktion varit om användaren gavs möjlighet att konvertera en bild i ett icke godkänt format till antingen Png eller Jpg/Jpeg. En fråga till användaren huruvida denne vill konvertera en bild i felaktigt format skulle även kunna visas i samband med felmeddelandet som uppstår vid inladdning av bild.</p>
+
+
 <h2>Referenslista</h2>
 
 <h3>Webbsidor</h3>
