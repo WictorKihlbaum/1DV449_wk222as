@@ -65,8 +65,6 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p>I det fall en användare förlorar anslutning kommer denne meddelas detta per automatik via Offline.js API:et som jag implementerat i min webbapplikation. Jag har även satt som standard att alltid visa en indikationsruta i nedre vänstra hörnet på skärmen huruvida användaren är ansluten eller ej.</p>
 
-
-
 <h2>Risker med din applikation</h2>
 
 <h2>Egen reflektion kring projektet</h2>
