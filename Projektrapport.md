@@ -1,6 +1,6 @@
-# Projekt Rapport #
+<h1>Projekt Rapport</h1>
 
-### Inledning ###
+<h2> Inledning </h2>
 
 <p>Huvudidén med min applikation vilken jag nu utvecklat är att erbjuda mina besökare verktygen de behöver i syfte att redigera deras tilltänkta bilder. Min webbapplikation ger besökaren chansen att antingen redigera en lokal bild från datorn eller en bild från dennes Google Drive. När användaren är klar med bildredigeringsverktyget kan denne antingen ladda ner den redigerade bilden lokalt till datorn eller ladda upp och spara den på sin Google Drive.</p>
 
@@ -10,11 +10,11 @@
 egenutvecklade redigeringsverktyg samt, som ovan nämnt, inkluderar inloggning till Google. <br />
 Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, däribland PIXLR. Andra verktyg går även att lägga till på sitt konto.
 
-### Schematisk bild över applikationens beståndsdelar ###
+<h2>Schematisk bild över applikationens beståndsdelar</h2>
 
-### Säkerhet och prestandaoptimering ###
+<h2>Säkerhet och prestandaoptimering</h2>
 
-<h4>Säkerhet</h4>
+<h3>Säkerhet</h3>
 <p>Främsta säkerhetsåtgärden jag vidtagit är att inte i någon mån implementera textfält på webbsidan. Detta för att undvika och inte
 riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [1].</p>
 <p>Eftersom all min JavaScript-kod ligger synlig på klienten skulle detta kunna ge högst oönskade resultat.
@@ -24,9 +24,9 @@ upplevelse och smidighet för användaren, men på beskostnad av säkerheten. De
 skriva kod som skyddar mot attacker.</p>
 
 
-### Prestandaoptimering ###
+<h3>Prestandaoptimering</h3>
 
-### Offline-first ###
+</h2>Offline-first</h2>
 
 <p></p>
 
