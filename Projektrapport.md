@@ -33,13 +33,13 @@ I det fall jag inte skulle utföra detta skulle det kunna resultera i ett proble
 
 <h3>Prestandaoptimering</h3>
 
+
+
 </h2>Offline-first</h2>
 
-<p></p>
+<h2>Risker med din applikation</h2>
 
-### Risker med din applikation ###
-
-### Egen reflektion kring projektet ###
+<h2>Egen reflektion kring projektet</h2>
 
 <h2>Referenslista</h2>
 
