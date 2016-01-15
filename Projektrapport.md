@@ -93,9 +93,3 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 [6] S. Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers, Sebastopol: O’Reilly, 2007, 56.
 
 [7] S. Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers, Sebastopol: O’Reilly, 2007, 45.
-
-
-Risker med din applikation: Reflektera över vilka risker det finns med din applikation; rent tekniskt, säkerhet, etiskt m.m.
-
-Egen reflektion kring projektet: Här tar du upp hur projektet har gått. Vilka eventuella problem har du stött på? Finns det funktioner som du velat implementera men inte hunnit? Hur skulle du vilja jobba vidare med din applikation?
-Skriv också om de eventuella delar du anser vara betygshöjande med din applikation. Motivera varför du anser dessa vara betygshöjande.
