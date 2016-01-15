@@ -80,7 +80,7 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p><b>3.</b>Rörande designen har jag även haft en del hinder när det kommer till att lista de olika Google Drive-bilderna på ett korrekt och snyggt vis. CSS-regler likt "vertical-align" och dylikt har tagit upp stor tid.</p>
 
-<p><b>4. Implementationen av Fullscreen API:et har även tagit en del tid. I och med att alla de större webbläsarna har olika sätt att implementera detta på så har det tagit en del tid att få ordning på allt då koden i dagsläget inte går att lösa på ett snyggt vis.</b></p>
+<p><b>4.</b> Implementationen av Fullscreen API:et har även tagit en del tid. I och med att alla de större webbläsarna har olika sätt att implementera detta på så har det tagit en del tid att få ordning på allt då koden i dagsläget inte går att lösa på ett snyggt vis.</p>
 
 <p><b>5.</b>Ett stort problem har varit att på ett snyggt sätt implementera kod rörande Googles API och dess tillhörande inloggnings-funktionalitet. Jag har arbetat efter att placera all JavaScript-kod i objekt i externa filer. Dessvärre lyckades jag inte få alla inloggnings-relaterade funktioner att fungera korrekt via detta vis. Tyvärr har jag fått placera funktionen som kallas på vid inloggning inom två script-taggar i HTML-dokumentet. Det gick dessvärre inte att skicka med parameter till funktion inom ett separat objekt.</p>
 
