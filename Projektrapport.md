@@ -108,6 +108,8 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p>En övrig betygshöjande aspekt relaterat till API-implementation är det faktum att jag inte implementerat en massa API:er enbart för sakens skull. Samtliga av mina inbyggda API:er fyller alla en väsentlig roll i såväl användarupplevelse som funktionalitet. Ett exempel på att implementera ett API utan syfte skulle kunna vara att bygga in funktionalitet för inloggning med Facebook men utan ytterligare fördelar som gynnar denna hypotetiska inloggning.</p>
 
+<p>Avslutningsvis kan tilläggas att samtliga av ovannämnda API:er har varit helt nya erfarenheter för mig att arbeta med vilka dessutom givet mig mycket ny kunskap. Det har varit otroligt roligt att arbeta med detta projektarbete.</p>
+
 
 <h2>Referenslista</h2>
 
