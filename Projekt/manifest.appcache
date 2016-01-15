@@ -1,7 +1,14 @@
 CACHE MANIFEST
-# 2016-01-15 v1.1
+# 2016-01-15 v1.2
 
 CACHE:
+
+# HTML
+index.html
+about.html
+contact.html
+driveimage.html
+localimage.html
 
 # Styles.
 css/about.css
