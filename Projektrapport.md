@@ -67,6 +67,8 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <h2>Risker med din applikation</h2>
 
+<p>En stor säkerhetsrisk för eventuell framtida utbyggnad av applikationen är det faktum att samtlig kod syns och cachas på klienten. Även om det möjligtvis inte finns några uppenbara risker i applikationens nuvarande version så begränsar den synliga koden utbyggnad i form av exempelvis kontaktformulär eller alternativt andra former av inmatningsfält där användaren ges chans till att fylla i text. Detta i sin tur leder till att applikationens struktur och uppbyggnad måste omarbetas. Först och främst bör en stor del av koden flytta till server-sidan. Utöver detta kommer även stor del tid och kraft krävas för att programmera förebyggande åtgärder för att undvika diverse attacker av exempelvis typen XSS (Cross Site Scripting).</p>
+
 <h2>Egen reflektion kring projektet</h2>
 
 <p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har det uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
