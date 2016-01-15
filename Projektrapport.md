@@ -32,8 +32,11 @@ I det fall jag inte skulle utföra detta skulle det kunna resultera i ett proble
 <p>Dessa attacker och brister kan tillåta vissa eller till och med samtliga konton att attackeras. Skulle en angripare lyckas med attacken kan denne utföra allt som användaren skulle kunna. Det är de privilegierade kontona vilka ständigt är inriktade av angripare [4].</p>
 
 <h3>Prestandaoptimering</h3>
+<h4>CSS-taggar</h4>
+<p>Jag har valt att placera samtliga av mina CSS-taggar i head-taggen. I det fall jag inte skulle göra detta kan det resultera i ett problem som kan, beroende på vilken webbläsare som används samt hur sidan laddas in, leda till en blank vit sida[5].<br />
+Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ges som skulle kunna försäkra användaren om att dennes begäran behandlas korrekt. Detta kan i sig leda till att användaren undrar vad som försiggår och istället lämnar sidan.</p>
 
-
+<p>För att undvika blank vit sida skall ens stylesheet placeras högst upp i dokumentets head-tagg. Detta löser samtliga problematiska scenarion. Oavsett hur sidan laddas in (nytt fönster, omladdning eller som hem/start-sida) kommer sidan alltid laddas progressivt[5].</p>
 
 </h2>Offline-first</h2>
 
@@ -52,6 +55,10 @@ I det fall jag inte skulle utföra detta skulle det kunna resultera i ett proble
 [3] J. Williams, D. Wichers, "Top 10 2013-Top 10," OWASP, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-Top_10]. [Hämtad: 1 december, 2015].
 
 [4] J. Williams, D. Wichers, "Top 10 2013-A2-Broken Authentication and Session Management," OWASP, 2013 [Online] Tillgänglig: https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management. [Hämtad: 2 december, 2015].
+
+### Böcker ###
+
+[1] S. Souders, *High Performance Web Sites: Essential Knowledge for Frontend Engineers*, Sebastopol: O’Reilly, 2007, 40-41.
 
 
 Inledning där du kort beskriver vad du gjort och bakgrunden till din applikation. Finns det liknande applikationer redan? Vilka tekniker har använts.
