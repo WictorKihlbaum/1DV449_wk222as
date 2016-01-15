@@ -72,6 +72,15 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 <p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har det uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
 
 <h4>Vilka eventuella problem har du stött på?</h4>
+<p>Det har uppstått såväl stora som små problem under projektets process. De främsta problemen som uppstått och varit bland de mest tidskrävande är de som följer nedan:</p>
+
+<p>1. Offline.js API:et kunde man implementera på ett flertal sätt, såväl manuell implementation av filer som installation via "Eager". Inledningsvis valde jag det förstnämnda alternativet. Detta innebar att manuellt inkludera JavaScript-filen samt dess tillhörande CSS-filer för design och språk. Detta resulterade i att det, gissningsvis, blev en konflikt bland mina CSS-filer då indikations-rutan täckte en tredjedel av skärmen och därmed hindrade användaren från att i princip navigera på webbsidan. Funktionaliteten fick jag aldrig reda på huruvida den fungerade korrekt eller ej. Avslutningsvis tog jag bort dessa filer och installerade API:et med hjälp av "Eager" istället. Allt som krävdes då var att inkludera en script-tag i koden.</p>
+
+offline js
+cachning
+aviary editor url
+listning av drive bilder
+inloggning script taggar
 
 <h4>Finns det funktioner som du velat implementera men inte hunnit?</h4>
 <p>Rörande funktionalitet finns det ytterligare en del funktioner jag hade velat implementera.</p>
