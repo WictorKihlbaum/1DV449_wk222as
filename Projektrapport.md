@@ -76,8 +76,8 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p><b>1.</b> Offline.js API:et kunde man implementera på ett flertal sätt, såväl manuell implementation av filer som installation via "Eager". Inledningsvis valde jag det förstnämnda alternativet. Detta innebar att manuellt inkludera JavaScript-filen samt dess tillhörande CSS-filer för design och språk. Detta resulterade i att det, gissningsvis, blev en konflikt bland mina CSS-filer då indikations-rutan täckte en tredjedel av skärmen och därmed hindrade användaren från att i princip navigera på webbsidan. Funktionaliteten fick jag aldrig reda på huruvida den fungerade korrekt eller ej. Avslutningsvis tog jag bort dessa filer och installerade API:et med hjälp av "Eager" istället. Allt som krävdes då var att inkludera en script-tag i koden.</p>
 
-offline js
-cachning
+<p><b>2.</b>Vid inledningen av implementationen av AppCach och dess manifest-fil hade jag en del problem. Jag märkte att det inte enbart räckte med att skapa och inkludera denna fil, utan man var även tvungen att lägga till dess datatyp/mimeType (text/cache-manifest) på sin server så att denna skulle förstå hur den skulle hantera filen. Jag letade först efter eventuella configarations-guider för Azures servrar då det är via denna tjänst jag publicerar mitt projekt. Dessvärre hittade jag inget rörande detta. Tillslut hittade jag dock en tråd på "StackOverflow" som visade hur man med hjälp av en manuellt skapad config-fil kan addera diverse datatyper.</p>
+
 aviary editor url
 listning av drive bilder
 inloggning script taggar
