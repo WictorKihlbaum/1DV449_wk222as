@@ -51,9 +51,9 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 <h2>Offline-first</h2>
 
 <p>Eftersom jag vill ge mina besökare en såpass god upplevelse som möjligt oavsätt uppkoppling eller ej har jag valt att cacha samtliga resurser som ingår i min webbapplikation. Jag har valt att använda mig av "Application Cach" som metod där jag använder mig av en så kallad "manifest"-fil för detta ändamål. I denna fil har jag alla mina resurser uppskrivna som jag vill ska cachas. I denna fil står även mina HTML-dokumenten listade. Egentligen behöver man ej lista HTML-dokumentet då dessa per automatik cachas vid laddning av sida [8], dock krävs det att användaren besöker var och en av dessa sidor för de skall cachas [8]. Eftersom jag listat alla HTML-dokument krävs det alltså enbart att användaren besöker index-sidan. Eftersom den totala mängden data mina resurser tar upp inte överstiger 5Mb så tyckte jag detta var ett lämpligt cachnings-alternativ.</p>
-<p>Genom att använda mig av denna metod ger jag min applikation tre fördelar:
-1. Användare kan navigera på hela webbsidan när de är offline.
-2. Resurser kommer direkt från den lokala datorn. Ingen nätverksrutt krävs.
+<p>Genom att använda mig av denna metod ger jag min applikation tre fördelar: <br />
+1. Användare kan navigera på hela webbsidan när de är offline. <br />
+2. Resurser kommer direkt från den lokala datorn. Ingen nätverksrutt krävs. <br />
 3. I det fall min sida stängs ned på grund av exempelvis underhåll så kommer mina besökare få offline-upplevelsen [8].</p>
 
 
