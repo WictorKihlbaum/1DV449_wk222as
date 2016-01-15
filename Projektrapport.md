@@ -43,6 +43,7 @@ Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ge
 <p>Jag har valt att placera samtliga CSS-regler samt JavaScript-kod i externa filer vilka länkas in i HTML-dokumentet. Det främsta problemet som hade uppstått om jag inte valt att implementera dessa på detta sätt är dessa dessa resurser inte har möjlighet att cachas vilket generellt innebär långsammare laddning av webbsidor eftersom de måste laddas in på nytt inför varje besök. 
 
 <p>Enda gången det är värt att överväga att ladda in resurser via så kallad "inline" är i det fall ens webbsida inte besöks nämnvärt ofta. Detta eftersom inline-resurser laddas in snabbare [6]. I mitt fall dock är möjlighet till cachning en avgörande del i mitt projekt eftersom jag vill kunna ge mina användare en såpass god upplevelse som möjligt, även i det fall en internet-anslutning bryts av en eller flera olika anledningar.</p>
+<p>Några följder som skulle komma att uppstå i det fall jag inte väljer att placera CSS och JavaScript i externa filer är att HTML-sidorna tar upp större plats [6]. Detta i sig innebär alltså mer data att ladda in för användaren inför varje besök vilket kan öka väntetiden avsevärt.</p>
 
 
 </h2>Offline-first</h2>
