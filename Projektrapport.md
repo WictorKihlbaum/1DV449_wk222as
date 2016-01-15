@@ -85,6 +85,7 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 <p>4. Redigeringsverktyget min webbapplikation använder sig av tillåter enbart bildformaten Png och Jpg/Jpeg. Detta är även något jag talar om för användaren på sidan. Dock hade en trevlig funktion varit om användaren gavs möjlighet att konvertera en bild i ett icke godkänt format till antingen Png eller Jpg/Jpeg. En fråga till användaren huruvida denne vill konvertera en bild i felaktigt format skulle även kunna visas i samband med felmeddelandet som uppstår vid inladdning av bild.</p>
 
 <h4>Hur skulle du vilja jobba vidare med din applikation?</h4>
+<p>Utöver ovan nämnda funktioner skulle jag gärna vilja vidareutveckla den så att den även är anpassad för flertalet webbläsare samt de äldre versionerna för var och en av dessa. Även om de största webbläsarna idag uppdateras per automatik finns det de människor som sitter på äldre versioner av exempelvis Internet Explorer. Kort och gått vill jag utveckla min webbapplikation så att den fungerar och visas såpass korrekt som möjligt oavsätt enhet, webbläsare samt version.</p>
 
 <h4>Vad anser du vara betygshöjande med din applikation?</h4>
 
