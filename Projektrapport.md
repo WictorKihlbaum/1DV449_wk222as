@@ -48,7 +48,7 @@ Detta leder till en dålig användarupplevelse eftersom ingen visuell respons ge
 <h4>Script-taggar</h4>
 I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned innan body-taggen stängs. Detta medför en progressiv rendering och åstadkommer bättre nedladdnings-parallellisering [7]. Anledningen till att detta sker är för att skript blockerar parallell nedladdning. Detta medför således att resurser och övrigt innehåll som följer nedan skript måste vänta på sin tur [7].
 
-</h2>Offline-first</h2>
+<h2>Offline-first</h2>
 
 <h2>Risker med din applikation</h2>
 
