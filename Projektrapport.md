@@ -16,9 +16,13 @@ Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, d�
 
 ### Offline-first ###
 
+<p></p>
+
 ### Risker med din applikation ###
 
 ### Egen reflektion kring projektet ###
+
+### Referenslista ###
 
 
 
