@@ -2,7 +2,10 @@
 
 ### Inledning ###
 
-blabla
+Huvudidén med min applikation är att erbjuda mina besökare verktygen de behöver i syfte att redigera deras tilltänkta bilder.
+Min webbapplikation ger besökaren chansen att antingen redigera en lokal bild från datorn eller en bild från dennes Google Drive.
+När användaren är klar med bildredigeringsverktyget kan denne antingen ladda ner den redigerade bilden lokalt till datorn eller
+ladda upp och spara den på sin Google Drive.
 
 ### Schematisk bild över applikationens beståndsdelar ###
 
