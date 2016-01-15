@@ -23,12 +23,14 @@ var SignEvent = {
 		SignEvent.showProfileName(profile.getName());
 		SignEvent.showSignOutButton();
 		
+		// Check if user is authenticated.
+		DriveClass.checkAuth();
+		
+		/* Developer purpose */
 		/*console.log('ID: ' + profile.getId());
 		console.log('Name: ' + profile.getName());
 		console.log('Image URL: ' + profile.getImageUrl());
 		console.log('Email: ' + profile.getEmail());*/
-		
-		DriveClass.checkAuth();
 	},
 	
 	signOut: function() {
@@ -37,8 +39,9 @@ var SignEvent = {
 		auth2.signOut().then(function() {
 			console.log('User signed out.');
 		});
-		
+		// Revoke all tokens and scopes.
 		auth2.disconnect();
+		
 		SignEvent.hideSignOutButton();
 		SignEvent.hideProfileImage();
 		SignEvent.hideProfileName();
@@ -61,6 +64,7 @@ var SignEvent = {
 	},
 	
 	showProfileImage: function(imageUrl) {
+		// Show profile picture if user has any.
 		if (typeof(imageUrl) !== 'undefined') {
 			SignEvent.profileImage.className = 'profile-image-show';
 			SignEvent.profileImage.src = imageUrl;

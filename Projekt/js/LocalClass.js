@@ -16,7 +16,6 @@ var LocalClass = {
 			selectedFile.type === 'image/jpg' || 
 			selectedFile.type === 'image/jpeg') {
 			// In case an error message has been shown.
-			//LocalClass.removeErrorMessage();
 			Message.removeErrorMessage();
 			
 			var reader = new FileReader();
@@ -32,6 +31,7 @@ var LocalClass = {
 			}
 			
 		} else {
+			// Show error message.
 			var message = 'File is not valid! The file is either not an image or the format is wrong. ' +
 			'Valid formats are Png and Jpg/Jpeg. Please try again.';
 			Message.showErrorMessage(message);
@@ -75,6 +75,7 @@ var LocalClass = {
 		if (!image.src.match(/no_image_chosen/g)) {
 			AviaryLocal.launchEditor(id.target.myParam);
 		} else {
+			// Show error message.
 			var message = 'Error! You have to choose an image before you can edit.';
 			Message.showErrorMessage(message);
 		}

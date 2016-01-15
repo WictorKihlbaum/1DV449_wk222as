@@ -63,7 +63,7 @@ var DriveClass = {
 				for (var i = 0; i < files.length; i++) {
 					
 					var file = files[i];
-				
+					// Only list images in these formats.
 					if (file.mimeType === 'image/png' || 
 						file.mimeType === 'image/jpg' || 
 						file.mimeType === 'image/jpeg') {
@@ -118,7 +118,7 @@ var DriveClass = {
 		Message.removeSuccessMessage();	
 			
 		if (downloadURL) {
-			
+			// Get access token.
 			var accessToken = gapi.auth.getToken().access_token;
 			var xhr = new XMLHttpRequest();
 				
@@ -140,7 +140,7 @@ var DriveClass = {
 			};
 				
 			xhr.open('GET', downloadURL);
-			xhr.responseType = 'blob';
+			xhr.responseType = 'blob'; // In this case an image.
 			xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 			xhr.send();
 		}
@@ -152,17 +152,19 @@ var DriveClass = {
 		var xhr = new XMLHttpRequest();
 			
 		xhr.onload = function() {
+			// Post image to users Google Drive.
 			DriveClass.postImageToDrive(xhr.response);
 		};
 			
 		xhr.onerror = function() {
+			// Show error message.
 			console.log('Error! Could not get image from Amazon.');
 			var message = 'Error! Failed to get the edited image. Therefore an upload to Google Drive could not be done.';
 			Message.showErrorMessage(message);
 		};
 			
 		xhr.open('GET', url);
-		xhr.responseType = 'blob';
+		xhr.responseType = 'blob'; // In this case an image.
 		xhr.send();	
 	},
 	
@@ -209,17 +211,22 @@ var DriveClass = {
 				
 			if (!callback) {
       			callback = function(file) {
+					// Show success message.
         			console.log(file);
 					var message = 'The image was successfully uploaded to your Google Drive!';
 					Message.showSuccessMessage(message);
+					// List all images again to show the newly uploaded one.
 					DriveClass.listImages();
+					// Set cursor to default again when upload has finished.
 					document.body.className = 'cursor-default';
       			};
 				
     		} else {
+				// Show error message.
 				console.log('Something went wrong! Could not post image to Google Drive.');
 				var message = 'The image failed to upload to your Google Drive!';
 				Message.showErrorMessage(message);
+				// Set cursor back to default again.
 				document.body.className = 'cursor-default';
 			}
 			

@@ -78,6 +78,9 @@ var Fullscreen = {
 			}
 			
 		} else {
+			// Show error message.
+			var message = 'Ooops! Unfortuneatly your browser do not support this.';
+			Message.showErrorMessage(message);
 			console.log('Fullscreen not available by your browser.');	
 		}
 	},
