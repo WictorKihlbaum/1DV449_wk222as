@@ -69,9 +69,9 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <h2>Egen reflektion kring projektet</h2>
 
-<p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
+<p>Överlag tycker jag att projektet har gått bra. Det har varit motiverande och roligt att arbeta med projektet eftersom man har haft såpass fria händer rörande vad applikationen ska hantera för data samt implementation av verktyg och API:er. Visserligen har det uppstått en del hinder på vägen som varit såväl tidskrävande som frustrerande. Lyckligtvis har inget av dessa resulterat i att en önskad funktion blivit utelämnad eller dylikt.</p>
 
-<h3>Finns det funktioner som du velat implementera men inte hunnit?</h3>
+<h4>Finns det funktioner som du velat implementera men inte hunnit?</h4>
 <p>Rörande funktionalitet finns det ytterligare en del funktioner jag hade velat implementera.</p>
 
 <p>1. Inom sidan för lokal redigering ('localimage.html') hade jag velat implementera funktionalitet för att kunna dra och släppa en bildfil inom ett fält på sidan för att så vis få en automatisk inladdning av bilden. Detta skulle även erbjuda ytterligare användarvänlighet för besökaren. Man skulle alltså slippa klicka på "Upload image"-knappen.</p>
