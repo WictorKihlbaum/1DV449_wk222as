@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2016-01-15 v1.0
+# 2016-01-15 v1.1
 
 CACHE:
 
@@ -28,7 +28,6 @@ images/twitter_logo_white.png
 https://apis.google.com/js/platform.js
 https://apis.google.com/js/client.js
 //fast.eager.io/Kp7xN8wy4S.js
-https://use.typekit.net/fni2mbz.js
 http://feather.aviary.com/imaging/v2/editor.js
 js/clipboard/clipboard.min.js
 js/clipboard/ClipboardClass.js
