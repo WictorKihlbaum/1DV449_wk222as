@@ -2,4 +2,6 @@
 
 # Projekt #
 
-Publik Server URL: http://webproject1dv449.azurewebsites.net/
+Server: http://webproject1dv449.azurewebsites.net/
+Rapport:
+Presentationsfilm: 
