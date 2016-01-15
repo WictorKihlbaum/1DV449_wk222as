@@ -11,7 +11,7 @@ egenutvecklade redigeringsverktyg samt, som ovan nämnt, inkluderar inloggning t
 Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, däribland PIXLR. Andra verktyg går även att lägga till på sitt konto.
 
 <h2>Schematisk bild över applikationens beståndsdelar</h2>
-<p>Schemtisk bild: [Länk]</p>
+<p>Bild: [Länk](http://webproject1dv449.azurewebsites.net/)</p>
 
 <h2>Säkerhet och prestandaoptimering</h2>
 
