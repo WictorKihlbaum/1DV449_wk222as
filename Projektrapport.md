@@ -63,7 +63,7 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 
 <p>Första gången användaren går in på min sida cachas alla listade och önskade resurser. Efter detta kommer webbläsaren per automatik känna av om manifestfilen har ändrats. Om den inte har ändrats händer ingenting, men om webbläsaren känner av att den modifierats kommer den automatiskt ladda ned de nya versionerna av filerna [8]. Det som är så smidigt med denna cach-metod är att allting sköts per automatik. Ingen programmering krävs för att verifiera, sätta och ladda ned filer [8].</p>
 
-<p>I det fall en användare </p>
+<p>I det fall en användare förlorar anslutning kommer denne meddelas detta per automatik via Offline.js API:et som jag implementerat i min webbapplikation. Jag har även satt som standard att alltid visa en indikationsruta i nedre vänstra hörnet på skärmen huruvida användaren är ansluten eller ej.</p>
 
 
 
@@ -84,9 +84,6 @@ I samtliga av mina HTML-dokument laddar jag in mina externa script längst ned i
 [4] J. Williams, D. Wichers, "Top 10 2013-A2-Broken Authentication and Session Management," OWASP, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management]. [Hämtad: 2 december, 2015].
 
 [8] E. Bidelman, "A Beginner's Guide to Using the Application Cache," HTML5Rocks, 2013 [Online] Tillgänglig: [http://www.html5rocks.com/en/tutorials/appcache/beginner/]. [Hämtad: 14 januari, 2016].
-
-
-
 
 
 ### Böcker ###
