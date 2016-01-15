@@ -26,7 +26,7 @@ skriva kod som skyddar mot attacker. Jag valde därför att i ren text uppge del
 
 <p>Skydda sig mot XSS-attacker kräver separation av opålitlig data från aktivt innehåll i webbläsaren. Det föredragna valet är att ordentligt behandla och städa undan all opålitlig data baserad på HTML-kontexten, så som body, attribute, JavaScript, CSS och URL, i vilket data kommer bli inplacerad [2].</p>
 
-<h4>1. Broken Authentication and Session Management</h4>
+<h4>2. Broken Authentication and Session Management</h4>
 <p>Vid varje utloggning är jag mycket noga med att upphäva alla rättigheter för den nyligen inloggade användaren. Användarens Session-token återkallas och samtliga rättigheter ("scopes"), exempelvis åtkomst till Google Drive, som min applikation vill ha godkännande för vid inloggning upphör.</p>
 I det fall jag inte skulle utföra detta skulle det kunna resultera i ett problem som innebär att angripare tillåts äventyra lösenord, nycklar, så kallade (som ovan nämnt) "Session-tokens" eller utnyttja andra brister i implementationen för att upptaga andra användares identiteter [3].</p>
 <p>Dessa attacker och brister kan tillåta vissa eller till och med samtliga konton att attackeras. Skulle en angripare lyckas med attacken kan denne utföra allt som användaren skulle kunna. Det är de privilegierade kontona vilka ständigt är inriktade av angripare [4].</p>
