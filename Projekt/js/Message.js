@@ -1,3 +1,4 @@
+/* This JS-file handles success/error-messages. */
 "use strict";
 
 var Message = {

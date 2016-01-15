@@ -1,3 +1,4 @@
+/* This JS-file handles events connected to 'localimage.html' */
 "use strict";
 
 var LocalClass = {

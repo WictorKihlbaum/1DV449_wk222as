@@ -1,15 +1,47 @@
+/* This JS-file handles events connected to 'driveimage.html' */
 "use strict";
 
 var DriveClass = {
 	
 	imageList: null,
+	// My Google Developer Client ID connected to this project.
 	CLIENT_ID: '788591829115-1uq193qnm8r72ujqej7l3hdj558hj7ej.apps.googleusercontent.com',
+	// Scope to request.
 	SCOPES: ['https://www.googleapis.com/auth/drive'],
 	
 			  
 	init: function() {
+		DriveClass.addEventEventListener();
+		// Reset list.
 		DriveClass.imageList = document.getElementById("image-list");
-		DriveClass.imageList.innerHTML = ''; // Reset list.
+		DriveClass.imageList.innerHTML = '';
+	},
+	
+	addEventEventListener: function() {
+		var closeButton = document.getElementById('close-info-message');
+		closeButton.addEventListener('click', DriveClass.closeWindow, false);
+	},
+	
+	addDownloadButton: function(id, url) {
+		var buttonField = document.getElementById(id+'-edited');
+		buttonField.innerHTML = '<a href="'+url+'" download ' +
+		'class="button-class button-size-small download-button">Download edited</a>';
+	},
+	
+	addUploadButton: function(id, url) {
+		var buttonField = document.getElementById(id+'-upload');
+		buttonField.innerHTML = '<a href="#" ' +
+		'class="button-class button-size-small upload-button" ' +
+		'onclick="DriveClass.getImageFromAmazon(\''+url+'\')">Upload to Drive</a>';
+	},
+	
+	closeWindow: function() {
+		var infoWindow = document.getElementById('need-to-login-text');
+		infoWindow.className = 'fadeout';
+		
+		setTimeout(function() {
+        	infoWindow.style.display = 'none';
+    	}, 500);
 	},
 		
 	/**
@@ -73,6 +105,7 @@ var DriveClass = {
 				}
 			  
 			} else {
+				// Tell user if no images (Png, Jpg/Jpeg) are found on Google Drive.
 				var text = document.getElementById('top-text');
 				text.innerHTML = "No valid images (Png, Jpg/Jpeg) found in your Google Drive";
 			}

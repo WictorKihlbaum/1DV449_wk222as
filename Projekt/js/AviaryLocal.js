@@ -1,3 +1,4 @@
+/* This JS-file handles Aviary Editor for 'localimage.html' */
 "use strict";
 
 var AviaryLocal = {

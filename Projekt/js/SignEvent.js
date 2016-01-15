@@ -1,3 +1,4 @@
+/* This JS-file handles events related to signin/signout. */
 "use strict";
 
 var SignEvent = {

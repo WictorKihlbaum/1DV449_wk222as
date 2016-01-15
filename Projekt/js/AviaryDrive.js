@@ -1,3 +1,4 @@
+/* This JS-file handles Aviary Editor for 'driveimage.html' */
 "use strict";
 
 var AviaryDrive = {
@@ -7,7 +8,6 @@ var AviaryDrive = {
 	
 	init: function() {
 		AviaryDrive.instantiateFeather();
-		AviaryDrive.addEventEventListener();
 	},
 	
 	instantiateFeather: function() {
@@ -25,8 +25,8 @@ var AviaryDrive = {
 				var img = document.getElementById(imageID);
 				img.src = newURL;
 				// Add download and upload button for new image.
-				AviaryDrive.addDownloadButton(imageID, newURL);
-				AviaryDrive.addUploadButton(imageID, newURL);
+				DriveClass.addDownloadButton(imageID, newURL);
+				DriveClass.addUploadButton(imageID, newURL);
 			},
 			
 			onError: function(errorObj) {
@@ -46,33 +46,6 @@ var AviaryDrive = {
 		});
 		
 		return false;
-	},
-	
-	addDownloadButton: function(id, url) {
-		var buttonField = document.getElementById(id+'-edited');
-		buttonField.innerHTML = '<a href="'+url+'" download ' +
-		'class="button-class button-size-small download-button">Download edited</a>';
-	},
-	
-	addUploadButton: function(id, url) {
-		var buttonField = document.getElementById(id+'-upload');
-		buttonField.innerHTML = '<a href="#" ' +
-		'class="button-class button-size-small upload-button" ' +
-		'onclick="DriveClass.getImageFromAmazon(\''+url+'\')">Upload to Drive</a>';
-	},
-	
-	addEventEventListener: function() {
-		var closeButton = document.getElementById('close-info-message');
-		closeButton.addEventListener('click', AviaryDrive.closeWindow, false);
-	},
-	
-	closeWindow: function() {
-		var infoWindow = document.getElementById('need-to-login-text');
-		infoWindow.className = 'fadeout';
-		
-		setTimeout(function() {
-        	infoWindow.style.display = 'none';
-    	}, 500);
 	}
 		
 };
