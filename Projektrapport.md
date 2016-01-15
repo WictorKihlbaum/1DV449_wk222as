@@ -2,6 +2,8 @@
 
 ### Inledning ###
 
+blabla
+
 ### Schematisk bild över applikationens beståndsdelar ###
 
 ### Säkerhet och prestandaoptimering ###
