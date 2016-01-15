@@ -17,6 +17,12 @@ Google Drive erbjuder användaren att öppna sina bilder med diverse verktyg, d�
 #### Säkerhet ####
 <p>Främsta säkerhetsåtgärden jag vidtagit är att inte i någon mån implementera textfält på webbsidan. Detta för att undvika och inte
 riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mest utbredda säkerhetsrisken rörande webbapplikationer. Det är ett problem som innebär att applikationen tar ej anförtrodd data och skickar det till webbläsaren utan ordentlig validering eller hantering. XSS tillåter angripare att exekvera skript i offrets webbläsare vilket exempelvis kan kapa dennes sessioner, vanställa webbsidor eller omdirigera användaren till maliciösa sidor [1].</p>
+<p>Eftersom all min JavaScript-kod ligger synlig på klienten skulle detta kunna ge högst oönskade resultat.
+Ett bra exempel på vad jag skulle ha kunnat implementera på min kontaktsida är just ett kontaktformulär med fält för
+såväl besökarens namn, email samt själva meddelandet vilken denne tänkt skicka. Det hade förvisso resulterat i en angenämnare
+upplevelse och smidighet för användaren, men på beskostnad av säkerheten. Dessutom hade en stor del extra tid gått åt till att
+skriva kod som skyddar mot attacker.</p>
+
 
 #### Prestandaoptimering ####
 
@@ -30,6 +36,7 @@ riskera angrepp i form av XSS-attacker (Cross Site Scripting). Detta är den mes
 
 ### Referenslista ###
 
+[1] J. Williams, D. Wichers, "Cross-site Scripting (XSS)," *OWASP*, 2013 [Online] Tillgänglig: [https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). [Hämtad: 1 december, 2015].
 
 
 Inledning där du kort beskriver vad du gjort och bakgrunden till din applikation. Finns det liknande applikationer redan? Vilka tekniker har använts.
