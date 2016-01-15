@@ -2,10 +2,13 @@
 
 ### Inledning ###
 
-Huvudidén med min applikation är att erbjuda mina besökare verktygen de behöver i syfte att redigera deras tilltänkta bilder.
-Min webbapplikation ger besökaren chansen att antingen redigera en lokal bild från datorn eller en bild från dennes Google Drive.
-När användaren är klar med bildredigeringsverktyget kan denne antingen ladda ner den redigerade bilden lokalt till datorn eller
-ladda upp och spara den på sin Google Drive.
+<p>Huvudidén med min applikation vilken jag nu utvecklat är att erbjuda mina besökare verktygen de behöver i syfte att redigera deras tilltänkta bilder. Min webbapplikation ger besökaren chansen att antingen redigera en lokal bild från datorn eller en bild från dennes Google Drive. När användaren är klar med bildredigeringsverktyget kan denne antingen ladda ner den redigerade bilden lokalt till datorn eller ladda upp och spara den på sin Google Drive.</p>
+
+<p>De två främsta beståndsdelarna jag implementerat i min applikation är Googles API (Inlogging och åtkomst till Google Drive) och Adobes Aviary API vilket är själva bildredigeringsverktyget. I min projektbeskrivning nämnde jag att jag hade tänkt inkludera PXLR:s API för att agera redigeringsverktyg. Jag märkte dock att detta API gav mig för mycket gratis, däribland inloggning till Google redan implementerat. Valet landade istället på Aviary som gav mig en bättre implementation både vad gäller design samt konfigurations-val.</p>
+
+<p>De två främsta liknande applikationerna är PIXLR och Googles Drive-tjänst. PIXLR (https://pixlr.com/) använder sig av sitt
+egenutvecklade redigeringsverktyg samt, som ovan nämnt, inkluderar inloggning till Google. <br />
+
 
 ### Schematisk bild över applikationens beståndsdelar ###
 
